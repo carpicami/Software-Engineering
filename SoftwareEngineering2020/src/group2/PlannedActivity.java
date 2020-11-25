@@ -16,9 +16,9 @@ public class PlannedActivity extends Activity {
     private boolean extraActivity;
     
     public PlannedActivity(String ID, String site, String area, String description, List<Competencies> skills, 
-            boolean interruptbility, int estimatedTime, Typology t, boolean extraActivity) {
+            boolean interruptbility, int estimatedTime, Typology t, int week, boolean extraActivity) {
         
-        super(ID, site, area, description, skills, interruptbility, estimatedTime, t);
+        super(ID, site, area, description, skills, interruptbility, estimatedTime, t, week);
         this.extraActivity = extraActivity;
     }
 

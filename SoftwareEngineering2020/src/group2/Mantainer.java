@@ -15,16 +15,15 @@ public class Mantainer extends User{
     private String name;
     private String ruolo;
     private List<Competencies> list = new ArrayList();
-    private Availability availability;
+    //private Map<String, Integer> availability = new HashMap<>();
     
-    public Mantainer(String username, String password, String name, String ruolo, Availability availability, List<Competencies> list) {
+    public Mantainer(String username, String password, String name, String ruolo, List<Competencies> list) {
         super(username, password);
         this.name = name;
         this.ruolo = ruolo;
-        this.availability = availability;
-        this.list = new ArrayList();
+        this.list = list;
     }
-
+    
     @Override
     public void LogIn() { //ipotetico metodo di Login
     }
@@ -45,20 +44,12 @@ public class Mantainer extends User{
         this.ruolo = ruolo;
     }
 
-    public List<Competencies> getList() {
-        return list;
-    }
-
-    public void setList(List<Competencies> list) {
-        this.list = list;
-    }
-
-    public Availability getAvailability() {
+    /*public Map<String, Integer> getAvailability() {
         return availability;
     }
 
-    public void setAvailability(Availability availability) {
+    public void setAvailability(Map<String,Integer> availability) {
         this.availability = availability;
-    }
+    }*/
     
 }

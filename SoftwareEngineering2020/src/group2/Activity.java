@@ -22,9 +22,10 @@ public abstract class Activity {
     private List<Competencies> skills = new ArrayList();
     private boolean interruptbility;
     private int estimatedTime;
+    private int week;
     
     public Activity(String ID, String site, String area, String description, List<Competencies> skills,
-            boolean interruptbility, int estimatedTime, Typology t){
+            boolean interruptbility, int estimatedTime, Typology t, int week){
         
         this.ID = ID;
         this.site = site;
@@ -34,6 +35,7 @@ public abstract class Activity {
         this.interruptbility = interruptbility;
         this.estimatedTime = estimatedTime;
         this.t = t;
+        this.week = week;
     }
 
     public Typology getT() {
