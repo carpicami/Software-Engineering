@@ -22,37 +22,29 @@ import java.util.logging.Logger;
  */
 public class DBProject {
 
-    private static String url = "";
-    private static String user = "";
-    private static String psw = "";
-
-    private static Connection conn = null;
-    private static Statement stm = null;
-    int i;
-
-    public static void main(String[] args) {
+   public static void main (String [] args) {
+        
+        String url = "jdbc:postgresql://localhost/Software Engineering";
+        String user = "softwareengineering";
+        String pwd = "rodolfo";
+         Connection conn=null;
+         Statement stm=null;
+         int i;
         try {
-            Class.forName("org.postgres.Driver");
-            conn = DriverManager.getConnection(url, user, psw);
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection(url, user, pwd);
             stm = conn.createStatement();
+            
+            conn.close();
 
-            List<Mantainer> m = popolaMantainer(stm); //questo bisogna farlo in base alla settimana e alle skills
-            List<PlannedActivity> a = popolaPlannedActivity(stm); //dipende dalla settimana
-            List<UnplannedActivity> b = popolaUnplannedActivity(stm); //dipende dalla settimana
-
-        } catch (java.sql.SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (java.sql.SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
         }
+        catch (java.sql.SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+          
     }
-
+   
+   
     public static List<Mantainer> popolaMantainer(Statement stm) {
 
         List<Mantainer> l = new ArrayList();
