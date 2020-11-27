@@ -13,8 +13,7 @@ import java.util.*;
  */
 public abstract class Activity {
     
-    public enum Typology {HYDRAULICAL, ELECTRICAL, ELECTRONIC, MECHANICAL};
-    private Typology t;
+    private String tipology;
     private String ID;
     private String site;
     private String area;
@@ -25,7 +24,7 @@ public abstract class Activity {
     private int week;
     
     public Activity(String ID, String site, String area, String description, List<Competencies> skills,
-            boolean interruptbility, int estimatedTime, Typology t, int week){
+            boolean interruptbility, int estimatedTime, String tipology, int week){
         
         this.ID = ID;
         this.site = site;
@@ -34,16 +33,24 @@ public abstract class Activity {
         this.skills = skills;
         this.interruptbility = interruptbility;
         this.estimatedTime = estimatedTime;
-        this.t = t;
+        this.tipology = tipology;
         this.week = week;
     }
 
-    public Typology getT() {
-        return t;
+    public String getTipology() {
+        return tipology;
     }
 
-    public void setT(Typology t) {
-        this.t = t;
+    public void setTipology(String tipology) {
+        this.tipology = tipology;
+    }
+
+    public int getWeek() {
+        return week;
+    }
+
+    public void setWeek(int week) {
+        this.week = week;
     }
 
     public String getID() {

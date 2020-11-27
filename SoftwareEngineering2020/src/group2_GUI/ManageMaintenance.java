@@ -6,7 +6,13 @@
 package group2_GUI;
 
 import group2.*;
-
+import static group2_JDBC.DBProject.popolaMantainer;
+import static group2_JDBC.DBProject.popolaPlannedActivity;
+import static group2_JDBC.DBProject.popolaUnplannedActivity;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.List;
 /**
  *
  * @author maria
@@ -204,7 +210,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) {  //la gui deve sempre essere connessa al DB
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -235,6 +241,28 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 new ManageMaintenance().setVisible(true);
             }
         });
+        
+        String url = "jdbc:postgresql://localhost/Software Engineering";
+        String user = "softwareengineering";
+        String pwd = "rodolfo";
+         Connection conn = null;
+         Statement stm = null;
+         int i;
+         
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection(url, user, pwd);
+            stm = conn.createStatement();
+            
+            List<Mantainer> m = popolaMantainer(stm);
+            List<PlannedActivity> p = popolaPlannedActivity(stm);
+            List<UnplannedActivity> u = popolaUnplannedActivity(stm);
+            //conn.close(); non va chiusa la connessione, serve nella gui
+        }
+        catch (java.sql.SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
