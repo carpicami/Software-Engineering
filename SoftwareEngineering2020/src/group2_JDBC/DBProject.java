@@ -27,8 +27,8 @@ public class DBProject {
         String url = "jdbc:postgresql://localhost/Software Engineering";
         String user = "softwareengineering";
         String pwd = "rodolfo";
-         Connection conn=null;
-         Statement stm=null;
+         Connection conn = null;
+         Statement stm = null;
          int i;
         try {
             Class.forName("org.postgresql.Driver");

@@ -9,15 +9,17 @@ package group2;
  *
  * @author carpi
  */
-public abstract class User {
+public abstract class User { //CLASSE ASTRATTA DEL PATTERN FACTORY METHOD
     
     private String username;
     private String password; 
+    private String ruolo;
     
-    public User(String username, String password){
+    public User(String username, String password, String ruolo){
         this.username = username;
         this.password = password;
+        this.ruolo = ruolo;
     }
     
-    public abstract void LogIn(); //ipotetico metodo di Login per una possibile implementazione
+    public abstract String getRuolo();
 }

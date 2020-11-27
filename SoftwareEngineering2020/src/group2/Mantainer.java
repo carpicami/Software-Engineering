@@ -11,21 +11,24 @@ import java.util.*;
  *
  * @author carpi
  */
-public class Mantainer extends User{
+public class Mantainer extends User{ //CLASSE MANTAINER CHE ESTENDE USER 
     private String name;
-    private String ruolo;
     private List<Competencies> list = new ArrayList();
     //private Map<String, Integer> availability = new HashMap<>();
     
-    public Mantainer(String username, String password, String name, String ruolo, List<Competencies> list) {
-        super(username, password);
+    public Mantainer(String username, String password, String ruolo, String name, List<Competencies> list) {
+        super(username, password, ruolo);
         this.name = name;
-        this.ruolo = ruolo;
         this.list = list;
     }
     
+    public Mantainer(String username, String password, String ruolo){
+        super(username, password, ruolo);
+    }
+    
     @Override
-    public void LogIn() { //ipotetico metodo di Login
+    public String getRuolo() { //ipotetico metodo di Login
+        return "Mantainer";
     }
 
     public String getName() {
@@ -34,14 +37,6 @@ public class Mantainer extends User{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getRuolo() {
-        return ruolo;
-    }
-
-    public void setRuolo(String ruolo) {
-        this.ruolo = ruolo;
     }
 
     /*public Map<String, Integer> getAvailability() {
