@@ -40,15 +40,15 @@ public class ManageMaintenance extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        showbutton = new javax.swing.JButton();
-        week = new javax.swing.JTextField();
+        ShowButton = new javax.swing.JButton();
+        WeekText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
-        select1button = new javax.swing.JButton();
-        select2button = new javax.swing.JButton();
-        select3button = new javax.swing.JButton();
-        select4button = new javax.swing.JButton();
+        ActivityTable = new javax.swing.JTable();
+        Select1Button = new javax.swing.JButton();
+        Select2Button = new javax.swing.JButton();
+        Select3Button = new javax.swing.JButton();
+        Select4Button = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,20 +84,19 @@ public class ManageMaintenance extends javax.swing.JFrame {
         jLabel1.setText("Activity Selection");
         jLabel1.setToolTipText("");
 
-        showbutton.setBackground(new java.awt.Color(153, 153, 153));
-        showbutton.setText("Show");
+        ShowButton.setBackground(new java.awt.Color(153, 153, 153));
+        ShowButton.setText("Show");
 
-        week.addActionListener(new java.awt.event.ActionListener() {
+        WeekText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                weekActionPerformed(evt);
+                WeekTextActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Week n°");
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,29 +106,29 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 "ID", "AREA", "TYPE", "ESTIMATED TIME"
             }
         ));
-        jTable.setToolTipText("");
-        jTable.setName(""); // NOI18N
-        jTable.setRowHeight(29);
-        jScrollPane1.setViewportView(jTable);
-        jTable.getAccessibleContext().setAccessibleName("");
+        ActivityTable.setToolTipText("");
+        ActivityTable.setName(""); // NOI18N
+        ActivityTable.setRowHeight(29);
+        jScrollPane1.setViewportView(ActivityTable);
+        ActivityTable.getAccessibleContext().setAccessibleName("");
 
-        select1button.setBackground(new java.awt.Color(153, 153, 153));
-        select1button.setText("Select1");
-        select1button.setMaximumSize(new java.awt.Dimension(73, 33));
-        select1button.addActionListener(new java.awt.event.ActionListener() {
+        Select1Button.setBackground(new java.awt.Color(153, 153, 153));
+        Select1Button.setText("Select1");
+        Select1Button.setMaximumSize(new java.awt.Dimension(73, 33));
+        Select1Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select1buttonActionPerformed(evt);
+                Select1ButtonActionPerformed(evt);
             }
         });
 
-        select2button.setBackground(new java.awt.Color(153, 153, 153));
-        select2button.setText("Select2");
+        Select2Button.setBackground(new java.awt.Color(153, 153, 153));
+        Select2Button.setText("Select2");
 
-        select3button.setBackground(new java.awt.Color(153, 153, 153));
-        select3button.setText("Select3");
+        Select3Button.setBackground(new java.awt.Color(153, 153, 153));
+        Select3Button.setText("Select3");
 
-        select4button.setBackground(new java.awt.Color(153, 153, 153));
-        select4button.setText("Select4");
+        Select4Button.setBackground(new java.awt.Color(153, 153, 153));
+        Select4Button.setText("Select4");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -142,10 +141,10 @@ public class ManageMaintenance extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(select3button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(select4button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(select2button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(select1button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Select3Button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Select4Button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Select2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Select1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLabel2)
@@ -153,9 +152,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(week, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(WeekText, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53)
-                                .addComponent(showbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(ShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -166,19 +165,19 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(week, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(WeekText, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(select1button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Select1Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(select2button)
+                        .addComponent(Select2Button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(select3button)
+                        .addComponent(Select3Button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(select4button))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Select4Button))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
 
@@ -199,13 +198,13 @@ public class ManageMaintenance extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void weekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weekActionPerformed
+    private void WeekTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeekTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_weekActionPerformed
+    }//GEN-LAST:event_WeekTextActionPerformed
 
-    private void select1buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select1buttonActionPerformed
+    private void Select1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select1ButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_select1buttonActionPerformed
+    }//GEN-LAST:event_Select1ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,19 +265,19 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable ActivityTable;
+    private javax.swing.JButton Select1Button;
+    private javax.swing.JButton Select2Button;
+    private javax.swing.JButton Select3Button;
+    private javax.swing.JButton Select4Button;
+    private javax.swing.JButton ShowButton;
+    private javax.swing.JTextField WeekText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton select1button;
-    private javax.swing.JButton select2button;
-    private javax.swing.JButton select3button;
-    private javax.swing.JButton select4button;
-    private javax.swing.JButton showbutton;
-    private javax.swing.JTextField week;
     // End of variables declaration//GEN-END:variables
 }

@@ -95,10 +95,10 @@
                           <Component id="jScrollPane1" min="-2" pref="381" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="select3button" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="select4button" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="select2button" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="select1button" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="Select3Button" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="Select4Button" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="Select2Button" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="Select1Button" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -108,9 +108,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" pref="280" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="week" min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Component id="WeekText" min="-2" pref="42" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                                  <Component id="showbutton" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <Component id="ShowButton" min="-2" pref="62" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -127,21 +127,21 @@
                   <EmptySpace pref="23" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="week" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="showbutton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="WeekText" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="ShowButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="select1button" min="-2" max="-2" attributes="0"/>
+                          <Component id="Select1Button" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="select2button" min="-2" max="-2" attributes="0"/>
+                          <Component id="Select2Button" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="select3button" min="-2" max="-2" attributes="0"/>
+                          <Component id="Select3Button" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="select4button" min="-2" max="-2" attributes="0"/>
+                          <Component id="Select4Button" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" min="-2" pref="175" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
@@ -159,7 +159,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="showbutton">
+        <Component class="javax.swing.JButton" name="ShowButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -167,9 +167,9 @@
             <Property name="text" type="java.lang.String" value="Show"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="week">
+        <Component class="javax.swing.JTextField" name="WeekText">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="weekActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="WeekTextActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -184,10 +184,10 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable">
+            <Component class="javax.swing.JTable" name="ActivityTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="5">
+                  <Table columnCount="4" rowCount="4">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
                     <Column editable="true" title="AREA" type="java.lang.Object"/>
                     <Column editable="true" title="TYPE" type="java.lang.Object"/>
@@ -204,7 +204,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="select1button">
+        <Component class="javax.swing.JButton" name="Select1Button">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -215,10 +215,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="select1buttonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Select1ButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="select2button">
+        <Component class="javax.swing.JButton" name="Select2Button">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -226,7 +226,7 @@
             <Property name="text" type="java.lang.String" value="Select2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="select3button">
+        <Component class="javax.swing.JButton" name="Select3Button">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -234,7 +234,7 @@
             <Property name="text" type="java.lang.String" value="Select3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="select4button">
+        <Component class="javax.swing.JButton" name="Select4Button">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
