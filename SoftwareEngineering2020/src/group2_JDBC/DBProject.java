@@ -22,13 +22,14 @@ import java.util.logging.Logger;
  */
 public class DBProject {
 
-   /* public static void main(String[] args) {
+    static String url = "jdbc:postgresql://localhost/Software Engineering";
+    static String user = "softwareengineering";
+    static String pwd = "rodolfo";
+    static Connection conn = null;
+    static Statement stm = null;
 
-        String url = "jdbc:postgresql://localhost/Software Engineering";
-        String user = "softwareengineering";
-        String pwd = "rodolfo";
-        Connection conn = null;
-        Statement stm = null;
+    public static void main(String[] args) {
+
         int i;
         try {
             Class.forName("org.postgresql.Driver");
@@ -40,16 +41,16 @@ public class DBProject {
             System.out.println(ex.getMessage());
         }
 
-    }*/ //mi connetto al DB nella GUI
+    } //mi connetto al DB nella GUI
 
-    public static List<Mantainer> popolaMantainer(Statement stm) {
+    public static List<Mantainer> popolaMantainer() {
 
         List<Mantainer> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
 
         String query = "select * from mantainer";  //da cambiare, dipende dalla settimana e dalle skills
+        
         try {
-
             ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
@@ -80,7 +81,7 @@ public class DBProject {
         return l;
     }
 
-    public static List<PlannedActivity> popolaPlannedActivity(Statement stm) {
+    public static List<PlannedActivity> popolaPlannedActivity() {
 
         List<PlannedActivity> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
@@ -100,14 +101,14 @@ public class DBProject {
                 String tipology = rs.getString("tipology");
                 int week = rs.getInt("week");
                 boolean extraActivity = rs.getBoolean("extraActivity");
-                
+
                 String competencies = rs.getString("skills needed");
                 String id_competencies = rs.getString("skills ID");
 
                 Competencies c = new Competencies(competencies, id_competencies); //skills needed
                 cl.add(c);
-                
-                PlannedActivity a = new PlannedActivity(ID,site,area,description,cl,interruptbility,estimatedTime,tipology,week,extraActivity);
+
+                PlannedActivity a = new PlannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, extraActivity);
                 l.add(a);
             }
         } catch (java.sql.SQLException e) {
@@ -123,12 +124,12 @@ public class DBProject {
         }
         return l;
     }
-   
-    public static List<UnplannedActivity> popolaUnplannedActivity(Statement stm) {
+
+    public static List<UnplannedActivity> popolaUnplannedActivity() {
 
         List<UnplannedActivity> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
-        
+
         String query = "select * from unplannedactivity where week is ...";  //da cambiare, dipende dalla settimana e dalle skills
         try {
 
@@ -144,14 +145,14 @@ public class DBProject {
                 String tipology = rs.getString("tipology");
                 int week = rs.getInt("week");
                 boolean extraActivity = rs.getBoolean("extraActivity");
-                
+
                 String competencies = rs.getString("skills needed");
                 String id_competencies = rs.getString("skills ID");
 
                 Competencies c = new Competencies(competencies, id_competencies); //skills needed
                 cl.add(c);
 
-                UnplannedActivity u = new UnplannedActivity(ID,site,area,description,cl,interruptbility,estimatedTime,tipology,week,extraActivity);
+                UnplannedActivity u = new UnplannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, extraActivity);
                 l.add(u);
             }
         } catch (java.sql.SQLException e) {

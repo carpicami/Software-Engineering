@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.List;
+
 /**
  *
  * @author maria
@@ -240,28 +241,13 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 new ManageMaintenance().setVisible(true);
             }
         });
-        
-        String url = "jdbc:postgresql://localhost/Software Engineering";
-        String user = "softwareengineering";
-        String pwd = "rodolfo";
-         Connection conn = null;
-         Statement stm = null;
-         int i;
-         
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection(url, user, pwd);
-            stm = conn.createStatement();
-            
-            List<Mantainer> m = popolaMantainer(stm);
-            List<PlannedActivity> p = popolaPlannedActivity(stm);
-            List<UnplannedActivity> u = popolaUnplannedActivity(stm);
-            //conn.close(); non va chiusa la connessione, serve nella gui
-        }
-        catch (java.sql.SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
+
+        //DA CHIAMARE NEGLI OPPORTUNI METODI
+        List<Mantainer> m = popolaMantainer();
+        List<PlannedActivity> p = popolaPlannedActivity();
+        List<UnplannedActivity> u = popolaUnplannedActivity();
+        //conn.close(); non va chiusa la connessione, serve nella gui
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
