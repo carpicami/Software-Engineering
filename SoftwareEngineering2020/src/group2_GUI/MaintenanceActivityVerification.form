@@ -42,8 +42,8 @@
 
       <Layout>
         <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+          <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
@@ -73,7 +73,6 @@
                                   <Component id="DescriptionText" min="-2" pref="156" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="SkillsText" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -87,12 +86,12 @@
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                  <Component id="SMPButton" min="-2" pref="68" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                  <Component id="SMPButton" min="-2" pref="93" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="130" max="32767" attributes="0"/>
+                  <EmptySpace pref="173" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -103,7 +102,6 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="33" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -118,20 +116,20 @@
                               <Component id="jLabel4" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="NotesText" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
                       <Component id="DescriptionText" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
                       <Component id="SkillsText" alignment="3" min="-2" pref="122" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="SMPButton" max="32767" attributes="0"/>
-                      <Component id="jLabel6" pref="63" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel6" min="-2" pref="86" max="-2" attributes="0"/>
+                      <Component id="SMPButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -176,6 +174,14 @@
         <Component class="javax.swing.JTextField" name="SkillsText">
         </Component>
         <Component class="javax.swing.JButton" name="SMPButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\maria\Desktop\images.jpg"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SMPButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
