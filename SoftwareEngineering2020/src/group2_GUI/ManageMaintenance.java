@@ -12,6 +12,7 @@ import static group2_JDBC.DBProject.popolaUnplannedActivity;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -87,6 +88,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
         ShowButton.setBackground(new java.awt.Color(153, 153, 153));
         ShowButton.setText("Show");
+        ShowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShowButtonActionPerformed(evt);
+            }
+        });
 
         WeekText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +213,27 @@ public class ManageMaintenance extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Select1ButtonActionPerformed
 
+    private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
+        String week = WeekText.getText();
+        List<PlannedActivity> p = popolaPlannedActivity(week);
+        List<UnplannedActivity> u = popolaUnplannedActivity(week);
+
+        for (int i = 0; i < p.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
+            PlannedActivity pa = p.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
+            
+            //ActivityTable da rivedere
+            /*
+            ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()}
+            },
+            new String [] {
+                "ID", "AREA", "TYPE", "ESTIMATED TIME"
+            }
+        ));*/
+        }
+    }//GEN-LAST:event_ShowButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,11 +270,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
         });
 
         //DA CHIAMARE NEGLI OPPORTUNI METODI
-        List<Mantainer> m = popolaMantainer();
-        List<PlannedActivity> p = popolaPlannedActivity();
-        List<UnplannedActivity> u = popolaUnplannedActivity();
-        //conn.close(); non va chiusa la connessione, serve nella gui
-
+        //List<Mantainer> m = popolaMantainer();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

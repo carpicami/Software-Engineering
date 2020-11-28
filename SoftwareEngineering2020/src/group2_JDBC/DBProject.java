@@ -31,6 +31,7 @@ public class DBProject {
     public static void main(String[] args) {
 
         int i;
+
         try {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(url, user, pwd);
@@ -49,22 +50,24 @@ public class DBProject {
         List<Competencies> cl = new ArrayList();
 
         String query = "select * from mantainer";  //da cambiare, dipende dalla settimana e dalle skills
-        
+
         try {
             ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                String name = rs.getString("name");
-                String ruolo = rs.getString("ruolo");
-                String competencies = rs.getString("competencies description");
-                String id_competencies = rs.getString("competencies ID");
+                String username = rs.getString("username_mantainer");
+                String password = rs.getString("password_mantainer");
+                String name = rs.getString("nome");
+
+                //da fare un'altra query
+                String competencies = rs.getString("descrizione");
+                String id_competencies = rs.getString("Id_competenza");
 
                 Competencies c = new Competencies(competencies, id_competencies);
                 cl.add(c);
+                
                 //manca la lista di availability
-                Mantainer m = new Mantainer(username, password, name, ruolo, cl);
+                Mantainer m = new Mantainer(username, password, name, "Mantainer", cl);
                 l.add(m);
             }
         } catch (java.sql.SQLException e) {
@@ -81,29 +84,30 @@ public class DBProject {
         return l;
     }
 
-    public static List<PlannedActivity> popolaPlannedActivity() {
+    public static List<PlannedActivity> popolaPlannedActivity(String w) {
 
         List<PlannedActivity> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
 
-        String query = "select * from plannedactiviti where week is ...";  //da cambiare, dipende dalla settimana e dalle skills
+        String query = "select * from plannedactivity where week is ..." + w;  //da cambiare, dipende dalla settimana
         try {
 
             ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
-                String ID = rs.getString("ID");
-                String site = rs.getString("site");
+                String ID = rs.getString("id_attivita_p");
+                String site = rs.getString("sito_fabbrica");
                 String area = rs.getString("area");
-                String description = rs.getString("description");
-                boolean interruptbility = rs.getBoolean("interruptbility");
-                int estimatedTime = rs.getInt("estimated time");
-                String tipology = rs.getString("tipology");
-                int week = rs.getInt("week");
-                boolean extraActivity = rs.getBoolean("extraActivity");
-
-                String competencies = rs.getString("skills needed");
-                String id_competencies = rs.getString("skills ID");
+                String description = rs.getString("descrizione");
+                boolean interruptbility = rs.getBoolean("interrompibile");
+                int estimatedTime = rs.getInt("tempo_stimato");
+                String tipology = rs.getString("tipologia");
+                int week = rs.getInt("settimana");
+                boolean extraActivity = rs.getBoolean("extraActivity"); // da vedere con i ragazzi
+                
+                //altra query
+                String competencies = rs.getString("descrizione");
+                String id_competencies = rs.getString("Id_competenza");
 
                 Competencies c = new Competencies(competencies, id_competencies); //skills needed
                 cl.add(c);
@@ -125,34 +129,34 @@ public class DBProject {
         return l;
     }
 
-    public static List<UnplannedActivity> popolaUnplannedActivity() {
+    public static List<UnplannedActivity> popolaUnplannedActivity(String w) {
 
         List<UnplannedActivity> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
 
-        String query = "select * from unplannedactivity where week is ...";  //da cambiare, dipende dalla settimana e dalle skills
+        String query = "select * from unplannedactivity where week is ..." + w;  //da cambiare, dipende dalla settimana e dalle skills
         try {
 
             ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
-                String ID = rs.getString("ID");
-                String site = rs.getString("site");
+                String ID = rs.getString("id_attivita_un");
+                String site = rs.getString("sito_fabbrica");
                 String area = rs.getString("area");
-                String description = rs.getString("description");
-                boolean interruptbility = rs.getBoolean("interruptbility");
-                int estimatedTime = rs.getInt("estimated time");
-                String tipology = rs.getString("tipology");
-                int week = rs.getInt("week");
-                boolean extraActivity = rs.getBoolean("extraActivity");
+                String description = rs.getString("descrizione");
+                boolean interruptbility = rs.getBoolean("interrompibile");
+                int estimatedTime = rs.getInt("tempo_stimato");
+                String tipology = rs.getString("tipologia");
+                int week = rs.getInt("settimana");
+                boolean ewoActivity = rs.getBoolean("ewo");
 
-                String competencies = rs.getString("skills needed");
-                String id_competencies = rs.getString("skills ID");
+                String competencies = rs.getString("descrizione");
+                String id_competencies = rs.getString("Id_competenza");
 
                 Competencies c = new Competencies(competencies, id_competencies); //skills needed
                 cl.add(c);
 
-                UnplannedActivity u = new UnplannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, extraActivity);
+                UnplannedActivity u = new UnplannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, ewoActivity);
                 l.add(u);
             }
         } catch (java.sql.SQLException e) {
