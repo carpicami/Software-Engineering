@@ -6,6 +6,7 @@
 package group2_JDBC;
 
 import group2.*;
+import provaDBPG.ConnectionProva;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,14 +23,16 @@ import java.util.logging.Logger;
  */
 public class DBProject {
 
-    static String url = "jdbc:postgresql://localhost/Software Engineering";
+    static String url = "jdbc:postgresql://localhost/SoftwareEngineering";
     static String user = "softwareengineering";
     static String pwd = "rodolfo";
     static Connection conn = null;
     static Statement stm = null;
 
     public static void main(String[] args) {
-
+        ConnectionProva connectionProva = new ConnectionProva();
+        connectionProva.perform();
+/*
         int i;
 
         try {
@@ -41,7 +44,7 @@ public class DBProject {
         } catch (java.sql.SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
-
+*/
     } //mi connetto al DB nella GUI
 
     public static List<Mantainer> popolaMantainer() {
