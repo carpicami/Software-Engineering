@@ -214,6 +214,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }//GEN-LAST:event_Select1ButtonActionPerformed
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
+        System.out.println("ciao");
         String week = WeekText.getText();
         List<PlannedActivity> p = popolaPlannedActivity(week);
         List<UnplannedActivity> u = popolaUnplannedActivity(week);
