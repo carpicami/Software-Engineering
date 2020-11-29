@@ -1,0 +1,182 @@
+DROP TABLE IF EXISTS planner CASCADE;
+DROP TABLE IF EXISTS mantainer CASCADE;
+DROP TABLE IF EXISTS planned CASCADE;
+DROP TABLE IF EXISTS unplanned CASCADE;
+DROP TABLE IF EXISTS materiale CASCADE;
+DROP TABLE IF EXISTS competenza CASCADE;
+DROP TABLE IF EXISTS requisito CASCADE;
+DROP TABLE IF EXISTS attitudine_p CASCADE;
+DROP TABLE IF EXISTS attitudine_un CASCADE;
+DROP TABLE IF EXISTS utilizzo_p CASCADE;
+DROP TABLE IF EXISTS utilizzo_un CASCADE;
+
+
+CREATE TABLE materiale(
+	id_materiale char(4) NOT NULL,
+	nome varchar(20) NOT NULL,
+	PRIMARY KEY (id_materiale)
+);
+
+
+CREATE TABLE competenza (
+	id_competenza char(4) NOT NULL,
+	descrizione varchar(200) NOT NULL,
+	nome varchar(20) NOT NULL,
+	PRIMARY KEY (id_competenza)
+);
+
+
+CREATE TABLE planner (
+	id_planner char(4),
+	nome varchar(20) NOT NULL ,
+	cognome varchar(20) NOT NULL,
+	username_planner varchar(20) NOT NULL,
+	password_planner varchar(20) NOT NULL,
+	PRIMARY KEY (id_planner)
+);
+
+CREATE TABLE mantainer (
+	id_mantainer char(4) NOT NULL,
+	nome varchar(20) NOT NULL,
+	cognome varchar(20) NOT NULL,
+	username_mantainer varchar(20) NOT NULL,
+	password_mantainer varchar(20) NOT NULL,
+    PRIMARY KEY (id_mantainer)
+);
+
+
+CREATE TABLE unplanned(
+	id_attivita_un char(4)  NOT NULL,
+	id_mantainer char(4),
+	tipologia varchar(20) NOT NULL,
+	interrompibile bool NOT NULL,
+	descrizione varchar(250) NOT NULL,
+	area varchar(20) NOT NULL,
+	sito_fabbrica varchar(20) NOT NULL,
+	workspace_notes varchar(20),
+	tempo_stimato time NOT NULL,
+	settimana int NOT NULL,
+	ewo bool NOT NULL,
+	PRIMARY KEY (id_attivita_un),
+	FOREIGN KEY (id_mantainer) REFERENCES mantainer (id_mantainer) ON UPDATE CASCADE
+);
+
+
+CREATE TABLE planned(
+	id_attivita_p char(4) NOT NULL,
+	id_mantainer char(4),
+	tipologia varchar(20) NOT NULL,
+	interrompibile bool NOT NULL,
+	descrizione varchar(250) NOT NULL,
+	area varchar(20) NOT NULL,
+	sito_fabbrica varchar(20) NOT NULL,
+	workspace_notes varchar(20),
+	tempo_stimato time NOT NULL,
+	settimana int NOT NULL,
+	PRIMARY KEY (id_attivita_p),
+	FOREIGN KEY (id_mantainer) REFERENCES mantainer(id_mantainer) ON UPDATE CASCADE
+);
+
+
+CREATE TABLE requisito (
+	id_competenza char(4) NOT NULL,
+	id_mantainer char(4) NOT NULL,
+	PRIMARY KEY (id_competenza,id_mantainer),
+	FOREIGN KEY (id_competenza) REFERENCES competenza(id_competenza) ON UPDATE CASCADE,
+	FOREIGN KEY (id_mantainer) REFERENCES mantainer(id_mantainer) ON UPDATE CASCADE
+);
+
+
+CREATE TABLE attitudine_p (
+	id_attivita_p char(4) NOT NULL,
+	id_competenza char(4) NOT NULL,
+	PRIMARY KEY(id_attivita_p,id_competenza),
+	FOREIGN KEY (id_attivita_p) REFERENCES planned(id_attivita_p) ON UPDATE CASCADE,
+	FOREIGN KEY (id_competenza) REFERENCES competenza(id_competenza) ON UPDATE CASCADE
+);
+
+
+CREATE TABLE utilizzo_p(
+	id_attivita_p char(4) NOT NULL,
+	id_materiale char(4) NOT NULL,
+	PRIMARY KEY (id_attivita_p,id_materiale),
+	FOREIGN KEY (id_attivita_p) REFERENCES planned (id_attivita_p) ON UPDATE CASCADE,
+	FOREIGN KEY (id_materiale) REFERENCES materiale (id_materiale) ON UPDATE CASCADE
+);
+
+
+CREATE TABLE utilizzo_un(
+	id_attivita_un char(4) NOT NULL,
+	id_materiale char(4) NOT NULL,
+	PRIMARY KEY (id_attivita_un,id_materiale),
+	FOREIGN KEY (id_attivita_un) REFERENCES unplanned (id_attivita_un) ON UPDATE CASCADE,
+	FOREIGN KEY (id_materiale) REFERENCES materiale (id_materiale) ON UPDATE CASCADE
+);
+
+
+CREATE TABLE attitudine_un(
+	id_attivita_un char(4) NOT NULL,
+	id_competenza char(4) NOT NULL,
+	PRIMARY KEY (id_attivita_un,id_competenza),
+	FOREIGN KEY (id_attivita_un) REFERENCES unplanned (id_attivita_un) ON UPDATE CASCADE,
+	FOREIGN KEY (id_competenza) REFERENCES competenza (id_competenza) ON UPDATE CASCADE
+);
+
+
+
+INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0001','Pierluigi','Giangiacomi','Pjg','admin');
+INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0002','Rodolfo','Bernard','RBernard','admin');
+INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0003','Camilla','Carpinelli','CamiC','admin');
+INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0004','Marianna','Farina','MariannaF','admin');
+
+
+
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0005','Ripararare macchina industriale','Riparare');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0006','Riparare computer','Riparare ');
+
+
+
+INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0007','Angelo','Rossi','ar','password1');
+INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0008','Alberto','Filiberto','AF','password2');
+INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0009','Pippo','Franco','PippoF','password3');
+INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0010','Piero','Angela','Pall','password4');
+
+
+
+INSERT INTO materiale (id_materiale,nome) VALUES ('0011','guanti');
+INSERT INTO materiale (id_materiale,nome) VALUES ('0012','casco');
+INSERT INTO materiale (id_materiale,nome) VALUES ('0013','cuffia');
+INSERT INTO materiale (id_materiale,nome) VALUES ('0014','scarpe');
+
+
+
+INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0015','0007','bo','true','scarico merce','pagani','via dei caduti','00:02:00.00','12','true');
+INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0016','0008','bo','false','scarico camion','nocera','via dei rialzati','00:01:00.00','1','false');
+INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0017','0009','bo','true','scarico auto','cava','via bernardis 23','00:05:00.00','3','false');
+
+
+
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana) VALUES ('0018','0010','bo','true','revisione macchina industriale','bogotà','via dei caduti','00:01:00.00','12');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana) VALUES ('0019','0009','bo','false','revisione computer','nola','via dei rialzati','00:03:00.00','1');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana) VALUES ('0020','0007','bo','true','revisione pareti','napoli','via bernardis 23','00:01:00.00','3');
+
+
+INSERT INTO requisito VALUES ('0005','0007');
+INSERT INTO requisito VALUES ('0006','0008');
+
+
+
+INSERT INTO attitudine_p VALUES ('0018','0005');
+INSERT INTO attitudine_p VALUES ('0019','0006');
+
+
+
+INSERT INTO utilizzo_p VALUES ('0018','0011');
+INSERT INTO utilizzo_p VALUES ('0019','0013');
+
+
+
+INSERT INTO utilizzo_un VALUES ('0016','0011');
+INSERT INTO utilizzo_un VALUES ('0015','0012');
+
+

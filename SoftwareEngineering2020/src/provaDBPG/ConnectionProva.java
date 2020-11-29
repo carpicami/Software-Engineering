@@ -11,9 +11,9 @@ public class ConnectionProva {
     }
 
     public void perform() {
-        String url = "jdbc:postgresql://localhost/SoftwareEngeenering";
+        String url = "jdbc:postgresql://localhost/SoftwareEngineering";
         String user = "postgres";
-        String pwd = "admin";
+        String pwd = "oratorio98";
         String query = "select * from mantainer";
         try {
             Connection conn = DriverManager.getConnection(url, user, pwd);

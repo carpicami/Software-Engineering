@@ -24,8 +24,8 @@ import java.util.logging.Logger;
 public class DBProject {
 
     static String url = "jdbc:postgresql://localhost/SoftwareEngineering";
-    static String user = "softwareengineering";
-    static String pwd = "rodolfo";
+    static String user = "postgres";
+    static String pwd = "oratorio98";
     static Connection conn = null;
     static Statement stm = null;
 
