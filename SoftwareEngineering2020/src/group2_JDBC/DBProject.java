@@ -25,7 +25,7 @@ public class DBProject {
 
     static String url = "jdbc:postgresql://localhost/SoftwareEngineering";
     static String user = "postgres";
-    static String pwd = "oratorio98";
+    static String pwd = "admin";
     static Connection conn = null;
     static Statement stm = null;
 
