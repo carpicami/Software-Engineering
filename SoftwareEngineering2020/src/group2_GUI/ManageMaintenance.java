@@ -218,11 +218,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
         List<PlannedActivity> p = popolaPlannedActivity(week);
         List<UnplannedActivity> u = popolaUnplannedActivity(week);
 
-        for (int i = 0; i < p.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
+       /* for (int i = 0; i < p.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
             PlannedActivity pa = p.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
             
             //ActivityTable da rivedere
-            /*
+            
             ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()}
@@ -230,8 +230,31 @@ public class ManageMaintenance extends javax.swing.JFrame {
             new String [] {
                 "ID", "AREA", "TYPE", "ESTIMATED TIME"
             }
-        ));*/
+        ));
+        }*/
+        
+        ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "AREA", "TYPE", "ESTIMATED TIME"
+            }
+        ));
+        for (int i = 0; i < p.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
+            PlannedActivity pa = p.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
+            
+            //ActivityTable da rivedere
+            
+            ActivityTable.setValueAt(pa.getID(), i, 0);
+            ActivityTable.setValueAt(pa.getArea(), i, 1);
+            ActivityTable.setValueAt(pa.getTipology(), i, 2);
+            ActivityTable.setValueAt(pa.getEstimatedTime(), i, 3); //Gestire il caso di più di 4 righe
         }
+
     }//GEN-LAST:event_ShowButtonActionPerformed
 
     /**
