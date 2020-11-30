@@ -226,11 +226,16 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }//GEN-LAST:event_WeekTextActionPerformed
 
     private void Select1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select1ButtonActionPerformed
+        String col = " ";
         MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
-        mav.ActivityText.setText("prova"); //da finire
+        for (int i=0; i<3; i++){
+             col += " " + (String) ActivityTable.getValueAt(0, i);     
+        }
+        col += " " + ActivityTable.getValueAt(0, 3);
+        mav.ActivityText.setText(col); //da finire
         mav.ActivityText.setEditable(false);
     }//GEN-LAST:event_Select1ButtonActionPerformed
 
@@ -282,29 +287,44 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }//GEN-LAST:event_ShowButtonActionPerformed
 
     private void Select2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select2ButtonActionPerformed
+        String col = " ";
         MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
-        mav.ActivityText.setText("prova"); //da finire
+        for (int i=0; i<3; i++){
+            col += " " + (String) ActivityTable.getValueAt(1, i);     
+        }
+        col += " " + ActivityTable.getValueAt(1, 3);
+        mav.ActivityText.setText(col); //da finire
         mav.ActivityText.setEditable(false);
     }//GEN-LAST:event_Select2ButtonActionPerformed
 
     private void Select3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select3ButtonActionPerformed
+        String col = " ";        
         MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
-        mav.ActivityText.setText("prova"); //da finire
+        for (int i=0; i<3; i++){
+            col += " " + (String) ActivityTable.getValueAt(2, i);    
+        }
+        col += " " + ActivityTable.getValueAt(2, 3);
+        mav.ActivityText.setText(col); //da finire
         mav.ActivityText.setEditable(false);
     }//GEN-LAST:event_Select3ButtonActionPerformed
 
     private void Select4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select4ButtonActionPerformed
+        String col = " ";
         MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
-        mav.ActivityText.setText("prova"); //da finire 
+        for (int i=0; i<3; i++){
+            col += " " + (String) ActivityTable.getValueAt(3, i);     
+        }
+        col += " " + ActivityTable.getValueAt(3, 3);
+        mav.ActivityText.setText(col); //da finire 
         mav.ActivityText.setEditable(false);
     }//GEN-LAST:event_Select4ButtonActionPerformed
 
