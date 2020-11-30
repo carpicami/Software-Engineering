@@ -11,9 +11,11 @@ import provaDBPG.ConnectionProva;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +31,7 @@ public class DBProject {
     static String pwd = "admin";
     static Connection conn = null;
     static Statement stm = null;
-
+    
     public static void main(String[] args) {
         ConnectionPostgreSQL connectionProva = new ConnectionPostgreSQL();
        
@@ -88,15 +90,20 @@ public class DBProject {
         return l;
     }
 
-    public static List<PlannedActivity> popolaPlannedActivity(String w) {
+    public static List<PlannedActivity> popolaPlannedActivity(int w) {
+          
+        ConnectionPostgreSQL conn = new ConnectionPostgreSQL();
+        Connection connection = conn.getConnection();
+        
 
         List<PlannedActivity> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
 
-        String query = "select * from plannedactivity where week is ..." + w;  //da cambiare, dipende dalla settimana
+  
         try {
-
-            ResultSet rs = stm.executeQuery(query);
+            PreparedStatement pstm = connection.prepareStatement("select * from planned where settimana = ?");
+            pstm.setInt(1, w);
+            ResultSet rs = pstm.executeQuery();
 
             while (rs.next()) {
                 String ID = rs.getString("id_attivita_p");
@@ -104,19 +111,19 @@ public class DBProject {
                 String area = rs.getString("area");
                 String description = rs.getString("descrizione");
                 boolean interruptbility = rs.getBoolean("interrompibile");
-                int estimatedTime = rs.getInt("tempo_stimato");
+                int estimatedTime = rs.getTime("tempo_stimato").getHours();
                 String tipology = rs.getString("tipologia");
                 int week = rs.getInt("settimana");
-                boolean extraActivity = rs.getBoolean("extraActivity"); // da vedere con i ragazzi
+                //boolean extraActivity = rs.getBoolean("extra"); // da vedere con i ragazzi
                 
                 //altra query
-                String competencies = rs.getString("descrizione");
-                String id_competencies = rs.getString("Id_competenza");
+                //String competencies = rs.getString("descrizione");
+                //String id_competencies = rs.getString("id_competenza");
 
-                Competencies c = new Competencies(competencies, id_competencies); //skills needed
-                cl.add(c);
+                //Competencies c = new Competencies(competencies, id_competencies); //skills needed
+                //cl.add(c);
 
-                PlannedActivity a = new PlannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, extraActivity);
+                PlannedActivity a = new PlannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, false);
                 l.add(a);
             }
         } catch (java.sql.SQLException e) {
@@ -133,15 +140,21 @@ public class DBProject {
         return l;
     }
 
-    public static List<UnplannedActivity> popolaUnplannedActivity(String w) {
-
+    public static List<UnplannedActivity> popolaUnplannedActivity(int w) {
+        
+        ConnectionPostgreSQL conn = new ConnectionPostgreSQL();
+        Connection connection = conn.getConnection();
+        
         List<UnplannedActivity> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
 
-        String query = "select * from unplannedactivity where week is ..." + w;  //da cambiare, dipende dalla settimana e dalle skills
+        
         try {
+            
+            PreparedStatement pstm = connection.prepareStatement("select * from unplanned where settimana = ?");
+            pstm.setInt(1, w);
+            ResultSet rs = pstm.executeQuery();
 
-            ResultSet rs = stm.executeQuery(query);
 
             while (rs.next()) {
                 String ID = rs.getString("id_attivita_un");
@@ -149,16 +162,16 @@ public class DBProject {
                 String area = rs.getString("area");
                 String description = rs.getString("descrizione");
                 boolean interruptbility = rs.getBoolean("interrompibile");
-                int estimatedTime = rs.getInt("tempo_stimato");
+                int estimatedTime = rs.getTime("tempo_stimato").getHours();
                 String tipology = rs.getString("tipologia");
                 int week = rs.getInt("settimana");
                 boolean ewoActivity = rs.getBoolean("ewo");
 
-                String competencies = rs.getString("descrizione");
+                /*String competencies = rs.getString("descrizione");
                 String id_competencies = rs.getString("Id_competenza");
 
                 Competencies c = new Competencies(competencies, id_competencies); //skills needed
-                cl.add(c);
+                cl.add(c);*/
 
                 UnplannedActivity u = new UnplannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, ewoActivity);
                 l.add(u);

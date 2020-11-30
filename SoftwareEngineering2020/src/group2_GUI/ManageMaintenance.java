@@ -237,14 +237,15 @@ public class ManageMaintenance extends javax.swing.JFrame {
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         String week = WeekText.getText();
         int w = Integer.parseInt(week);
-
+        int row = 0;
+        
         if (w < 0 || w > 52) {
             JOptionPane p = new JOptionPane();
             JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
             WeekText.setText("");
         }
-        List<PlannedActivity> p = popolaPlannedActivity(week);
-        List<UnplannedActivity> u = popolaUnplannedActivity(week);
+        List<PlannedActivity> p = popolaPlannedActivity(w);
+        List<UnplannedActivity> u = popolaUnplannedActivity(w);
 
         ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
@@ -261,19 +262,21 @@ public class ManageMaintenance extends javax.swing.JFrame {
             PlannedActivity pa = p.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
 
             //ActivityTable da rivedere
-            ActivityTable.setValueAt(pa.getID(), i, 0);
-            ActivityTable.setValueAt(pa.getArea(), i, 1);
-            ActivityTable.setValueAt(pa.getTipology(), i, 2);
-            ActivityTable.setValueAt(pa.getEstimatedTime(), i, 3); //Gestire il caso di più di 4 righe
+            ActivityTable.setValueAt(pa.getID(), row, 0);
+            ActivityTable.setValueAt(pa.getArea(), row, 1);
+            ActivityTable.setValueAt(pa.getTipology(), row, 2);
+            ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
+            row ++ ;                                                    //Gestire il caso di più di 4 righe
         }
         for (int i = 0; i < u.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
             UnplannedActivity up = u.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
 
             //ActivityTable da rivedere
-            ActivityTable.setValueAt(up.getID(), i, 0);
-            ActivityTable.setValueAt(up.getArea(), i, 1);
-            ActivityTable.setValueAt(up.getTipology(), i, 2);
-            ActivityTable.setValueAt(up.getEstimatedTime(), i, 3); //Gestire il caso di più di 4 righe
+            ActivityTable.setValueAt(up.getID(), row, 0);
+            ActivityTable.setValueAt(up.getArea(), row, 1);
+            ActivityTable.setValueAt(up.getTipology(), row, 2);
+            ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
+            row ++;                              //Gestire il caso di più di 4 righe
         }
 
     }//GEN-LAST:event_ShowButtonActionPerformed
