@@ -5,6 +5,7 @@
  */
 package group2_JDBC;
 
+import db.ConnectionPostgreSQL;
 import group2.*;
 import provaDBPG.ConnectionProva;
 
@@ -30,8 +31,8 @@ public class DBProject {
     static Statement stm = null;
 
     public static void main(String[] args) {
-        ConnectionProva connectionProva = new ConnectionProva();
-        connectionProva.perform();
+        ConnectionPostgreSQL connectionProva = new ConnectionPostgreSQL();
+       
 /*
         int i;
 
