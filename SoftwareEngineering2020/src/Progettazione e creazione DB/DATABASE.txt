@@ -73,6 +73,7 @@ CREATE TABLE planned(
 	workspace_notes varchar(20),
 	tempo_stimato time NOT NULL,
 	settimana int NOT NULL,
+        extra bool NOT NULL,
 	PRIMARY KEY (id_attivita_p),
 	FOREIGN KEY (id_mantainer) REFERENCES mantainer(id_mantainer) ON UPDATE CASCADE
 );
@@ -156,9 +157,9 @@ INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,desc
 
 
 
-INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana) VALUES ('0018','0010','bo','true','revisione macchina industriale','bogotà','via dei caduti','00:01:00.00','12');
-INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana) VALUES ('0019','0009','bo','false','revisione computer','nola','via dei rialzati','00:03:00.00','1');
-INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana) VALUES ('0020','0007','bo','true','revisione pareti','napoli','via bernardis 23','00:01:00.00','3');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0018','0010','bo','true','revisione macchina industriale','bogotà','via dei caduti','00:01:00.00','12','true');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0019','0009','bo','false','revisione computer','nola','via dei rialzati','00:03:00.00','1','false');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0020','0007','bo','true','revisione pareti','napoli','via bernardis 23','00:01:00.00','3','false');
 
 
 INSERT INTO requisito VALUES ('0005','0007');
