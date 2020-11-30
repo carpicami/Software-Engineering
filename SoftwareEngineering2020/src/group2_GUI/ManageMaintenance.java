@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -130,12 +131,27 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
         Select2Button.setBackground(new java.awt.Color(153, 153, 153));
         Select2Button.setText("Select2");
+        Select2Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Select2ButtonActionPerformed(evt);
+            }
+        });
 
         Select3Button.setBackground(new java.awt.Color(153, 153, 153));
         Select3Button.setText("Select3");
+        Select3Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Select3ButtonActionPerformed(evt);
+            }
+        });
 
         Select4Button.setBackground(new java.awt.Color(153, 153, 153));
         Select4Button.setText("Select4");
+        Select4Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Select4ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -210,53 +226,84 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }//GEN-LAST:event_WeekTextActionPerformed
 
     private void Select1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select1ButtonActionPerformed
-        // TODO add your handling code here:
+        MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
+        mav.setVisible(true);
+        mav.WeekText2.setText(WeekText.getText());
+        mav.WeekText2.setEditable(false);
+        mav.ActivityText.setText("prova"); //da finire
+        mav.ActivityText.setEditable(false);
     }//GEN-LAST:event_Select1ButtonActionPerformed
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
-        System.out.println("ciao");
         String week = WeekText.getText();
+        int w = Integer.parseInt(week);
+
+        if (w < 0 || w > 52) {
+            JOptionPane p = new JOptionPane();
+            JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            WeekText.setText("");
+        }
         List<PlannedActivity> p = popolaPlannedActivity(week);
         List<UnplannedActivity> u = popolaUnplannedActivity(week);
 
-       /* for (int i = 0; i < p.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
-            PlannedActivity pa = p.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
-            
-            //ActivityTable da rivedere
-            
-            ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()}
-            },
-            new String [] {
-                "ID", "AREA", "TYPE", "ESTIMATED TIME"
-            }
-        ));
-        }*/
-        
         ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "AREA", "TYPE", "ESTIMATED TIME"
-            }
+                new Object[][]{
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null}
+                },
+                new String[]{
+                    "ID", "AREA", "TYPE", "ESTIMATED TIME"
+                }
         ));
         for (int i = 0; i < p.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
             PlannedActivity pa = p.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
-            
+
             //ActivityTable da rivedere
-            
             ActivityTable.setValueAt(pa.getID(), i, 0);
             ActivityTable.setValueAt(pa.getArea(), i, 1);
             ActivityTable.setValueAt(pa.getTipology(), i, 2);
             ActivityTable.setValueAt(pa.getEstimatedTime(), i, 3); //Gestire il caso di più di 4 righe
         }
+        for (int i = 0; i < u.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
+            UnplannedActivity up = u.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
+
+            //ActivityTable da rivedere
+            ActivityTable.setValueAt(up.getID(), i, 0);
+            ActivityTable.setValueAt(up.getArea(), i, 1);
+            ActivityTable.setValueAt(up.getTipology(), i, 2);
+            ActivityTable.setValueAt(up.getEstimatedTime(), i, 3); //Gestire il caso di più di 4 righe
+        }
 
     }//GEN-LAST:event_ShowButtonActionPerformed
+
+    private void Select2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select2ButtonActionPerformed
+        MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
+        mav.setVisible(true);
+        mav.WeekText2.setText(WeekText.getText());
+        mav.WeekText2.setEditable(false);
+        mav.ActivityText.setText("prova"); //da finire
+        mav.ActivityText.setEditable(false);
+    }//GEN-LAST:event_Select2ButtonActionPerformed
+
+    private void Select3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select3ButtonActionPerformed
+        MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
+        mav.setVisible(true);
+        mav.WeekText2.setText(WeekText.getText());
+        mav.WeekText2.setEditable(false);
+        mav.ActivityText.setText("prova"); //da finire
+        mav.ActivityText.setEditable(false);
+    }//GEN-LAST:event_Select3ButtonActionPerformed
+
+    private void Select4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select4ButtonActionPerformed
+        MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
+        mav.setVisible(true);
+        mav.WeekText2.setText(WeekText.getText());
+        mav.WeekText2.setEditable(false);
+        mav.ActivityText.setText("prova"); //da finire 
+        mav.ActivityText.setEditable(false);
+    }//GEN-LAST:event_Select4ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,9 +339,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 new ManageMaintenance().setVisible(true);
             }
         });
-
-        //DA CHIAMARE NEGLI OPPORTUNI METODI
-        //List<Mantainer> m = popolaMantainer();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

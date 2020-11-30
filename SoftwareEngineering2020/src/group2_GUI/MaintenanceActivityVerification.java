@@ -29,7 +29,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        WeekText = new javax.swing.JTextField();
+        WeekText2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         ActivityText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -47,6 +47,12 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
 
         jLabel1.setText("Week n°");
+
+        WeekText2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WeekText2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Activity to assign");
 
@@ -70,6 +76,11 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         jLabel6.setText("Standard Maintenance  Procedure File (SMP)");
 
         ForwardButton.setText("Forward");
+        ForwardButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ForwardButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,7 +90,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(WeekText, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(WeekText2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,7 +135,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WeekText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(WeekText2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ActivityText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,6 +178,14 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SMPButtonActionPerformed
 
+    private void ForwardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ForwardButtonActionPerformed
+
+    private void WeekText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeekText2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WeekText2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,23 +212,22 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MaintenanceActivityVerification.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MaintenanceActivityVerification().setVisible(true);
+                new MaintenanceActivityVerification().setVisible(true);                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ActivityText;
+    public static javax.swing.JTextField ActivityText;
     private javax.swing.JTextField DescriptionText;
     private javax.swing.JButton ForwardButton;
     private javax.swing.JTextField NotesText;
     private javax.swing.JButton SMPButton;
     private javax.swing.JTextField SkillsText;
-    private javax.swing.JTextField WeekText;
+    public static javax.swing.JTextField WeekText2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

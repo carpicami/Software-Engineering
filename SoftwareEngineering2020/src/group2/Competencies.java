@@ -12,7 +12,7 @@ package group2;
 public class Competencies {
     
     private String descrizione;
-    private String ID; //???
+    private String ID; 
     
     public Competencies(String descrizione, String ID){
         this.descrizione = descrizione;

@@ -47,7 +47,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="WeekText" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="WeekText2" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -108,7 +108,7 @@
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="WeekText" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="WeekText2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="ActivityText" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
@@ -147,7 +147,13 @@
             <Property name="text" type="java.lang.String" value="Week n&#xb0;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="WeekText">
+        <Component class="javax.swing.JTextField" name="WeekText2">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="WeekText2ActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -155,6 +161,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="ActivityText">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -202,6 +211,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Forward"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ForwardButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
