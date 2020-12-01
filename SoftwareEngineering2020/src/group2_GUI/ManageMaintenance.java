@@ -248,6 +248,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(p, "ERRORE, hai inserito una stringa, non un numero", "ERROR!", JOptionPane.ERROR_MESSAGE);
             WeekText.setText("");
         }
+        else {
         int w = Integer.parseInt(week);
         int row = 0;
         if ((w < 0 || w > 52)&&matches("-?\\d+(\\.\\d+)?",week)) {
@@ -289,7 +290,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
             ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
             row ++;                              //Gestire il caso di più di 4 righe
         }
-
+        }
     }//GEN-LAST:event_ShowButtonActionPerformed
 
     private void Select2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select2ButtonActionPerformed
