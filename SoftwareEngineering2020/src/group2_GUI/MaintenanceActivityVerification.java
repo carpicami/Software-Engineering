@@ -37,7 +37,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         DescriptionText = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        SkillsText = new javax.swing.JTextField();
+        SkillsText1 = new javax.swing.JTextField();
         SMPButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         ForwardButton = new javax.swing.JButton();
@@ -122,7 +122,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
                                         .addComponent(DescriptionText, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SkillsText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SkillsText1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ForwardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(152, 152, 152)
@@ -148,7 +148,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NotesText, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SkillsText, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(SkillsText1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ForwardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -179,7 +179,12 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
     }//GEN-LAST:event_SMPButtonActionPerformed
 
     private void ForwardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardButtonActionPerformed
-        System.exit(0);
+        MaintainerAvailability mavail = new MaintainerAvailability();
+        mavail.setVisible(true);
+        mavail.WeekText3.setText(WeekText2.getText());
+        mavail.WeekText3.setEditable(false);
+        mavail.ActivityText2.setText(ActivityText1.getText());
+        mavail.ActivityText2.setEditable(false);
     }//GEN-LAST:event_ForwardButtonActionPerformed
 
     private void WeekText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeekText2ActionPerformed
@@ -226,7 +231,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
     private javax.swing.JButton ForwardButton;
     private javax.swing.JTextField NotesText;
     private javax.swing.JButton SMPButton;
-    private javax.swing.JTextField SkillsText;
+    private javax.swing.JTextField SkillsText1;
     public static javax.swing.JTextField WeekText2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

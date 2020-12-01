@@ -116,7 +116,15 @@ public class ManageMaintenance extends javax.swing.JFrame {
             new String [] {
                 "ID", "AREA", "TYPE", "ESTIMATED TIME"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         ActivityTable.setToolTipText("");
         ActivityTable.setName(""); // NOI18N
         ActivityTable.setRowHeight(29);
