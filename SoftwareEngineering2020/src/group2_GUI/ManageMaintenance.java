@@ -15,7 +15,8 @@ import java.sql.Statement;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
-
+import java.util.regex.Pattern;
+import static java.util.regex.Pattern.matches;
 /**
  *
  * @author maria
@@ -241,10 +242,15 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         String week = WeekText.getText();
+        
+        if(!matches("-?\\d+(\\.\\d+)?",week)){
+            JOptionPane p = new JOptionPane();
+            JOptionPane.showMessageDialog(p, "ERRORE, hai inserito una stringa, non un numero", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            WeekText.setText("");
+        }
         int w = Integer.parseInt(week);
         int row = 0;
-        
-        if (w < 0 || w > 52) {
+        if ((w < 0 || w > 52)&&matches("-?\\d+(\\.\\d+)?",week)) {
             JOptionPane p = new JOptionPane();
             JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
             WeekText.setText("");
