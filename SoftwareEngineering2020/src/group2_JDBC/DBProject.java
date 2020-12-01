@@ -165,7 +165,7 @@ public class DBProject {
                 String area = rs.getString("area");
                 String description = rs.getString("descrizione");
                 boolean interruptbility = rs.getBoolean("interrompibile");
-                int estimatedTime = rs.getTime("tempo_stimato").getMinutes();
+                int estimatedTime = rs.getInt("tempo_stimato");
                 String tipology = rs.getString("tipologia");
                 int week = rs.getInt("settimana");
                 //boolean extraActivity = rs.getBoolean("extra"); // da vedere con i ragazzi
@@ -212,7 +212,7 @@ public class DBProject {
                 String area = rs.getString("area");
                 String description = rs.getString("descrizione");
                 boolean interruptbility = rs.getBoolean("interrompibile");
-                int estimatedTime = rs.getTime("tempo_stimato").getHours();
+                int estimatedTime = rs.getInt("tempo_stimato");
                 String tipology = rs.getString("tipologia");
                 int week = rs.getInt("settimana");
                 boolean ewoActivity = rs.getBoolean("ewo");
