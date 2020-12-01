@@ -222,7 +222,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField ActivityText1;
-    private javax.swing.JTextField DescriptionText;
+    public static javax.swing.JTextField DescriptionText;
     private javax.swing.JButton ForwardButton;
     private javax.swing.JTextField NotesText;
     private javax.swing.JButton SMPButton;

@@ -12,6 +12,7 @@ import static group2_JDBC.DBProject.popolaUnplannedActivity;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ import static java.util.regex.Pattern.matches;
  */
 public class ManageMaintenance extends javax.swing.JFrame {
 
+    private static List<String> activity_description = new ArrayList();
     /**
      * Creates new form ManageMantainers
      */
@@ -238,6 +240,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
         col += " " + ActivityTable.getValueAt(0, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
+        mav.DescriptionText.setText(activity_description.get(0));
+        mav.DescriptionText.setEditable(false);
     }//GEN-LAST:event_Select1ButtonActionPerformed
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
@@ -278,6 +282,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
             ActivityTable.setValueAt(pa.getArea(), row, 1);
             ActivityTable.setValueAt(pa.getTipology(), row, 2);
             ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
+            activity_description.add(pa.getDescription());
             row ++ ;                                                    //Gestire il caso di più di 4 righe
         }
         for (int i = 0; i < u.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
@@ -288,6 +293,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
             ActivityTable.setValueAt(up.getArea(), row, 1);
             ActivityTable.setValueAt(up.getTipology(), row, 2);
             ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
+            activity_description.add(up.getDescription());
             row ++;                              //Gestire il caso di più di 4 righe
         }
         }
@@ -305,6 +311,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
         col += " " + ActivityTable.getValueAt(1, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
+        mav.DescriptionText.setText(activity_description.get(1));
+        mav.DescriptionText.setEditable(false);
     }//GEN-LAST:event_Select2ButtonActionPerformed
 
     private void Select3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select3ButtonActionPerformed
@@ -319,6 +327,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
         col += " " + ActivityTable.getValueAt(2, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
+        mav.DescriptionText.setText(activity_description.get(2));
+        mav.DescriptionText.setEditable(false);
     }//GEN-LAST:event_Select3ButtonActionPerformed
 
     private void Select4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select4ButtonActionPerformed
@@ -333,6 +343,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
         col += " " + ActivityTable.getValueAt(3, 3);
         mav.ActivityText1.setText(col); //da finire 
         mav.ActivityText1.setEditable(false);
+        mav.DescriptionText.setText(activity_description.get(3));
+        mav.DescriptionText.setEditable(false);
     }//GEN-LAST:event_Select4ButtonActionPerformed
 
     /**
