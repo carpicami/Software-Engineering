@@ -236,8 +236,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
              col += " " + (String) ActivityTable.getValueAt(0, i);     
         }
         col += " " + ActivityTable.getValueAt(0, 3);
-        mav.ActivityText.setText(col); //da finire
-        mav.ActivityText.setEditable(false);
+        mav.ActivityText1.setText(col); //da finire
+        mav.ActivityText1.setEditable(false);
     }//GEN-LAST:event_Select1ButtonActionPerformed
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
@@ -303,8 +303,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
             col += " " + (String) ActivityTable.getValueAt(1, i);     
         }
         col += " " + ActivityTable.getValueAt(1, 3);
-        mav.ActivityText.setText(col); //da finire
-        mav.ActivityText.setEditable(false);
+        mav.ActivityText1.setText(col); //da finire
+        mav.ActivityText1.setEditable(false);
     }//GEN-LAST:event_Select2ButtonActionPerformed
 
     private void Select3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select3ButtonActionPerformed
@@ -317,8 +317,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
             col += " " + (String) ActivityTable.getValueAt(2, i);    
         }
         col += " " + ActivityTable.getValueAt(2, 3);
-        mav.ActivityText.setText(col); //da finire
-        mav.ActivityText.setEditable(false);
+        mav.ActivityText1.setText(col); //da finire
+        mav.ActivityText1.setEditable(false);
     }//GEN-LAST:event_Select3ButtonActionPerformed
 
     private void Select4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select4ButtonActionPerformed
@@ -331,8 +331,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
             col += " " + (String) ActivityTable.getValueAt(3, i);     
         }
         col += " " + ActivityTable.getValueAt(3, 3);
-        mav.ActivityText.setText(col); //da finire 
-        mav.ActivityText.setEditable(false);
+        mav.ActivityText1.setText(col); //da finire 
+        mav.ActivityText1.setEditable(false);
     }//GEN-LAST:event_Select4ButtonActionPerformed
 
     /**

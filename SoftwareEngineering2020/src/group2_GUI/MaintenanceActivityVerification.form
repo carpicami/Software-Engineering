@@ -51,7 +51,7 @@
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="ActivityText" min="-2" pref="231" max="-2" attributes="0"/>
+                  <Component id="ActivityText1" min="-2" pref="231" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
@@ -110,7 +110,7 @@
                       <Component id="jLabel1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="WeekText2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="ActivityText" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="ActivityText1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -160,7 +160,7 @@
             <Property name="text" type="java.lang.String" value="Activity to assign"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="ActivityText">
+        <Component class="javax.swing.JTextField" name="ActivityText1">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
