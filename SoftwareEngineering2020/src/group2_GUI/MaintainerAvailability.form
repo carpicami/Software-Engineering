@@ -134,6 +134,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="SkillsText2">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>

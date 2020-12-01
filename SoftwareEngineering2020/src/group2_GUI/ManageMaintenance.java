@@ -6,18 +6,13 @@
 package group2_GUI;
 
 import group2.*;
-import static group2_JDBC.DBProject.popolaMantainer;
-import static group2_JDBC.DBProject.popolaPlannedActivity;
-import static group2_JDBC.DBProject.popolaUnplannedActivity;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import static group2_JDBC.DBProject.*;
+import java.sql.*;
+import java.util.*;
 import javax.swing.JOptionPane;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 import static java.util.regex.Pattern.matches;
+
 /**
  *
  * @author maria
@@ -25,6 +20,9 @@ import static java.util.regex.Pattern.matches;
 public class ManageMaintenance extends javax.swing.JFrame {
 
     private static List<String> activity_description = new ArrayList();
+    private static List<Competencies> skills_needed = new ArrayList();
+    private static List<String> skills_for_activity = new ArrayList();
+
     /**
      * Creates new form ManageMantainers
      */
@@ -238,105 +236,126 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void Select1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select1ButtonActionPerformed
         String col = " ";
-        MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
+        MaintenanceActivityVerification mav = new MaintenanceActivityVerification();      
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
-        for (int i=0; i<3; i++){
-             col += " " + (String) ActivityTable.getValueAt(0, i);     
+        for (int i = 0; i < 3; i++) {
+            col += " " + (String) ActivityTable.getValueAt(0, i);
         }
         col += " " + ActivityTable.getValueAt(0, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
         mav.DescriptionText.setText(activity_description.get(0));
         mav.DescriptionText.setEditable(false);
+        mav.SkillsText1.setText(skills_for_activity.get(0));
+        mav.SkillsText1.setEditable(false);
     }//GEN-LAST:event_Select1ButtonActionPerformed
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         String week = WeekText.getText();
-        
-        if(!matches("-?\\d+(\\.\\d+)?",week)){
+
+        if (!matches("-?\\d+(\\.\\d+)?", week)) {
             JOptionPane p = new JOptionPane();
             JOptionPane.showMessageDialog(p, "ERRORE, hai inserito una stringa, non un numero", "ERROR!", JOptionPane.ERROR_MESSAGE);
             WeekText.setText("");
-        }
-        else {
-        int w = Integer.parseInt(week);
-        int row = 0;
-        if ((w < 0 || w > 52)&&matches("-?\\d+(\\.\\d+)?",week)) {
-            JOptionPane p = new JOptionPane();
-            JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
-            WeekText.setText("");
-        }
-        List<PlannedActivity> p = popolaPlannedActivity(w);
-        List<UnplannedActivity> u = popolaUnplannedActivity(w);
+        } else {
+            int w = Integer.parseInt(week);
+            int row = 0;
+            if ((w < 0 || w > 52) && matches("-?\\d+(\\.\\d+)?", week)) {
+                JOptionPane p = new JOptionPane();
+                JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                WeekText.setText("");
+            }
+            List<PlannedActivity> p = popolaPlannedActivity(w);
+            List<UnplannedActivity> u = popolaUnplannedActivity(w);
 
-        ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "ID", "AREA", "TYPE", "ESTIMATED TIME"
-                }
-        ));
-        for (int i = 0; i < p.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
-            PlannedActivity pa = p.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
+            ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
+                    new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                    },
+                    new String[]{
+                        "ID", "AREA", "TYPE", "ESTIMATED TIME"
+                    }
+            ));
+            for (int i = 0; i < p.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
+                PlannedActivity pa = p.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
 
-            //ActivityTable da rivedere
-            ActivityTable.setValueAt(pa.getID(), row, 0);
-            ActivityTable.setValueAt(pa.getArea(), row, 1);
-            ActivityTable.setValueAt(pa.getTipology(), row, 2);
-            ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
-            activity_description.add(pa.getDescription());
-            row ++ ;                                                    //Gestire il caso di più di 4 righe
-        }
-        for (int i = 0; i < u.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
-            UnplannedActivity up = u.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
+                //ActivityTable da rivedere
+                ActivityTable.setValueAt(pa.getID(), row, 0);
+                ActivityTable.setValueAt(pa.getArea(), row, 1);
+                ActivityTable.setValueAt(pa.getTipology(), row, 2);
+                ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
+                activity_description.add(pa.getDescription());
+                
+                skills_needed = popolaSkillsPlanned(pa.getID());
+                skills_for_activity.add(getSkillsActivity(skills_needed));
+                row++;                                                    //Gestire il caso di più di 4 righe
+            }
+            for (int i = 0; i < u.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
+                UnplannedActivity up = u.get(i); //pa.getID(), pa.getArea(), pa.getTipology(), pa.getEstimatedTime()
 
-            //ActivityTable da rivedere
-            ActivityTable.setValueAt(up.getID(), row, 0);
-            ActivityTable.setValueAt(up.getArea(), row, 1);
-            ActivityTable.setValueAt(up.getTipology(), row, 2);
-            ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
-            activity_description.add(up.getDescription());
-            row ++;                              //Gestire il caso di più di 4 righe
-        }
+                //ActivityTable da rivedere
+                ActivityTable.setValueAt(up.getID(), row, 0);
+                ActivityTable.setValueAt(up.getArea(), row, 1);
+                ActivityTable.setValueAt(up.getTipology(), row, 2);
+                ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
+                activity_description.add(up.getDescription());
+                
+                skills_needed = popolaSkillsUnplanned(up.getID());
+                skills_for_activity.add(getSkillsActivity(skills_needed));
+                row++;                              //Gestire il caso di più di 4 righe
+            }
         }
     }//GEN-LAST:event_ShowButtonActionPerformed
 
+    private String getSkillsActivity(List<Competencies> s) {
+        String a = "";
+
+        for (int i = 0; i < s.size(); i++) {
+            Competencies c = s.get(i);
+            a += c.toString();
+        }
+        return a;
+    }
+    
     private void Select2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select2ButtonActionPerformed
         String col = " ";
         MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
-        for (int i=0; i<3; i++){
-            col += " " + (String) ActivityTable.getValueAt(1, i);     
+        for (int i = 0; i < 3; i++) {
+            col += " " + (String) ActivityTable.getValueAt(1, i);
         }
         col += " " + ActivityTable.getValueAt(1, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
         mav.DescriptionText.setText(activity_description.get(1));
         mav.DescriptionText.setEditable(false);
+        mav.SkillsText1.setText(skills_for_activity.get(1));
+        mav.SkillsText1.setEditable(false);
     }//GEN-LAST:event_Select2ButtonActionPerformed
 
     private void Select3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select3ButtonActionPerformed
-        String col = " ";        
+        String col = " ";
         MaintenanceActivityVerification mav = new MaintenanceActivityVerification();
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
-        for (int i=0; i<3; i++){
-            col += " " + (String) ActivityTable.getValueAt(2, i);    
+        for (int i = 0; i < 3; i++) {
+            col += " " + (String) ActivityTable.getValueAt(2, i);
         }
         col += " " + ActivityTable.getValueAt(2, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
         mav.DescriptionText.setText(activity_description.get(2));
         mav.DescriptionText.setEditable(false);
+        mav.SkillsText1.setText(skills_for_activity.get(2));
+        mav.SkillsText1.setEditable(false);
     }//GEN-LAST:event_Select3ButtonActionPerformed
 
     private void Select4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select4ButtonActionPerformed
@@ -345,14 +364,16 @@ public class ManageMaintenance extends javax.swing.JFrame {
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
-        for (int i=0; i<3; i++){
-            col += " " + (String) ActivityTable.getValueAt(3, i);     
+        for (int i = 0; i < 3; i++) {
+            col += " " + (String) ActivityTable.getValueAt(3, i);
         }
         col += " " + ActivityTable.getValueAt(3, 3);
         mav.ActivityText1.setText(col); //da finire 
         mav.ActivityText1.setEditable(false);
         mav.DescriptionText.setText(activity_description.get(3));
         mav.DescriptionText.setEditable(false);
+        mav.SkillsText1.setText(skills_for_activity.get(3));
+        mav.SkillsText1.setEditable(false);
     }//GEN-LAST:event_Select4ButtonActionPerformed
 
     /**

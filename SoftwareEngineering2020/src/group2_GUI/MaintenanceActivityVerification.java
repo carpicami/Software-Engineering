@@ -185,6 +185,8 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         mavail.WeekText3.setEditable(false);
         mavail.ActivityText2.setText(ActivityText1.getText());
         mavail.ActivityText2.setEditable(false);
+        mavail.SkillsText2.setText(SkillsText1.getText());
+        mavail.SkillsText2.setEditable(false);
     }//GEN-LAST:event_ForwardButtonActionPerformed
 
     private void WeekText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WeekText2ActionPerformed
@@ -231,7 +233,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
     private javax.swing.JButton ForwardButton;
     private javax.swing.JTextField NotesText;
     private javax.swing.JButton SMPButton;
-    private javax.swing.JTextField SkillsText1;
+    public static javax.swing.JTextField SkillsText1;
     public static javax.swing.JTextField WeekText2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

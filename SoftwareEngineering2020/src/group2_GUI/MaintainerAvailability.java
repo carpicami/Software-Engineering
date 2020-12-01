@@ -199,7 +199,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField ActivityText2;
     private javax.swing.JTable AvailabilityTable;
-    private javax.swing.JTextField SkillsText2;
+    public static javax.swing.JTextField SkillsText2;
     public static javax.swing.JTextField WeekText3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

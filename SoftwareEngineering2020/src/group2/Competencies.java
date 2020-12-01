@@ -34,5 +34,10 @@ public class Competencies {
     public void setID(String ID) {
         this.ID = ID;
     }
+
+    @Override
+    public String toString() {
+        return "Skill: " + descrizione + "\n";
+    }
      
 }

@@ -31,23 +31,9 @@ public class DBProject {
     static String pwd = "admin";
     static Connection conn = null;
     static Statement stm = null;
-    
+
     public static void main(String[] args) {
         ConnectionPostgreSQL connectionProva = new ConnectionPostgreSQL();
-       
-/*
-        int i;
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection(url, user, pwd);
-            stm = conn.createStatement();
-
-            //conn.close(); non va chiusa la connessione, serve nella gui
-        } catch (java.sql.SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-*/
     } //mi connetto al DB nella GUI
 
     public static List<Mantainer> popolaMantainer() {
@@ -71,7 +57,7 @@ public class DBProject {
 
                 Competencies c = new Competencies(competencies, id_competencies);
                 cl.add(c);
-                
+
                 //manca la lista di availability
                 Mantainer m = new Mantainer(username, password, name, "Mantainer", cl);
                 l.add(m);
@@ -90,16 +76,84 @@ public class DBProject {
         return l;
     }
 
-    public static List<PlannedActivity> popolaPlannedActivity(int w) {
-          
+    public static List<Competencies> popolaSkillsPlanned(String id) {
+
         ConnectionPostgreSQL conn = new ConnectionPostgreSQL();
         Connection connection = conn.getConnection();
-        
+
+        List<Competencies> cl = new ArrayList();
+
+        try {
+            PreparedStatement pstm = connection.prepareStatement("select * from competenza COMP, attitudine_p ATT, planned PL "
+                    + "where PL.id_attivita_p=? and PL.id_attivita_p=ATT.id_Attivita_p and ATT.id_competenza=COMP.id_competenza");
+            
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                String competencies = rs.getString("descrizione");
+                String id_competencies = rs.getString("Id_competenza");
+
+                Competencies c = new Competencies(competencies, id_competencies);
+                cl.add(c);
+            }
+        } catch (java.sql.SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+        return cl;
+    }
+    
+    public static List<Competencies> popolaSkillsUnplanned(String id) {
+
+        ConnectionPostgreSQL conn = new ConnectionPostgreSQL();
+        Connection connection = conn.getConnection();
+
+        List<Competencies> cl = new ArrayList();
+
+        try {
+            PreparedStatement pstm = connection.prepareStatement("select * from competenza COMP, attitudine_p ATT, unplanned UN "
+                    + "where UN.id_attivita_un=? and UN.id_attivita_un=ATT.id_attivita_un and ATT.id_competenza=COMP.id_competenza");
+            
+            pstm.setString(1, id);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                String competencies = rs.getString("descrizione");
+                String id_competencies = rs.getString("Id_competenza");
+
+                Competencies c = new Competencies(competencies, id_competencies);
+                cl.add(c);
+            }
+        } catch (java.sql.SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+        return cl;
+    }
+
+    public static List<PlannedActivity> popolaPlannedActivity(int w) {
+
+        ConnectionPostgreSQL conn = new ConnectionPostgreSQL();
+        Connection connection = conn.getConnection();
 
         List<PlannedActivity> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
 
-  
         try {
             PreparedStatement pstm = connection.prepareStatement("select * from planned where settimana = ?");
             pstm.setInt(1, w);
@@ -115,14 +169,12 @@ public class DBProject {
                 String tipology = rs.getString("tipologia");
                 int week = rs.getInt("settimana");
                 //boolean extraActivity = rs.getBoolean("extra"); // da vedere con i ragazzi
-                
+
                 //altra query
                 //String competencies = rs.getString("descrizione");
                 //String id_competencies = rs.getString("id_competenza");
-
                 //Competencies c = new Competencies(competencies, id_competencies); //skills needed
                 //cl.add(c);
-
                 PlannedActivity a = new PlannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, false);
                 l.add(a);
             }
@@ -141,20 +193,18 @@ public class DBProject {
     }
 
     public static List<UnplannedActivity> popolaUnplannedActivity(int w) {
-        
+
         ConnectionPostgreSQL conn = new ConnectionPostgreSQL();
         Connection connection = conn.getConnection();
-        
+
         List<UnplannedActivity> l = new ArrayList();
         List<Competencies> cl = new ArrayList();
 
-        
         try {
-            
+
             PreparedStatement pstm = connection.prepareStatement("select * from unplanned where settimana = ?");
             pstm.setInt(1, w);
             ResultSet rs = pstm.executeQuery();
-
 
             while (rs.next()) {
                 String ID = rs.getString("id_attivita_un");
@@ -172,7 +222,6 @@ public class DBProject {
 
                 Competencies c = new Competencies(competencies, id_competencies); //skills needed
                 cl.add(c);*/
-
                 UnplannedActivity u = new UnplannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, ewoActivity);
                 l.add(u);
             }
