@@ -37,7 +37,7 @@ public class Competencies {
 
     @Override
     public String toString() {
-        return "Skill: " + descrizione + "\n";
+        return "-" + descrizione + "\n";
     }
      
 }

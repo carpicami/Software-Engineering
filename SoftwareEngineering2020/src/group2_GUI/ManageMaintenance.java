@@ -241,9 +241,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
         for (int i = 0; i < 3; i++) {
-            col += " " + (String) ActivityTable.getValueAt(0, i);
+            col += "-" + (String) ActivityTable.getValueAt(0, i);
         }
-        col += " " + ActivityTable.getValueAt(0, 3);
+        col += "-" + ActivityTable.getValueAt(0, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
         mav.DescriptionText.setText(activity_description.get(0));
@@ -292,7 +292,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 activity_description.add(pa.getDescription());
                 
                 skills_needed = popolaSkillsPlanned(pa.getID());
-                skills_for_activity.add(getSkillsActivity(skills_needed));
+                skills_for_activity.add(row, getSkillsActivity(skills_needed));
                 row++;                                                    //Gestire il caso di più di 4 righe
             }
             for (int i = 0; i < u.size(); i++) { //TODO RIEMPIRE I CAMPI DELLA TABLE
@@ -306,7 +306,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 activity_description.add(up.getDescription());
                 
                 skills_needed = popolaSkillsUnplanned(up.getID());
-                skills_for_activity.add(getSkillsActivity(skills_needed));
+                skills_for_activity.add(row, getSkillsActivity(skills_needed));
                 row++;                              //Gestire il caso di più di 4 righe
             }
         }
@@ -317,7 +317,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
         for (int i = 0; i < s.size(); i++) {
             Competencies c = s.get(i);
-            a += c.toString();
+            a += c.toString() + "\n";
         }
         return a;
     }
@@ -329,9 +329,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
         for (int i = 0; i < 3; i++) {
-            col += " " + (String) ActivityTable.getValueAt(1, i);
+            col += "-" + (String) ActivityTable.getValueAt(1, i);
         }
-        col += " " + ActivityTable.getValueAt(1, 3);
+        col += "-" + ActivityTable.getValueAt(1, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
         mav.DescriptionText.setText(activity_description.get(1));
@@ -347,9 +347,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
         for (int i = 0; i < 3; i++) {
-            col += " " + (String) ActivityTable.getValueAt(2, i);
+            col += "-" + (String) ActivityTable.getValueAt(2, i);
         }
-        col += " " + ActivityTable.getValueAt(2, 3);
+        col += "-" + ActivityTable.getValueAt(2, 3);
         mav.ActivityText1.setText(col); //da finire
         mav.ActivityText1.setEditable(false);
         mav.DescriptionText.setText(activity_description.get(2));
@@ -365,9 +365,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
         mav.WeekText2.setText(WeekText.getText());
         mav.WeekText2.setEditable(false);
         for (int i = 0; i < 3; i++) {
-            col += " " + (String) ActivityTable.getValueAt(3, i);
+            col += "-" + (String) ActivityTable.getValueAt(3, i);
         }
-        col += " " + ActivityTable.getValueAt(3, 3);
+        col += "-" + ActivityTable.getValueAt(3, 3);
         mav.ActivityText1.setText(col); //da finire 
         mav.ActivityText1.setEditable(false);
         mav.DescriptionText.setText(activity_description.get(3));

@@ -119,7 +119,7 @@ public class DBProject {
         List<Competencies> cl = new ArrayList();
 
         try {
-            PreparedStatement pstm = connection.prepareStatement("select * from competenza COMP, attitudine_p ATT, unplanned UN "
+            PreparedStatement pstm = connection.prepareStatement("select * from competenza COMP, attitudine_un ATT, unplanned UN "
                     + "where UN.id_attivita_un=? and UN.id_attivita_un=ATT.id_attivita_un and ATT.id_competenza=COMP.id_competenza");
             
             pstm.setString(1, id);
