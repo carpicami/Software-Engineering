@@ -54,7 +54,7 @@ CREATE TABLE unplanned(
 	area varchar(20) NOT NULL,
 	sito_fabbrica varchar(20) NOT NULL,
 	workspace_notes varchar(20),
-	tempo_stimato time NOT NULL,
+	tempo_stimato int NOT NULL,
 	settimana int NOT NULL,
 	ewo bool NOT NULL,
 	PRIMARY KEY (id_attivita_un),
@@ -71,7 +71,7 @@ CREATE TABLE planned(
 	area varchar(20) NOT NULL,
 	sito_fabbrica varchar(20) NOT NULL,
 	workspace_notes varchar(20),
-	tempo_stimato time NOT NULL,
+	tempo_stimato int NOT NULL,
 	settimana int NOT NULL,
         extra bool NOT NULL,
 	PRIMARY KEY (id_attivita_p),
@@ -124,60 +124,75 @@ CREATE TABLE attitudine_un(
 );
 
 
-
-INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0001','Pierluigi','Giangiacomi','Pjg','admin');
-INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0002','Rodolfo','Bernard','RBernard','admin');
-INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0003','Camilla','Carpinelli','CamiC','admin');
-INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0004','Marianna','Farina','MariannaF','admin');
-
+INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0001','Pierluigi','Giangiacomi','Pigi98','admin');
+INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0002','Rodolfo','Bernard','RudyBernardis','admin');
+INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0003','Camilla','Carpinelli','CamiCarp','admin');
+INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) VALUES ('0004','Marianna','Farina','MariannaFarina','admin');
 
 
-INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0005','Ripararare macchina industriale','Riparare');
-INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0006','Riparare computer','Riparare ');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0005','Pulizia annuale dell"impianto di riscaldamento ','Pulizia caldaia');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0006','Capacità di manutenere i tubi della caldaia','Manutenzione tubi');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0099','Gestione scarichi dell"impianto di riscaldamento','Controllo fumi');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0027','Sostituzione componenti del nastro trasportatore','Sostituzione pezzi');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0054','Riparazione vulcanizzate della macchina','Riparazione nastro');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0069','Rivestimenti antiusura','Cambio rivestimenti');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0469','Isperzione visiva dei rulli nel tratto di ritorno','Ispezione rulli');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0969','Isperzione visiva delle guide antisura','Ispezione guide');
 
 
-
-INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0007','Angelo','Rossi','ar','password1');
-INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0008','Alberto','Filiberto','AF','password2');
-INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0009','Pippo','Franco','PippoF','password3');
-INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0010','Piero','Angela','Pall','password4');
-
+INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0007','Angelo','Rossi','Angioletto99','password1');
+INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0008','Alberto','Filiberto','AlbFil','password2');
+INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0009','Pippo','Franco','PippoFranco','password3');
+INSERT INTO mantainer (id_mantainer,nome,cognome,username_mantainer,password_mantainer) VALUES ('0010','Piero','Angela','PieroAngela','password4');
 
 
-INSERT INTO materiale (id_materiale,nome) VALUES ('0011','guanti');
+INSERT INTO materiale (id_materiale,nome) VALUES ('0011','guanti da lavoro');
 INSERT INTO materiale (id_materiale,nome) VALUES ('0012','casco');
-INSERT INTO materiale (id_materiale,nome) VALUES ('0013','cuffia');
-INSERT INTO materiale (id_materiale,nome) VALUES ('0014','scarpe');
+INSERT INTO materiale (id_materiale,nome) VALUES ('0013','flex');
+INSERT INTO materiale (id_materiale,nome) VALUES ('0014','scarpe da lavoro');
 
 
-
-INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0015','0007','bo','true','scarico merce','pagani','via dei caduti','00:02:00.00','12','true');
-INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0016','0008','bo','false','scarico camion','nocera','via dei rialzati','00:01:00.00','1','false');
-INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0017','0009','bo','true','scarico auto','cava','via bernardis 23','00:05:00.00','3','false');
-
-
-
-INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0018','0010','bo','true','revisione macchina industriale','bogotà','via dei caduti','00:01:00.00','12','true');
-INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0019','0009','bo','false','revisione computer','nola','via dei rialzati','00:03:00.00','1','false');
-INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0020','0007','bo','true','revisione pareti','napoli','via bernardis 23','00:01:00.00','3','false');
+INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0015','0007','Electrical','true','Riparazione componenti illuminazione esterna','Pagani','via dei caduti','1440','2','true');
+INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0016','0008','Electronic','false','Riparazione nastro trasportatore','Nocera','via dei rialzati','480','3','false');
+INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0017','0009','Mechanical','true','Cambio cinghia di distribuzione','Cava','via bernardis 23','30','2','false');
+INSERT INTO unplanned (id_attivita_un,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0055','0010','Mechanical','false','Riparazione macchina industriale','Serino','via dei finiti','300','3','false');
 
 
-INSERT INTO requisito VALUES ('0005','0007');
-INSERT INTO requisito VALUES ('0006','0008');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0018','0010','Hydraulic','true','Revisione caldaia','Bogotà','via delle donne','120','2','true');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0019','0009','Mechanical','false','Controllo motori macchine industriali','Nola','via Roma','360','3','false');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0020','0007','Electrical','true','Manutenzione cancello automatico','Napoli','via bernardis 23','60','2','false');
+INSERT INTO planned (id_attivita_p,id_mantainer,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0089','0009','Mechanical','false','Revisione macchine industriali','Avellino','via Rossi','90','3','false');
 
 
-
-INSERT INTO attitudine_p VALUES ('0018','0005');
-INSERT INTO attitudine_p VALUES ('0019','0006');
-
-
-
-INSERT INTO utilizzo_p VALUES ('0018','0011');
-INSERT INTO utilizzo_p VALUES ('0019','0013');
+INSERT INTO utilizzo_p (id_attivita_p,id_materiale) VALUES ('0018','0011');
+INSERT INTO utilizzo_p (id_attivita_p,id_materiale) VALUES ('0019','0013');
+INSERT INTO utilizzo_p (id_attivita_p,id_materiale) VALUES ('0020','0012');
+INSERT INTO utilizzo_p (id_attivita_p,id_materiale) VALUES ('0089','0013');
 
 
+INSERT INTO utilizzo_un (id_attivita_un,id_materiale) VALUES ('0016','0011');
+INSERT INTO utilizzo_un (id_attivita_un,id_materiale) VALUES ('0015','0012');
+INSERT INTO utilizzo_un (id_attivita_un,id_materiale) VALUES ('0017','0011');
+INSERT INTO utilizzo_un (id_attivita_un,id_materiale) VALUES ('0055','0014');
 
-INSERT INTO utilizzo_un VALUES ('0016','0011');
-INSERT INTO utilizzo_un VALUES ('0015','0012');
+
+INSERT INTO requisito (id_competenza,id_mantainer) VALUES ('0005','0008');
+INSERT INTO requisito (id_competenza,id_mantainer) VALUES ('0006','0007');
+INSERT INTO requisito (id_competenza,id_mantainer) VALUES ('0099','0009');
+INSERT INTO requisito (id_competenza,id_mantainer) VALUES ('0027','0007');
+INSERT INTO requisito (id_competenza,id_mantainer) VALUES ('0054','0010');
+INSERT INTO requisito (id_competenza,id_mantainer) VALUES ('0069','0007');
+INSERT INTO requisito (id_competenza,id_mantainer) VALUES ('0469','0008');
+INSERT INTO requisito (id_competenza,id_mantainer) VALUES ('0969','0009');
 
 
+INSERT INTO attitudine_p (id_attivita_p,id_competenza) VALUES ('0018','0005');
+INSERT INTO attitudine_p (id_attivita_p,id_competenza) VALUES ('0018','0006');
+INSERT INTO attitudine_p (id_attivita_p,id_competenza) VALUES ('0018','0099');
+
+
+INSERT INTO attitudine_un (id_attivita_un,id_competenza) VALUES ('0016','0027');
+INSERT INTO attitudine_un (id_attivita_un,id_competenza) VALUES ('0016','0069');
+INSERT INTO attitudine_un (id_attivita_un,id_competenza) VALUES ('0016','0054');
+INSERT INTO attitudine_un (id_attivita_un,id_competenza) VALUES ('0016','0469');
+INSERT INTO attitudine_un (id_attivita_un,id_competenza) VALUES ('0016','0969');

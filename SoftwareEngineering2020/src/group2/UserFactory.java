@@ -19,7 +19,7 @@ public class UserFactory { //IMPLEMENTAZIONE DEL FACTORY METHOD PER CREARE GLI U
             return new Planner(user,psw,ruolo);
         }
         else if(ruolo.equalsIgnoreCase("Mantainer")){
-            return new Mantainer(user,psw,ruolo);
+            return new Maintainer(user,psw,ruolo);
         }
         return null;
     }
