@@ -16,64 +16,57 @@ import java.util.logging.*;
  */
 public class DBProject {
 
-    public static List<Maintainer> popolaMaintainerPlanned(String id) {
+    public static List<Maintainer> popolaMaintainer(String id, String type) {
 
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
 
         List<Maintainer> l = new ArrayList();
 
-        try {
-            PreparedStatement pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
-                    + "from planned PL, attitudine_p ATTP, competenza COMP, requisito REQ, mantainer MAN\n"
-                    + "where PL.id_attivita_p=? and PL.id_attivita_p=ATTP.id_attivita_p\n"
-                    + "and ATTP.id_competenza=COMP.id_competenza and COMP.id_competenza=REQ.id_competenza and REQ.id_mantainer=MAN.id_mantainer");
+        if (type.equalsIgnoreCase("planned")) {
+            try {
+                PreparedStatement pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
+                        + "from planned PL, attitudine_p ATTP, competenza COMP, requisito REQ, mantainer MAN\n"
+                        + "where PL.id_attivita_p=? and PL.id_attivita_p=ATTP.id_attivita_p\n"
+                        + "and ATTP.id_competenza=COMP.id_competenza and COMP.id_competenza=REQ.id_competenza and REQ.id_mantainer=MAN.id_mantainer");
 
-            pstm.setString(1, id);
-            ResultSet rs = pstm.executeQuery();
+                pstm.setString(1, id);
+                ResultSet rs = pstm.executeQuery();
 
-            while (rs.next()) {
-                String username = rs.getString("username_mantainer");
-                String password = rs.getString("password_mantainer");
-                String name = rs.getString("nome");
+                while (rs.next()) {
+                    String username = rs.getString("username_mantainer");
+                    String password = rs.getString("password_mantainer");
+                    String name = rs.getString("nome");
 
-                //manca la lista di availability
-                Maintainer m = new Maintainer(username, password, "Maintainer", name);
-                l.add(m);
+                    //manca la lista di availability
+                    Maintainer m = new Maintainer(username, password, "Maintainer", name);
+                    l.add(m);
+                }
+            } catch (java.sql.SQLException e) {
+                System.out.println(e.getMessage());
             }
-        } catch (java.sql.SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return l;
-    }
+        } else if (type.equalsIgnoreCase("unplanned")) {
+            try {
+                PreparedStatement pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
+                        + "from unplanned UN, attitudine_un ATTUN, competenza COMP, requisito REQ, mantainer MAN\n"
+                        + "where UN.id_attivita_un=? and UN.id_attivita_un=ATTUN.id_attivita_un\n"
+                        + "and ATTUN.id_competenza=COMP.id_competenza and COMP.id_competenza=REQ.id_competenza and REQ.id_mantainer=MAN.id_mantainer");
 
-    public static List<Maintainer> popolaMaintainerUnplanned(String id) {
+                pstm.setString(1, id);
+                ResultSet rs = pstm.executeQuery();
 
-        ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
-        Connection connection = conn.getConnection();
+                while (rs.next()) {
+                    String username = rs.getString("username_mantainer");
+                    String password = rs.getString("password_mantainer");
+                    String name = rs.getString("nome");
 
-        List<Maintainer> l = new ArrayList();
-
-        try {
-            PreparedStatement pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
-                    + "from unplanned UN, attitudine_un ATTUN, competenza COMP, requisito REQ, mantainer MAN\n"
-                    + "where UN.id_attivita_un=? and UN.id_attivita_un=ATTUN.id_attivita_un\n"
-                    + "and ATTUN.id_competenza=COMP.id_competenza and COMP.id_competenza=REQ.id_competenza and REQ.id_mantainer=MAN.id_mantainer");
-
-            pstm.setString(1, id);
-            ResultSet rs = pstm.executeQuery();
-
-            while (rs.next()) {
-                String username = rs.getString("username_mantainer");
-                String password = rs.getString("password_mantainer");
-                String name = rs.getString("nome");
-
-                //manca la lista di availability
-                Maintainer m = new Maintainer(username, password, "Maintainer", name);
-                l.add(m);
+                    //manca la lista di availability
+                    Maintainer m = new Maintainer(username, password, "Maintainer", name);
+                    l.add(m);
+                }
+            } catch (java.sql.SQLException e) {
+                System.out.println(e.getMessage());
             }
-        } catch (java.sql.SQLException e) {
-            System.out.println(e.getMessage());
         }
         return l;
     }
@@ -151,7 +144,7 @@ public class DBProject {
                     String tipology = rs.getString("tipologia");
                     int week = rs.getInt("settimana");
 
-                    PlannedActivity a = new PlannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, false);
+                    PlannedActivity a = new PlannedActivity(ID, site, area, description, interruptbility, estimatedTime, tipology, week, false);
                     lp.add(a);
                 }
                 return lp;
@@ -177,7 +170,7 @@ public class DBProject {
                     int week = rs.getInt("settimana");
                     boolean ewoActivity = rs.getBoolean("ewo");
 
-                    UnplannedActivity u = new UnplannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, ewoActivity);
+                    UnplannedActivity u = new UnplannedActivity(ID, site, area, description, interruptbility, estimatedTime, tipology, week, ewoActivity);
                     lu.add(u);
                 }
                 return lu;
@@ -202,7 +195,7 @@ public class DBProject {
                     int week = rs.getInt("settimana");
                     boolean ewoActivity = rs.getBoolean("ewo");
 
-                    UnplannedActivity u = new UnplannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, ewoActivity);
+                    UnplannedActivity u = new UnplannedActivity(ID, site, area, description, interruptbility, estimatedTime, tipology, week, ewoActivity);
                     lu.add(u);
                 }
                 return lu;

@@ -5,22 +5,19 @@
  */
 package test;
 
-import group2.Maintainer;
+import group2.*;
 import group2_JDBC.DBProject;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import org.junit.Assert;
-import org.junit.Test;
+import java.util.*;
+import org.junit.*;
 
 /**
  *
  * @author GiangiacomPi
  */
-public class TestGui {
-    
+public class TestDBProject {
+
     @Test
-    public void testGui() {
+    public void testMaintainer() {
         String id = "0018";
         Maintainer m0 = new Maintainer("AlbFil", "password2", "Maintainer", "Alberto");
         Maintainer m2 = new Maintainer("PippoFranco", "password3", "Maintainer", "Pippo");
@@ -30,8 +27,8 @@ public class TestGui {
         expected.add(m2);
         expected.add(m1);
         Collections.sort(expected);
-        List<Maintainer> list = DBProject.popolaMaintainerPlanned(id);
+        List<Maintainer> list = DBProject.popolaMaintainer(id, "planned");
         Collections.sort(list);
         Assert.assertArrayEquals(expected.toArray(), list.toArray());
-}
+    }
 }

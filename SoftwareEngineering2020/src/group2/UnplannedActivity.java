@@ -11,14 +11,14 @@ import java.util.List;
  *
  * @author carpi
  */
-public class UnplannedActivity extends Activity {
+public class UnplannedActivity extends Activity implements Comparable<UnplannedActivity>{
 
     private boolean ewoActivity;
     
-    public UnplannedActivity(String ID, String site, String area, String description, List<Competencies> skills,
+    public UnplannedActivity(String ID, String site, String area, String description,
             boolean interruptbility, int estimatedTime, String tipology, int week, boolean ewoActivity) {
         
-        super(ID, site, area, description, skills, interruptbility, estimatedTime, tipology, week);
+        super(ID, site, area, description, interruptbility, estimatedTime, tipology, week);
         this.ewoActivity = ewoActivity;
     }
 
@@ -33,6 +33,11 @@ public class UnplannedActivity extends Activity {
 
     public void setEwoActivity(boolean ewoActivity) {
         this.ewoActivity = ewoActivity;
+    }
+
+    @Override
+    public int compareTo(UnplannedActivity t) {
+        return this.getID().compareTo(t.getID());
     }
     
 }

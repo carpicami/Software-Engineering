@@ -23,14 +23,13 @@ public abstract class Activity {
     private int estimatedTime;
     private int week;
     
-    public Activity(String ID, String site, String area, String description, List<Competencies> skills,
+    public Activity(String ID, String site, String area, String description,
             boolean interruptbility, int estimatedTime, String tipology, int week){
         
         this.ID = ID;
         this.site = site;
         this.area = area;
         this.description = description;
-        this.skills = skills;
         this.interruptbility = interruptbility;
         this.estimatedTime = estimatedTime;
         this.tipology = tipology;

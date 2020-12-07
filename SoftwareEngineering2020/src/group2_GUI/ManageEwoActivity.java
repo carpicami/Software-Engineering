@@ -185,7 +185,8 @@ public class ManageEwoActivity extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ForwardEwoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardEwoButtonActionPerformed
-        
+        ManageMaintenance mm = ManageMaintenance.getInstance();
+        //fare una get list of maintainer per ewo
     }//GEN-LAST:event_ForwardEwoButtonActionPerformed
 
     private void NotesText2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotesText2ActionPerformed
