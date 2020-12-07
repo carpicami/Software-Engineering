@@ -39,7 +39,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        AvailabilityTable = new javax.swing.JTable();
+        AvailabilityTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         SkillsText2 = new javax.swing.JTextArea();
 
@@ -63,7 +63,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Maintainer Availability");
 
-        AvailabilityTable.setModel(new javax.swing.table.DefaultTableModel(
+        AvailabilityTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -72,7 +72,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "MAINTAINER", "SKILLS", "AVAIL. MON", "AVAIL. TUE", "AVAIL. WED", "AVAIL. THU", "AVAIL. FRI", "AVAIL. SAT", "AVAIL. SUN"
+                "MAINTAINER", "SKILLS", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -83,13 +83,13 @@ public class MaintainerAvailability extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        AvailabilityTable.setColumnSelectionAllowed(true);
-        AvailabilityTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        AvailabilityTable1.setColumnSelectionAllowed(true);
+        AvailabilityTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AvailabilityTableMouseClicked(evt);
+                AvailabilityTable1MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(AvailabilityTable);
+        jScrollPane1.setViewportView(AvailabilityTable1);
 
         SkillsText2.setColumns(20);
         SkillsText2.setLineWrap(true);
@@ -164,13 +164,22 @@ public class MaintainerAvailability extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_WeekText3ActionPerformed
 
-    private void AvailabilityTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvailabilityTableMouseClicked
-        int row = AvailabilityTable.rowAtPoint(evt.getPoint());
-        int col = AvailabilityTable.columnAtPoint(evt.getPoint());
+    private void AvailabilityTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvailabilityTable1MouseClicked
+        int row = AvailabilityTable1.rowAtPoint(evt.getPoint());
+        int col = AvailabilityTable1.columnAtPoint(evt.getPoint());
+        String day = AvailabilityTable1.getColumnName(col);
+        String cell = (String) AvailabilityTable1.getValueAt(row, col);
+        String maintainer = (String) AvailabilityTable1.getValueAt(row, 0);
         if (row >= 0 && col >= 0) {
-            System.out.println(AvailabilityTable.getValueAt(row, col));
+            DailyAvailability dav = new DailyAvailability();
+            dav.setVisible(true);
+            dav.WeekText4.setText(WeekText3.getText());
+            dav.DayText.setText(day);
+            dav.ActivityText3.setText(ActivityText2.getText());
+            dav.AvailabilityText.setText("Availability " + maintainer + " " + cell );
+            dav.AvailabilityTable2.setValueAt(maintainer, 0, 0);
         }
-    }//GEN-LAST:event_AvailabilityTableMouseClicked
+    }//GEN-LAST:event_AvailabilityTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -209,7 +218,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField ActivityText2;
-    public static javax.swing.JTable AvailabilityTable;
+    public static javax.swing.JTable AvailabilityTable1;
     public static javax.swing.JTextArea SkillsText2;
     public static javax.swing.JTextField WeekText3;
     private javax.swing.JLabel jLabel1;

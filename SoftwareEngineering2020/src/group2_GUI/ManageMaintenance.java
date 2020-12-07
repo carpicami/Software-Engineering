@@ -401,7 +401,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 maintainer_pl = popolaMaintainerPlanned(planned_a.get(i).getID());
                 for (int j = 0; j < maintainer_pl.size(); j++) {
                     Maintainer m = maintainer_pl.get(j);
-                    ma.AvailabilityTable.setValueAt(m.getName(), row, 0);
+                    ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
                     row++;
                 }
             }
@@ -412,7 +412,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 maintainer_up = popolaMaintainerUnplanned(unplanned_a.get(i).getID());
                 for (int j = 0; j < maintainer_up.size(); j++) {
                     Maintainer m = maintainer_up.get(j);
-                    ma.AvailabilityTable.setValueAt(m.getName(), row, 0);
+                    ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
                     row++;
                 }
             }

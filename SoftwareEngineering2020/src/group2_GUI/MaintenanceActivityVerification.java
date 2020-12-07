@@ -36,7 +36,6 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ActivityText1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        NotesText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         SMPButton = new javax.swing.JButton();
@@ -47,6 +46,8 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         WeekText2 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         SkillsText1 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        NotesText1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,12 +59,6 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Workspace Notes");
-
-        NotesText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NotesTextActionPerformed(evt);
-            }
-        });
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Intervention Description");
@@ -98,6 +93,11 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         SkillsText1.setRows(5);
         jScrollPane2.setViewportView(SkillsText1);
 
+        NotesText1.setColumns(20);
+        NotesText1.setLineWrap(true);
+        NotesText1.setRows(5);
+        jScrollPane3.setViewportView(NotesText1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,11 +117,12 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(NotesText, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
+                                .addGap(41, 41, 41)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(7, 7, 7)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -163,15 +164,14 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(NotesText, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ForwardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SMPButton)))
+                        .addComponent(SMPButton))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(186, 186, 186))
@@ -205,10 +205,6 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         mavail.SkillsText2.setText(SkillsText1.getText());
         mavail.SkillsText2.setEditable(false);
     }//GEN-LAST:event_ForwardButtonActionPerformed
-
-    private void NotesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotesTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NotesTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,7 +244,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
     public static javax.swing.JTextField ActivityText1;
     public static javax.swing.JTextArea DescriptionText;
     private javax.swing.JButton ForwardButton;
-    private javax.swing.JTextField NotesText;
+    private javax.swing.JTextArea NotesText1;
     private javax.swing.JButton SMPButton;
     public static javax.swing.JTextArea SkillsText1;
     public static javax.swing.JTextField WeekText2;
@@ -261,5 +257,6 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
