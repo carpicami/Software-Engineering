@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author carpi
  */
-public class Maintainer extends User{ //CLASSE MANTAINER CHE ESTENDE USER 
+public class Maintainer extends User implements Comparable<Maintainer>{ //CLASSE MANTAINER CHE ESTENDE USER 
     private String name;
     private List<Competencies> list = new ArrayList();
     //private Map<String, Integer> availability = new HashMap<>();
@@ -45,5 +45,44 @@ public class Maintainer extends User{ //CLASSE MANTAINER CHE ESTENDE USER
     public void setAvailability(Map<String,Integer> availability) {
         this.availability = availability;
     }*/
+
+    @Override
+    public int compareTo(Maintainer o) {
+        return this.getName().compareTo(o.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.name);
+        hash = 71 * hash + Objects.hashCode(this.list);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Maintainer other = (Maintainer) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.list, other.list)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Maintainer{" + "name=" + name + ", list=" + list + '}'+super.toString();
+    }
     
 }
