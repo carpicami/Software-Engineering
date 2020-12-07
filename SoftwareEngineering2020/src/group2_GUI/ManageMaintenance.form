@@ -93,29 +93,33 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="381" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Select3Button" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="Select4Button" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="Select2Button" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="Select1Button" min="-2" pref="84" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="280" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="WeekText" min="-2" pref="42" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                   <Component id="ShowButton" min="-2" pref="62" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jLabel1" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="Select3Button" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="Select4Button" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="Select2Button" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="Select1Button" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Component id="EwoButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -129,6 +133,7 @@
                       <Component id="jLabel2" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="WeekText" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="ShowButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="EwoButton" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -255,6 +260,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Select4ButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="EwoButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="EWO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EwoButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
