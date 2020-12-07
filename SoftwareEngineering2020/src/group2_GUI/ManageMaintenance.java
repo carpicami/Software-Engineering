@@ -25,8 +25,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
     public static List<PlannedActivity> planned_a = new ArrayList();
     public static List<UnplannedActivity> unplanned_a = new ArrayList();
 
-    private static ManageMaintenance instance = null;  /*inizio implementazione SINGLETON PATTERN*/
+    private static ManageMaintenance instance = null;
 
+    /*inizio implementazione SINGLETON PATTERN*/
     private ManageMaintenance() {
         initComponents();
     }
@@ -37,8 +38,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
             instance = new ManageMaintenance();
         }
         return instance;
-    }  /*fine implementazione SINGLETON PATTERN*/
+    }
 
+    /*fine implementazione SINGLETON PATTERN*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -271,8 +273,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 WeekText.setText("");
             }
-            planned_a = popolaPlannedActivity(w);
-            unplanned_a = popolaUnplannedActivity(w);
+            planned_a = popolaActivity(w,"planned");
+            unplanned_a = popolaActivity(w, "unplanned");
 
             ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
                     new Object[][]{
@@ -295,7 +297,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
                 activity_description.add(pa.getDescription());
 
-                skills_needed = popolaSkillsPlanned(pa.getID());
+                skills_needed = popolaSkills(pa.getID(),"planned");
                 skills_for_activity.add(row, getSkillsActivity(skills_needed));
                 row++;
             }
@@ -309,7 +311,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
                 activity_description.add(up.getDescription());
 
-                skills_needed = popolaSkillsUnplanned(up.getID());
+                skills_needed = popolaSkills(up.getID(),"unplanned");
                 skills_for_activity.add(row, getSkillsActivity(skills_needed));
                 row++;
             }
@@ -335,7 +337,27 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }//GEN-LAST:event_Select4ButtonActionPerformed
 
     private void EwoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EwoButtonActionPerformed
-        
+        String week = WeekText.getText();
+
+        if (!matches("-?\\d+(\\.\\d+)?", week)) {
+            JOptionPane p = new JOptionPane();
+            JOptionPane.showMessageDialog(p, "ERRORE, hai inserito una stringa, non un numero", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            WeekText.setText("");
+        } else {
+            int w = Integer.parseInt(week);
+            int row = 0;
+            if ((w < 0 || w > 52) && matches("-?\\d+(\\.\\d+)?", week)) {
+                JOptionPane p = new JOptionPane();
+                JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                WeekText.setText("");
+            }
+            ManageEwoActivity mea = ManageEwoActivity.getInstance();
+            mea.setVisible(true);
+
+            mea.setVisible(true);
+            mea.WeekText3.setText(WeekText.getText());
+            mea.WeekText3.setEditable(false);
+        }
     }//GEN-LAST:event_EwoButtonActionPerformed
 
     private String getSkillsActivity(List<Competencies> s) {
@@ -349,6 +371,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void selectEvent(int id_button) {
         String col = " ";
+        String control = (String) ActivityTable.getValueAt(id_button - 1, 0);
+
         MaintenanceActivityVerification mav = MaintenanceActivityVerification.getInstance(); //chiama singleton
         mav.setVisible(true);
         mav.WeekText2.setText(WeekText.getText());
@@ -369,10 +393,10 @@ public class ManageMaintenance extends javax.swing.JFrame {
         MaintainerAvailability ma = MaintainerAvailability.getInstance(); //chiamata al singleton
         List<String> id_activity = new ArrayList();
         int row = 0;
-        
+
         String id = (String) ActivityTable.getValueAt(id_button - 1, 0);
 
-            for (int i = 0; i < planned_a.size(); i++) {
+        for (int i = 0; i < planned_a.size(); i++) {
             if (planned_a.get(i).getID().equals(id)) {
                 maintainer_pl = popolaMaintainerPlanned(planned_a.get(i).getID());
                 for (int j = 0; j < maintainer_pl.size(); j++) {
@@ -382,7 +406,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         for (int i = 0; i < unplanned_a.size(); i++) {
             if (unplanned_a.get(i).getID().equals(id)) {
                 maintainer_up = popolaMaintainerUnplanned(unplanned_a.get(i).getID());
