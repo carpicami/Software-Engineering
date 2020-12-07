@@ -5,9 +5,6 @@
  */
 package group2_GUI;
 
-import group2.*;
-import java.util.*;
-
 /**
  *
  * @author maria
@@ -16,8 +13,8 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
 
     private static MaintenanceActivityVerification instance = null; /*inizio implementazione SINGLETON PATTERN*/
  
-    // Costruttore invisibile
-    public MaintenanceActivityVerification() {
+    // Costruttore 
+    private MaintenanceActivityVerification() {
         initComponents();
     }
  

@@ -7,10 +7,8 @@ package group2_GUI;
 
 import group2.*;
 import static group2_JDBC.DBProject.*;
-import java.sql.*;
 import java.util.*;
 import javax.swing.JOptionPane;
-import java.util.regex.*;
 import static java.util.regex.Pattern.matches;
 
 /**
@@ -22,7 +20,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
     private static List<String> activity_description = new ArrayList();
     private static List<Competencies> skills_needed = new ArrayList();
     private static List<String> skills_for_activity = new ArrayList();
-
     private static List<Maintainer> maintainer_pl = new ArrayList();
     private static List<Maintainer> maintainer_up = new ArrayList();
     public static List<PlannedActivity> planned_a = new ArrayList();
@@ -30,7 +27,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private static ManageMaintenance instance = null;  /*inizio implementazione SINGLETON PATTERN*/
 
-    public ManageMaintenance() {
+    private ManageMaintenance() {
         initComponents();
     }
 
@@ -359,7 +356,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
         
         String id = (String) ActivityTable.getValueAt(id_button - 1, 0);
 
-        for (int i = 0; i < planned_a.size(); i++) {
+            for (int i = 0; i < planned_a.size(); i++) {
             if (planned_a.get(i).getID().equals(id)) {
                 maintainer_pl = popolaMaintainerPlanned(planned_a.get(i).getID());
                 for (int j = 0; j < maintainer_pl.size(); j++) {

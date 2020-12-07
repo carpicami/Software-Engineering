@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db;
+package group2_JDBC;
 
 import java.sql.*;
 import java.util.*;
@@ -22,7 +22,7 @@ public class ConnectionPostgreSQLSingleton {
     private final String pwd = "admin";
     private Connection connection;
 
-    public ConnectionPostgreSQLSingleton() {
+    private ConnectionPostgreSQLSingleton() {
         try {
             connection = DriverManager.getConnection(url, user, pwd);
             Class.forName("org.postgresql.Driver");

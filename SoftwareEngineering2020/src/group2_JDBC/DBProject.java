@@ -5,7 +5,6 @@
  */
 package group2_JDBC;
 
-import db.ConnectionPostgreSQLSingleton;
 import group2.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,16 +22,6 @@ import java.util.logging.Logger;
  * @author carpi
  */
 public class DBProject {
-
-    static String url = "jdbc:postgresql://localhost/SoftwareEngineering";
-    static String user = "postgres";
-    static String pwd = "admin";
-    static Connection conn = null;
-    static Statement stm = null;
-
-    public static void main(String[] args) {
-        ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
-    } //mi connetto al DB nella GUI
 
     public static List<Maintainer> popolaMaintainerPlanned(String id) {
 
@@ -61,15 +50,7 @@ public class DBProject {
             }
         } catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        }
+        } 
         return l;
     }
 
@@ -95,19 +76,11 @@ public class DBProject {
                 String name = rs.getString("nome");
 
                 //manca la lista di availability
-                Maintainer m = new Maintainer(username, password, "Maintainer", name );
+                Maintainer m = new Maintainer(username, password, "Maintainer", name);
                 l.add(m);
             }
         } catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
         }
         return l;
     }
@@ -135,14 +108,6 @@ public class DBProject {
             }
         } catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
         }
         return cl;
     }
@@ -170,14 +135,6 @@ public class DBProject {
             }
         } catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
         }
         return cl;
     }
@@ -204,20 +161,12 @@ public class DBProject {
                 int estimatedTime = rs.getInt("tempo_stimato");
                 String tipology = rs.getString("tipologia");
                 int week = rs.getInt("settimana");
-                
+
                 PlannedActivity a = new PlannedActivity(ID, site, area, description, cl, interruptbility, estimatedTime, tipology, week, false);
                 l.add(a);
             }
         } catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
         }
         return l;
     }
@@ -252,14 +201,6 @@ public class DBProject {
             }
         } catch (java.sql.SQLException e) {
             System.out.println(e.getMessage());
-        } finally {
-            if (stm != null) {
-                try {
-                    stm.close();
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
         }
         return l;
     }
