@@ -24,6 +24,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
     private static List<Maintainer> maintainer_up = new ArrayList();
     public static List<PlannedActivity> planned_a = new ArrayList();
     public static List<UnplannedActivity> unplanned_a = new ArrayList();
+    public static List<UnplannedActivity> ewo_a = new ArrayList();
 
     private static ManageMaintenance instance = null;
 
@@ -273,7 +274,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 WeekText.setText("");
             }
-            planned_a = popolaActivity(w,"planned");
+            planned_a = popolaActivity(w, "planned");
             unplanned_a = popolaActivity(w, "unplanned");
 
             ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -287,8 +288,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                         "ID", "AREA", "TYPE", "ESTIMATED TIME"
                     }
             ));
-            for (int i = 0; i < planned_a.size(); i++) {
-                PlannedActivity pa = planned_a.get(i);
+            for (PlannedActivity pa : planned_a) {
 
                 //ActivityTable da rivedere
                 ActivityTable.setValueAt(pa.getID(), row, 0);
@@ -297,12 +297,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
                 activity_description.add(pa.getDescription());
 
-                skills_needed = popolaSkills(pa.getID(),"planned");
+                skills_needed = popolaSkills(pa.getID(), "planned");
                 skills_for_activity.add(row, getSkillsActivity(skills_needed));
                 row++;
             }
-            for (int i = 0; i < unplanned_a.size(); i++) {
-                UnplannedActivity up = unplanned_a.get(i);
+            for (UnplannedActivity up : unplanned_a) {
 
                 //ActivityTable da rivedere
                 ActivityTable.setValueAt(up.getID(), row, 0);
@@ -311,7 +310,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
                 activity_description.add(up.getDescription());
 
-                skills_needed = popolaSkills(up.getID(),"unplanned");
+                skills_needed = popolaSkills(up.getID(), "unplanned");
                 skills_for_activity.add(row, getSkillsActivity(skills_needed));
                 row++;
             }
@@ -351,19 +350,29 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 WeekText.setText("");
             }
-            ManageEwoActivity mea = ManageEwoActivity.getInstance();
-            mea.setVisible(true);
 
-            mea.setVisible(true);
-            mea.WeekText3.setText(WeekText.getText());
-            mea.WeekText3.setEditable(false);
+            ewo_a = popolaActivity(Integer.parseInt(WeekText.getText()), "ewo");
+            if (ewo_a.isEmpty()) {
+                JOptionPane p = new JOptionPane();
+                JOptionPane.showMessageDialog(p, "ATTENZIONE: non sono presenti attività EWO per la settimana inserita!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
+            } else {
+                ManageEwoActivity mea = ManageEwoActivity.getInstance();
+                mea.setVisible(true);
+
+                mea.WeekText4.setText(WeekText.getText());
+                mea.WeekText4.setEditable(false);
+                String ewo = ewo_a.get(0).getID() + "-" + ewo_a.get(0).getArea() + "-" + ewo_a.get(0).getTipology() + "-" + ewo_a.get(0).getEstimatedTime();
+                mea.ActivityText3.setText(ewo);
+                mea.ActivityText3.setEditable(false);
+
+                mea.DescriptionText2.setText(ewo_a.get(0).getDescription()); //editabile                
+            }
         }
     }//GEN-LAST:event_EwoButtonActionPerformed
 
     private String getSkillsActivity(List<Competencies> s) {
         String a = "";
-        for (int i = 0; i < s.size(); i++) {
-            Competencies c = s.get(i);
+        for (Competencies c : s) {
             a += c.toString() + "\n";
         }
         return a;
@@ -396,22 +405,20 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
         String id = (String) ActivityTable.getValueAt(id_button - 1, 0);
 
-        for (int i = 0; i < planned_a.size(); i++) {
-            if (planned_a.get(i).getID().equals(id)) {
-                maintainer_pl = popolaMaintainer(planned_a.get(i).getID(),"planned");
-                for (int j = 0; j < maintainer_pl.size(); j++) {
-                    Maintainer m = maintainer_pl.get(j);
+        for (PlannedActivity pa : planned_a) {
+            if (pa.getID().equals(id)) {
+                maintainer_pl = popolaMaintainer(pa.getID(), "planned");
+                for (Maintainer m : maintainer_pl) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
                     row++;
                 }
             }
         }
 
-        for (int i = 0; i < unplanned_a.size(); i++) {
-            if (unplanned_a.get(i).getID().equals(id)) {
-                maintainer_up = popolaMaintainer(unplanned_a.get(i).getID(),"unplanned");
-                for (int j = 0; j < maintainer_up.size(); j++) {
-                    Maintainer m = maintainer_up.get(j);
+        for (UnplannedActivity up : unplanned_a) {
+            if (up.getID().equals(id)) {
+                maintainer_up = popolaMaintainer(up.getID(), "unplanned");
+                for (Maintainer m : maintainer_up) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
                     row++;
                 }
