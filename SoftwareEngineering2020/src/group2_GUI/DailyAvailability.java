@@ -11,13 +11,21 @@ package group2_GUI;
  */
 public class DailyAvailability extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DailyAvailability
-     */
+    private static DailyAvailability instance = null;
+    
     public DailyAvailability() {
         initComponents();
     }
-
+    
+    public static DailyAvailability getInstance() {
+        // Crea l'oggetto solo se NON esiste:
+        if(instance == null){
+            instance = new DailyAvailability();
+            
+        }
+        return instance;    
+    }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

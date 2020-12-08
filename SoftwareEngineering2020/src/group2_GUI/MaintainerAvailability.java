@@ -171,7 +171,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
         String cell = (String) AvailabilityTable1.getValueAt(row, col);
         String maintainer = (String) AvailabilityTable1.getValueAt(row, 0);
         if (row >= 0 && col >= 0) {
-            DailyAvailability dav = new DailyAvailability();
+            DailyAvailability dav = DailyAvailability.getInstance();
             dav.setVisible(true);
             dav.WeekText4.setText(WeekText3.getText());
             dav.DayText.setText(day);
