@@ -47,7 +47,7 @@ public class DBProject {
             }
         } else if (type.equalsIgnoreCase("unplanned")) {
             try {
-                PreparedStatement pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
+                PreparedStatement pstm = connection.prepareStatement("select distinct MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
                         + "from unplanned UN, attitudine_un ATTUN, competenza COMP, requisito REQ, mantainer MAN\n"
                         + "where UN.id_attivita_un=? and UN.id_attivita_un=ATTUN.id_attivita_un\n"
                         + "and ATTUN.id_competenza=COMP.id_competenza and COMP.id_competenza=REQ.id_competenza and REQ.id_mantainer=MAN.id_mantainer");
@@ -120,14 +120,12 @@ public class DBProject {
     }
 
     public static List popolaActivity(int w, String type) {
-
+        
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
-
         List<PlannedActivity> lp = new ArrayList();
         List<UnplannedActivity> lu = new ArrayList();
         List<Competencies> cl = new ArrayList();
-
         if (type.equalsIgnoreCase("planned")) {
             try {
                 PreparedStatement pstm = connection.prepareStatement("select * from planned where settimana = ?");
