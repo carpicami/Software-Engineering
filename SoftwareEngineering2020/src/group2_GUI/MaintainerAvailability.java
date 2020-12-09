@@ -10,13 +10,14 @@ package group2_GUI;
  * @author maria
  */
 public class MaintainerAvailability extends javax.swing.JFrame {
-    
-    private static MaintainerAvailability instance = null; /*inizio implementazione SINGLETON PATTERN*/
-    
+
+    private static MaintainerAvailability instance = null;
+
+    /*inizio implementazione SINGLETON PATTERN*/
     public MaintainerAvailability() {
         initComponents();
     }
- 
+
     public static MaintainerAvailability getInstance() {
         // Crea l'oggetto solo se NON esiste:
         if (instance == null) {
@@ -24,9 +25,8 @@ public class MaintainerAvailability extends javax.swing.JFrame {
         }
         return instance;
     }
-    /*fine implementazione SINGLETON PATTERN*/
 
-   
+    /*fine implementazione SINGLETON PATTERN*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -167,16 +167,19 @@ public class MaintainerAvailability extends javax.swing.JFrame {
     private void AvailabilityTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvailabilityTable1MouseClicked
         int row = AvailabilityTable1.rowAtPoint(evt.getPoint());
         int col = AvailabilityTable1.columnAtPoint(evt.getPoint());
-        String day = AvailabilityTable1.getColumnName(col);
-        String cell = (String) AvailabilityTable1.getValueAt(row, col);
-        String maintainer = (String) AvailabilityTable1.getValueAt(row, 0);
-        if (row >= 0 && col >= 0) {
+
+        if (row >= 0 && col >= 2) {
+            String day = AvailabilityTable1.getColumnName(col);
+            String cell = (String) AvailabilityTable1.getValueAt(row, col);
+            String maintainer = (String) AvailabilityTable1.getValueAt(row, 0);
             DailyAvailability dav = DailyAvailability.getInstance();
             dav.setVisible(true);
             dav.WeekText4.setText(WeekText3.getText());
+            dav.WeekText4.setEditable(false);
             dav.DayText.setText(day);
+            dav.DayText.setEditable(false);
             dav.ActivityText3.setText(ActivityText2.getText());
-            dav.AvailabilityText.setText("Availability " + maintainer + " " + cell );
+            dav.AvailabilityText.setText("Availability " + maintainer + " " + cell);
             dav.AvailabilityTable2.setValueAt(maintainer, 0, 0);
         }
     }//GEN-LAST:event_AvailabilityTable1MouseClicked

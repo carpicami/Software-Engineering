@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author carpi
  */
-public abstract class Activity {
+public class Activity {
     
     private String tipology;
     private String ID;
@@ -107,6 +107,5 @@ public abstract class Activity {
     public void setEstimatedTime(int estimatedTime) {
         this.estimatedTime = estimatedTime;
     }
-    
-    public abstract void attachSMP(Activity a);
+
 }

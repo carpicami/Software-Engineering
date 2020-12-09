@@ -5,7 +5,6 @@
  */
 package group2;
 
-import java.util.List;
 
 /**
  *
@@ -20,11 +19,6 @@ public class PlannedActivity extends Activity implements Comparable<PlannedActiv
 
         super(ID, site, area, description, interruptbility, estimatedTime, tipology, week);
         this.extraActivity = extraActivity;
-    }
-
-    @Override
-    public void attachSMP(Activity a) {
-        //da implementare
     }
 
     public boolean isExtraActivity() {

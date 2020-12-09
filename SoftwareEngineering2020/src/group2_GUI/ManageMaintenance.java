@@ -302,7 +302,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 row++;
             }
             for (UnplannedActivity up : unplanned_a) {
-
                 //ActivityTable da rivedere
                 ActivityTable.setValueAt(up.getID(), row, 0);
                 ActivityTable.setValueAt(up.getArea(), row, 1);
@@ -411,13 +410,13 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 for (Maintainer m : maintainer_pl) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
                     ma.AvailabilityTable1.setValueAt(1, row, 1);
-                    for(int k =row-1; k>=0; k--){
-                        if(m.getName().equalsIgnoreCase(maintainer_pl.get(k).getName())){
-                            ma.AvailabilityTable1.setValueAt((int) ma.AvailabilityTable1.getValueAt(row, 1)+1 , row, 1);
+                    for (int k = row - 1; k >= 0; k--) {
+                        if (m.getName().equalsIgnoreCase(maintainer_pl.get(k).getName())) {
+                            ma.AvailabilityTable1.setValueAt((int) ma.AvailabilityTable1.getValueAt(row, 1) + 1, row, 1);
                             row--;
                         }
                     }
-                    row++;                
+                    row++;
                 }
             }
         }
@@ -428,17 +427,18 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 for (Maintainer m : maintainer_up) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
                     ma.AvailabilityTable1.setValueAt(1, row, 1);
-                    for(int k = row-1; k >= 0; k--){
-                        if(m.getName().equalsIgnoreCase(maintainer_up.get(k).getName())){
-                            ma.AvailabilityTable1.setValueAt((int) ma.AvailabilityTable1.getValueAt(row, 1)+1 , k, 1);
+                    for (int k = row - 1; k >= 0; k--) {
+                        if (m.getName().equalsIgnoreCase(maintainer_up.get(k).getName())) {
+                            ma.AvailabilityTable1.setValueAt((int) ma.AvailabilityTable1.getValueAt(row, 1) + 1, k, 1);
                             row--;
                         }
-                    }                        
+                    }
                     row++;
                 }
             }
         }
     }
+
     /**
      * @param args the command line arguments
      */

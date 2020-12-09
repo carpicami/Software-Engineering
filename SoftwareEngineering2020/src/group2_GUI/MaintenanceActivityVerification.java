@@ -5,6 +5,10 @@
  */
 package group2_GUI;
 
+import java.awt.Desktop;
+import java.io.*;
+import javax.swing.*;
+
 /**
  *
  * @author maria
@@ -192,9 +196,21 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SMPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMPButtonActionPerformed
-        // TODO add your handling code here:
+        String[] s = ActivityText1.getText().split("-");
+        attachSMP(s[1]);
     }//GEN-LAST:event_SMPButtonActionPerformed
 
+    private void attachSMP(String fileName){
+        String directory = "C://Users/carpi/Documents/NetBeansProjects/Software-Engineering/SoftwareEngineering2020/src/group2_GUI/SMP/" + fileName + ".pdf";
+        File file = new File(directory);
+
+        try {
+            Desktop.getDesktop().open(file);
+        } catch (Exception e) {
+            JOptionPane p = new JOptionPane();
+            JOptionPane.showMessageDialog(p, "Errore, non è presente una procedura standard per questa attività!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void ForwardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardButtonActionPerformed
         MaintainerAvailability mavail = MaintainerAvailability.getInstance();
         mavail.setVisible(true);

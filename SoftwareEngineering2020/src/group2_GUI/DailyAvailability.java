@@ -5,6 +5,8 @@
  */
 package group2_GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author maria
@@ -106,6 +108,11 @@ public class DailyAvailability extends javax.swing.JFrame {
         jScrollPane3.setViewportView(AvailabilityTable2);
 
         SelectButton.setText("Select");
+        SelectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,6 +194,16 @@ public class DailyAvailability extends javax.swing.JFrame {
     private void AvailabilityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailabilityTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AvailabilityTextActionPerformed
+
+    private void SelectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectButtonActionPerformed
+        JOptionPane p = new JOptionPane();
+        JOptionPane.showMessageDialog(p, "OK! Il sistema provvederà ad avvisare il Maintainer per l'attività assegnatagli.", "Activity Received", JOptionPane.INFORMATION_MESSAGE);
+        DailyAvailability.getInstance().setVisible(false);
+        MaintainerAvailability.getInstance().setVisible(false);
+        MaintenanceActivityVerification.getInstance().setVisible(false);
+        ManageEwoActivity.getInstance().setVisible(false);
+        //eventualmente cancellare l'attività dalla tabella, oppure aggiungere un campo per segnalare che è stata assegnata
+    }//GEN-LAST:event_SelectButtonActionPerformed
 
     /**
      * @param args the command line arguments

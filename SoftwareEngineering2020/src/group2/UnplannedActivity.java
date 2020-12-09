@@ -22,11 +22,6 @@ public class UnplannedActivity extends Activity implements Comparable<UnplannedA
         this.ewoActivity = ewoActivity;
     }
 
-    @Override
-    public void attachSMP(Activity a) {
-        //da implementare
-    }
-
     public boolean isEwoActivity() {
         return ewoActivity;
     }

@@ -37,15 +37,7 @@ public class Maintainer extends User implements Comparable<Maintainer>{ //CLASSE
     public void setName(String name) {
         this.name = name;
     }
-
-    /*public Map<String, Integer> getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(Map<String,Integer> availability) {
-        this.availability = availability;
-    }*/
-
+    
     @Override
     public int compareTo(Maintainer o) {
         return this.getName().compareTo(o.getName());
