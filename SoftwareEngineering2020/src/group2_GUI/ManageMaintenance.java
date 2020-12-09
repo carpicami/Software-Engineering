@@ -277,17 +277,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
             planned_a = popolaActivity(w, "planned");
             unplanned_a = popolaActivity(w, "unplanned");
 
-            ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
-                    new Object[][]{
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                    },
-                    new String[]{
-                        "ID", "AREA", "TYPE", "ESTIMATED TIME"
-                    }
-            ));
             for (PlannedActivity pa : planned_a) {
 
                 //ActivityTable da rivedere
@@ -409,10 +398,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 maintainer_pl = popolaMaintainer(pa.getID(), "planned");
                 for (Maintainer m : maintainer_pl) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
-                    ma.AvailabilityTable1.setValueAt(1, row, 1);
+                    ma.AvailabilityTable1.setValueAt(1 + "/" + skills_for_activity.size(), row, 1);
                     for (int k = row - 1; k >= 0; k--) {
                         if (m.getName().equalsIgnoreCase(maintainer_pl.get(k).getName())) {
-                            ma.AvailabilityTable1.setValueAt((int) ma.AvailabilityTable1.getValueAt(row, 1) + 1, row, 1);
+                            String skill= (String) ma.AvailabilityTable1.getValueAt(row, 1);
+                            ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + skills_for_activity.size(), k, 1);
                             row--;
                         }
                     }
@@ -426,12 +416,13 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 maintainer_up = popolaMaintainer(up.getID(), "unplanned");
                 for (Maintainer m : maintainer_up) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
-                    ma.AvailabilityTable1.setValueAt(1, row, 1);
+                    ma.AvailabilityTable1.setValueAt(1 + "/" + skills_for_activity.size(), row, 1);
                     for (int k = row - 1; k >= 0; k--) {
                         if (m.getName().equalsIgnoreCase(maintainer_up.get(k).getName())) {
-                            ma.AvailabilityTable1.setValueAt((int) ma.AvailabilityTable1.getValueAt(row, 1) + 1, k, 1);
+                            String skill= (String) ma.AvailabilityTable1.getValueAt(row, 1);
+                            ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + skills_for_activity.size(), k, 1);
                             row--;
-                        }
+                        }       
                     }
                     row++;
                 }

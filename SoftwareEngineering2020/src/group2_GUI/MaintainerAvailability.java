@@ -172,6 +172,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
             String day = AvailabilityTable1.getColumnName(col);
             String cell = (String) AvailabilityTable1.getValueAt(row, col);
             String maintainer = (String) AvailabilityTable1.getValueAt(row, 0);
+            String skills = (String) AvailabilityTable1.getValueAt(row, 1);
             DailyAvailability dav = DailyAvailability.getInstance();
             dav.setVisible(true);
             dav.WeekText4.setText(WeekText3.getText());
@@ -181,6 +182,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
             dav.ActivityText3.setText(ActivityText2.getText());
             dav.AvailabilityText.setText("Availability " + maintainer + " " + cell);
             dav.AvailabilityTable2.setValueAt(maintainer, 0, 0);
+            dav.AvailabilityTable2.setValueAt(dav, row, col);
         }
     }//GEN-LAST:event_AvailabilityTable1MouseClicked
 
