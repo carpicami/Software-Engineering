@@ -182,7 +182,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
             dav.ActivityText3.setText(ActivityText2.getText());
             dav.AvailabilityText.setText("Availability " + maintainer + " " + cell);
             dav.AvailabilityTable2.setValueAt(maintainer, 0, 0);
-            dav.AvailabilityTable2.setValueAt(dav, row, col);
+            dav.AvailabilityTable2.setValueAt(AvailabilityTable1.getValueAt(row, 1), row, 1);
         }
     }//GEN-LAST:event_AvailabilityTable1MouseClicked
 

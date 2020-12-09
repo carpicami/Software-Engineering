@@ -39,7 +39,7 @@ public class Competencies implements Comparable<Competencies>{
 
     @Override
     public String toString() {
-        return "Competencies{" + "descrizione=" + descrizione + ", ID=" + ID + '}';
+        return "-" + descrizione + "\n";
     }
 
     @Override
