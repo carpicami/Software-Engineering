@@ -17,14 +17,14 @@ import static java.util.regex.Pattern.matches;
  */
 public class ManageMaintenance extends javax.swing.JFrame {
 
-    private static List<String> activity_description = new ArrayList();
-    private static List<Competencies> skills_needed = new ArrayList();
-    private static List<String> skills_for_activity = new ArrayList();
-    private static List<Maintainer> maintainer_pl = new ArrayList();
-    private static List<Maintainer> maintainer_up = new ArrayList();
-    public static List<PlannedActivity> planned_a = new ArrayList();
-    public static List<UnplannedActivity> unplanned_a = new ArrayList();
-    public static List<UnplannedActivity> ewo_a = new ArrayList();
+    private List<String> activity_description = new ArrayList();
+    private List<Competencies> skills_needed = new ArrayList();
+    private List<String> skills_for_activity = new ArrayList();
+    private List<Maintainer> maintainer_pl = new ArrayList();
+    private List<Maintainer> maintainer_up = new ArrayList();
+    public List<PlannedActivity> planned_a = new ArrayList();
+    public List<UnplannedActivity> unplanned_a = new ArrayList();
+    public List<UnplannedActivity> ewo_a = new ArrayList();
 
     private static ManageMaintenance instance = null;
 
@@ -261,6 +261,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         String week = WeekText.getText();
+        cleanActivityTable(); //svuoto la tabella dagli elementi di cui era piena prima, è utile se ho una lista di attività superiore ad un'altra in settimane diverse
+        //esempio: settimana 3 ha 4 attività, settimana 2 ne ha 3. Se selezionassi prima settimana 3 di settimana 2, se non pulissi la tabella rimarrebbe l'ultimo elemento
+        //ovviamente appartenente alla settimana precedente.
 
         if (!matches("-?\\d+(\\.\\d+)?", week)) {
             JOptionPane p = new JOptionPane();
@@ -278,8 +281,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
             unplanned_a = popolaActivity(w, "unplanned");
 
             for (PlannedActivity pa : planned_a) {
-
-                //ActivityTable da rivedere
                 ActivityTable.setValueAt(pa.getID(), row, 0);
                 ActivityTable.setValueAt(pa.getArea(), row, 1);
                 ActivityTable.setValueAt(pa.getTipology(), row, 2);
@@ -291,7 +292,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 row++;
             }
             for (UnplannedActivity up : unplanned_a) {
-                //ActivityTable da rivedere
                 ActivityTable.setValueAt(up.getID(), row, 0);
                 ActivityTable.setValueAt(up.getArea(), row, 1);
                 ActivityTable.setValueAt(up.getTipology(), row, 2);
@@ -346,17 +346,28 @@ public class ManageMaintenance extends javax.swing.JFrame {
             } else {
                 ManageEwoActivity mea = ManageEwoActivity.getInstance();
                 mea.setVisible(true);
-
                 mea.WeekText4.setText(WeekText.getText());
                 mea.WeekText4.setEditable(false);
+
+                //esempio semplificativo, solo una ewo a settimana
                 String ewo = ewo_a.get(0).getID() + "-" + ewo_a.get(0).getArea() + "-" + ewo_a.get(0).getTipology() + "-" + ewo_a.get(0).getEstimatedTime();
                 mea.ActivityText3.setText(ewo);
                 mea.ActivityText3.setEditable(false);
-
                 mea.DescriptionText2.setText(ewo_a.get(0).getDescription()); //editabile                
             }
         }
     }//GEN-LAST:event_EwoButtonActionPerformed
+
+    private void cleanActivityTable() {
+        int rows = ActivityTable.getRowCount();
+        int columns = ActivityTable.getColumnCount();
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                ActivityTable.setValueAt("", i, j);
+            }
+        }
+    }
 
     private String getSkillsActivity(List<Competencies> s) {
         String a = "";
@@ -398,11 +409,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 maintainer_pl = popolaMaintainer(pa.getID(), "planned");
                 for (Maintainer m : maintainer_pl) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
-                    ma.AvailabilityTable1.setValueAt(1 + "/" + skills_for_activity.size(), row, 1);
+                    ma.AvailabilityTable1.setValueAt(1 + "/" + popolaSkills(pa.getID(), "planned").size(), row, 1);
                     for (int k = row - 1; k >= 0; k--) {
                         if (m.getName().equalsIgnoreCase(maintainer_pl.get(k).getName())) {
-                            String skill= (String) ma.AvailabilityTable1.getValueAt(row, 1);
-                            ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + skills_for_activity.size(), k, 1);
+                            String skill = (String) ma.AvailabilityTable1.getValueAt(row, 1);
+                            ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + popolaSkills(pa.getID(), "planned").size(), k, 1);
                             row--;
                         }
                     }
@@ -416,13 +427,13 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 maintainer_up = popolaMaintainer(up.getID(), "unplanned");
                 for (Maintainer m : maintainer_up) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
-                    ma.AvailabilityTable1.setValueAt(1 + "/" + skills_for_activity.size(), row, 1);
+                    ma.AvailabilityTable1.setValueAt(1 + "/" + popolaSkills(up.getID(), "unplanned").size(), row, 1);
                     for (int k = row - 1; k >= 0; k--) {
                         if (m.getName().equalsIgnoreCase(maintainer_up.get(k).getName())) {
-                            String skill= (String) ma.AvailabilityTable1.getValueAt(row, 1);
-                            ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + skills_for_activity.size(), k, 1);
+                            String skill = (String) ma.AvailabilityTable1.getValueAt(row, 1);
+                            ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + popolaSkills(up.getID(), "unplanned").size(), k, 1);
                             row--;
-                        }       
+                        }
                     }
                     row++;
                 }

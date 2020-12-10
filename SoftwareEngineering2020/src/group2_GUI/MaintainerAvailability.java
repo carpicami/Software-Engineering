@@ -165,6 +165,8 @@ public class MaintainerAvailability extends javax.swing.JFrame {
     }//GEN-LAST:event_WeekText3ActionPerformed
 
     private void AvailabilityTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvailabilityTable1MouseClicked
+        DailyAvailability dav = DailyAvailability.getInstance();
+
         int row = AvailabilityTable1.rowAtPoint(evt.getPoint());
         int col = AvailabilityTable1.columnAtPoint(evt.getPoint());
 
@@ -173,17 +175,17 @@ public class MaintainerAvailability extends javax.swing.JFrame {
             String cell = (String) AvailabilityTable1.getValueAt(row, col);
             String maintainer = (String) AvailabilityTable1.getValueAt(row, 0);
             String skills = (String) AvailabilityTable1.getValueAt(row, 1);
-            DailyAvailability dav = DailyAvailability.getInstance();
             dav.setVisible(true);
             dav.WeekText4.setText(WeekText3.getText());
             dav.WeekText4.setEditable(false);
             dav.DayText.setText(day);
             dav.DayText.setEditable(false);
             dav.ActivityText3.setText(ActivityText2.getText());
-            dav.AvailabilityText.setText("Availability " + maintainer + " " + cell);
+            dav.AvailabilityText.setText("Availability of: " + maintainer + " on: " + day + " is: " + cell);
+            dav.AvailabilityText.setEditable(false);
             dav.AvailabilityTable2.setValueAt(maintainer, 0, 0);
-            dav.AvailabilityTable2.setValueAt(AvailabilityTable1.getValueAt(row, 1), row, 1);
-        }
+            dav.AvailabilityTable2.setValueAt(AvailabilityTable1.getValueAt(row, 1), 0, 1);
+        }   
     }//GEN-LAST:event_AvailabilityTable1MouseClicked
 
     /**
