@@ -8,7 +8,7 @@ package group2_GUI;
 import group2.*;
 import static group2_JDBC.DBProject.*;
 import java.util.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import static java.util.regex.Pattern.matches;
 
 /**
@@ -261,7 +261,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         String week = WeekText.getText();
-        cleanActivityTable(); //svuoto la tabella dagli elementi di cui era piena prima, è utile se ho una lista di attività superiore ad un'altra in settimane diverse
+        cleanActivityTable(ActivityTable); //svuoto la tabella dagli elementi di cui era piena prima, è utile se ho una lista di attività superiore ad un'altra in settimane diverse
         //esempio: settimana 3 ha 4 attività, settimana 2 ne ha 3. Se selezionassi prima settimana 3 di settimana 2, se non pulissi la tabella rimarrebbe l'ultimo elemento
         //ovviamente appartenente alla settimana precedente.
 
@@ -285,7 +285,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(pa.getArea(), row, 1);
                 ActivityTable.setValueAt(pa.getTipology(), row, 2);
                 ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
-                activity_description.add(pa.getDescription());
+                activity_description.add("PLANNED: " + pa.getDescription());
 
                 skills_needed = popolaSkills(pa.getID(), "planned");
                 skills_for_activity.add(row, getSkillsActivity(skills_needed));
@@ -296,7 +296,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(up.getArea(), row, 1);
                 ActivityTable.setValueAt(up.getTipology(), row, 2);
                 ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
-                activity_description.add(up.getDescription());
+                activity_description.add("UNPLANNED: " + up.getDescription());
 
                 skills_needed = popolaSkills(up.getID(), "unplanned");
                 skills_for_activity.add(row, getSkillsActivity(skills_needed));
@@ -358,13 +358,13 @@ public class ManageMaintenance extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EwoButtonActionPerformed
 
-    private void cleanActivityTable() {
-        int rows = ActivityTable.getRowCount();
-        int columns = ActivityTable.getColumnCount();
+    private void cleanActivityTable(JTable table) {
+        int rows = table.getRowCount();
+        int columns = table.getColumnCount();
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                ActivityTable.setValueAt("", i, j);
+                table.setValueAt(null, i, j);
             }
         }
     }
@@ -378,27 +378,34 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }
 
     private void selectEvent(int id_button) {
-        String col = " ";
-        String control = (String) ActivityTable.getValueAt(id_button - 1, 0);
+        if (ActivityTable.getValueAt(id_button - 1, 0) != null) {
+            String col = " ";
+            String control = (String) ActivityTable.getValueAt(id_button - 1, 0);
 
-        MaintenanceActivityVerification mav = MaintenanceActivityVerification.getInstance(); //chiama singleton
-        mav.setVisible(true);
-        mav.WeekText2.setText(WeekText.getText());
-        mav.WeekText2.setEditable(false);
-        for (int i = 0; i < 3; i++) {
-            col += "-" + (String) ActivityTable.getValueAt(id_button - 1, i);
+            MaintenanceActivityVerification mav = MaintenanceActivityVerification.getInstance(); //chiama singleton
+            mav.setVisible(true);
+            mav.WeekText2.setText(WeekText.getText());
+            mav.WeekText2.setEditable(false);
+            for (int i = 0; i < 3; i++) {
+                col += "-" + (String) ActivityTable.getValueAt(id_button - 1, i);
+            }
+            col += "-" + ActivityTable.getValueAt(id_button - 1, 3);
+            mav.ActivityText1.setText(col); //da finire
+            mav.ActivityText1.setEditable(false);
+            mav.DescriptionText.setText(activity_description.get(id_button - 1));
+            mav.DescriptionText.setEditable(false);
+            mav.SkillsText1.setText(skills_for_activity.get(id_button - 1));
+            mav.SkillsText1.setEditable(false);
+        }else{
+            JOptionPane p = new JOptionPane();
+            JOptionPane.showMessageDialog(p, "Errore! Non stai selezionando alcuna attività.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        col += "-" + ActivityTable.getValueAt(id_button - 1, 3);
-        mav.ActivityText1.setText(col); //da finire
-        mav.ActivityText1.setEditable(false);
-        mav.DescriptionText.setText(activity_description.get(id_button - 1));
-        mav.DescriptionText.setEditable(false);
-        mav.SkillsText1.setText(skills_for_activity.get(id_button - 1));
-        mav.SkillsText1.setEditable(false);
     }
 
     private void getListOfMaintainer(int id_button) { //da fare controllo su stesso nome perchè ha più di 1 competenza 
         MaintainerAvailability ma = MaintainerAvailability.getInstance(); //chiamata al singleton
+
+        cleanActivityTable(ma.AvailabilityTable1);
         List<String> id_activity = new ArrayList();
         int row = 0;
 

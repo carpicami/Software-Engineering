@@ -8,7 +8,6 @@ package group2_JDBC;
 import group2.*;
 import java.sql.*;
 import java.util.*;
-import java.util.logging.*;
 
 /**
  *
