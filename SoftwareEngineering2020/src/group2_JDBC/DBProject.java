@@ -60,7 +60,6 @@ public class DBProject {
     }
 
     public static List<Competencies> popolaSkills(String id, String type) {
-
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
         ResultSet rs = null;
@@ -96,7 +95,6 @@ public class DBProject {
     }
 
     public static List popolaActivity(int w, String type) {
-
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
         List<PlannedActivity> lp = new ArrayList();

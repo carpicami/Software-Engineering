@@ -44,16 +44,23 @@ public class ServiceAvailabilityImpl {
             Time time1 = rs.getTime("orario_inizio");
             LocalTime start = LocalTime.of(time1.getHours(), time1.getMinutes());
             int a = getIndex(start.getHour());
+            int minutoStart = start.getMinute();
             int time = getTimeBeetween(time1,rs.getTime("orario_fine"));
             
             allAvail.stream().filter(avail -> (avail.getNameM().equals(name))).forEachOrdered(avail -> {
                 if (time>60) {
-                    int oreFull = time/60;
+                    avail.getMap().get(giorno)[a]=minutoStart;
+                    int time2 = time-(60-minutoStart);
+                    if (time2>60) {
+                    int oreFull = time2/60;
                     int i=a;
                     for(;i<a+oreFull;i++) {
                         avail.getMap().get(giorno)[i] = 0;
                     }
-                    avail.getMap().get(giorno)[i] = time-(60*oreFull);
+                    avail.getMap().get(giorno)[i] = time2-(60*oreFull);
+                    }
+                    else
+                    avail.getMap().get(giorno)[a+1] =  avail.getMap().get(giorno)[a+1] -time2;
                 }
                 else
                     avail.getMap().get(giorno)[a] =  avail.getMap().get(giorno)[a] -time;
