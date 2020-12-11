@@ -423,6 +423,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
                         if (m.getName().equalsIgnoreCase(maintainer_pl.get(k).getName())) {
                             String skill = (String) ma.AvailabilityTable1.getValueAt(row, 1);
                             ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + popolaSkills(pa.getID(), "planned").size(), k, 1);
+                            ma.AvailabilityTable1.setValueAt(null, row, 0);
+                            ma.AvailabilityTable1.setValueAt(null, row, 1);
                             row--;
                         }
                     }
