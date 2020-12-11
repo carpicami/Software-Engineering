@@ -9,6 +9,7 @@ import group2.*;
 import group2_JDBC.ConnectionPostgreSQLSingleton;
 import java.sql.*;
 import java.util.*;
+import javax.swing.JTable;
 
 /**
  *
@@ -246,6 +247,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
 
     private void ForwardEwoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardEwoButtonActionPerformed
         MaintainerAvailability ma = MaintainerAvailability.getInstance();
+        ManageMaintenance mm = ManageMaintenance.getInstance();
         ma.setVisible(true);
 
         ma.WeekText3.setText(WeekText4.getText());
@@ -267,6 +269,8 @@ public class ManageEwoActivity extends javax.swing.JFrame {
         maintainers = getMaintainers(skills);
 
         int row = 0;
+
+        mm.cleanTable(ma.AvailabilityTable1);
 
         for (String m : maintainers) { //NON FUNZIONA BENE, DA RIVEDERE
             ma.AvailabilityTable1.setValueAt(m, row, 0);

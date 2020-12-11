@@ -202,7 +202,7 @@ public class DailyAvailability extends javax.swing.JFrame {
         MaintainerAvailability.getInstance().setVisible(false);
         MaintenanceActivityVerification.getInstance().setVisible(false);
         ManageEwoActivity.getInstance().setVisible(false);
-        //eventualmente cancellare l'attività dalla tabella, oppure aggiungere un campo per segnalare che è stata assegnata
+        //eventualmente cancellare l'attività dalla tabella, oppure aggiungere un campo per segnalare che è stata assegnata 
     }//GEN-LAST:event_SelectButtonActionPerformed
 
     /**

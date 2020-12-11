@@ -219,7 +219,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         mavail.ActivityText2.setText(ActivityText1.getText());
         mavail.ActivityText2.setEditable(false);
         mavail.SkillsText2.setText(SkillsText1.getText());
-        mavail.SkillsText2.setEditable(false);
+        mavail.SkillsText2.setEditable(false);       
     }//GEN-LAST:event_ForwardButtonActionPerformed
 
     /**

@@ -15,22 +15,24 @@ import java.util.logging.Logger;
  * @author GiangiacomPi
  */
 public class mainProva {
-    
+
     public static void main(String[] args) {
         ServiceAvailabilityImpl availabilityImpl = new ServiceAvailabilityImpl();
         try {
             List<WeekAvail> availability = availabilityImpl.getAvailability(2);
-            
-            for (WeekAvail elem:availability) {
+
+            for (WeekAvail elem : availability) {
                 System.out.println(elem.getNameM());
                 elem.getMap().forEach((t, u) -> {
                     System.out.println(t);
-                    for (int i:u)
-                         System.out.println(i);
+                    for (int i : u) {
+                        System.out.println(i);
+                    }
                     System.out.println("\n");
                 });
+                
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(mainProva.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {

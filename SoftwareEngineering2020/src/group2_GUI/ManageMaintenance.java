@@ -22,10 +22,10 @@ public class ManageMaintenance extends javax.swing.JFrame {
     private List<String> skills_for_activity = new ArrayList();
     private List<Maintainer> maintainer_pl = new ArrayList();
     private List<Maintainer> maintainer_up = new ArrayList();
-    public List<PlannedActivity> planned_a = new ArrayList();
-    public List<UnplannedActivity> unplanned_a = new ArrayList();
-    public List<UnplannedActivity> ewo_a = new ArrayList();
-
+    private List<PlannedActivity> planned_a = new ArrayList();
+    private List<UnplannedActivity> unplanned_a = new ArrayList();
+    private List<UnplannedActivity> ewo_a = new ArrayList();
+   
     private static ManageMaintenance instance = null;
 
     /*inizio implementazione SINGLETON PATTERN*/
@@ -261,9 +261,10 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         String week = WeekText.getText();
-        cleanActivityTable(ActivityTable); //svuoto la tabella dagli elementi di cui era piena prima, è utile se ho una lista di attività superiore ad un'altra in settimane diverse
+        cleanTable(ActivityTable); //svuoto la tabella dagli elementi di cui era piena prima, è utile se ho una lista di attività superiore ad un'altra in settimane diverse
         //esempio: settimana 3 ha 4 attività, settimana 2 ne ha 3. Se selezionassi prima settimana 3 di settimana 2, se non pulissi la tabella rimarrebbe l'ultimo elemento
         //ovviamente appartenente alla settimana precedente.
+        EwoButton.setEnabled(true);
 
         if (!matches("-?\\d+(\\.\\d+)?", week)) {
             JOptionPane p = new JOptionPane();
@@ -358,7 +359,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EwoButtonActionPerformed
 
-    private void cleanActivityTable(JTable table) {
+    public void cleanTable(JTable table) {
         int rows = table.getRowCount();
         int columns = table.getColumnCount();
 
@@ -379,6 +380,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void selectEvent(int id_button) {
         if (ActivityTable.getValueAt(id_button - 1, 0) != null) {
+            EwoButton.setEnabled(false);
             String col = " ";
             String control = (String) ActivityTable.getValueAt(id_button - 1, 0);
 
@@ -401,11 +403,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(p, "Errore! Non stai selezionando alcuna attività.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
     private void getListOfMaintainer(int id_button) { //da fare controllo su stesso nome perchè ha più di 1 competenza 
         MaintainerAvailability ma = MaintainerAvailability.getInstance(); //chiamata al singleton
-
-        cleanActivityTable(ma.AvailabilityTable1);
+        cleanTable(ma.AvailabilityTable1);
+        
         List<String> id_activity = new ArrayList();
         int row = 0;
 

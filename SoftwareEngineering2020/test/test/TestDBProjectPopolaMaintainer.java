@@ -55,6 +55,7 @@ public class TestDBProjectPopolaMaintainer {
         expected.add(m0);
         expected.add(m2);
         expected.add(m1);
+        expected.add(m1);
         expected.add(m3);
         Collections.sort(expected);
         List<Maintainer> list = DBProject.popolaMaintainer(id, "unplanned");
