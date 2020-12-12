@@ -5,9 +5,11 @@
  */
 package group2_GUI;
 
+import availability.*;
 import group2.*;
 import static group2_JDBC.DBProject.*;
 import java.util.*;
+import java.util.logging.*;
 import javax.swing.*;
 import static java.util.regex.Pattern.matches;
 
@@ -304,8 +306,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 row++;
             }
         }
+        
     }//GEN-LAST:event_ShowButtonActionPerformed
-
+    
     private void Select2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select2ButtonActionPerformed
         int id_button = 2;
         selectEvent(id_button);
@@ -450,8 +453,32 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 }
             }
         }
+        PercentMaintainer(row);
     }
+     
+    public void PercentMaintainer(int row) {
+        ServiceAvailability availability = new ServiceAvailability();
+        MaintainerAvailability ma = MaintainerAvailability.getInstance();
 
+        for (int i = 0; i < row; i++) {
+            String m = (String) ma.AvailabilityTable1.getValueAt(i, 0);
+            try {
+                List<PercentAvail> availabilityPercent = availability.getAvailabilityPercent(2);
+                for (PercentAvail p : availabilityPercent) {
+                    if (p.getNameM().equals(m)) {
+                        int col = 2;
+                        for (Integer p2 : p.getPercent()) {
+                            ma.AvailabilityTable1.setValueAt(p2 + "%", i, col);
+                            col++;
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(mainProva.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
