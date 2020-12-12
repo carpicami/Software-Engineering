@@ -17,12 +17,11 @@ public class WeekAvail {
 
     private String nameM;
     private Map<Integer, Integer[]> map = new HashMap<>();
-    private Map<String, Float[]> percentage = new HashMap<>();
 
     public WeekAvail(String nameM) {
         this.nameM = nameM;
 
-        for (int i = 1; i < 8; i++) {
+        for (int i = 0; i < 7; i++) {
             map.put(i, new Integer[]{60, 60, 60, 60, 60, 60, 60, 60, 60});
         }
     }

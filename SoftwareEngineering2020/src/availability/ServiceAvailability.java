@@ -15,11 +15,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceAvailabilityImpl {
+public class ServiceAvailability {
 
     private Connection connection;
 
-    public ServiceAvailabilityImpl() {
+    public ServiceAvailability() {
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         connection = conn.getConnection();
     }
@@ -69,6 +69,27 @@ public class ServiceAvailabilityImpl {
         }
         allAvail.addAll(getOtherMaintainerAvailability(names));
         return allAvail;
+    }
+    
+    public List<PercentAvail> getAvailabilityPercent(int settimana) throws Exception{
+        List<PercentAvail> percentList = new ArrayList<>();
+        List<WeekAvail> availabilityMin = getAvailability(settimana);
+        availabilityMin.forEach((element) -> {
+            PercentAvail pa = new PercentAvail();
+            pa.setNameM(element.getNameM());
+            element.getMap().forEach((k, v) -> {
+                int somma=0;
+                for (Integer v1 : v) {
+                    somma += v1;
+                }
+                float i = (60*v.length);
+                float res=(somma/i);
+                float res2 = res * 100;
+                pa.getPercent()[k]=(int)res2;
+                });
+                percentList.add(pa);
+        });
+        return percentList;
     }
 
     private int getIndex(int orario) throws Exception {
