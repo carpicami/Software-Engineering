@@ -458,13 +458,14 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }
     
     public void PercentMaintainer(int row) {
+        int week = Integer.parseInt(WeekText.getText());
         ServiceAvailability availability = new ServiceAvailability();
         MaintainerAvailability ma = MaintainerAvailability.getInstance();
         
         for (int i = 0; i < row; i++) {
             String m = (String) ma.AvailabilityTable1.getValueAt(i, 0);
             try {
-                List<PercentAvail> availabilityPercent = availability.getAvailabilityPercent(2);
+                List<PercentAvail> availabilityPercent = availability.getAvailabilityPercent(week);
                 for (PercentAvail p : availabilityPercent) {
                     if (p.getNameM().equals(m)) {
                         int col = 2;
