@@ -5,6 +5,13 @@
  */
 package group2_GUI;
 
+import availability.ServiceAvailability;
+import availability.WeekAvail;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author maria
@@ -166,14 +173,15 @@ public class MaintainerAvailability extends javax.swing.JFrame {
 
     private void AvailabilityTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvailabilityTable1MouseClicked
         DailyAvailability dav = DailyAvailability.getInstance();
-
+        ServiceAvailability availability = new ServiceAvailability();
+        int week = Integer.parseInt(WeekText3.getText());
         int row = AvailabilityTable1.rowAtPoint(evt.getPoint());
         int col = AvailabilityTable1.columnAtPoint(evt.getPoint());
+        String maintainer = (String) AvailabilityTable1.getValueAt(row, 0);
 
         if (row >= 0 && col >= 2) {
             String day = AvailabilityTable1.getColumnName(col);
             String cell = (String) AvailabilityTable1.getValueAt(row, col);
-            String maintainer = (String) AvailabilityTable1.getValueAt(row, 0);
             String skills = (String) AvailabilityTable1.getValueAt(row, 1);
             dav.setVisible(true);
             dav.WeekText4.setText(WeekText3.getText());
@@ -185,7 +193,33 @@ public class MaintainerAvailability extends javax.swing.JFrame {
             dav.AvailabilityText.setEditable(false);
             dav.AvailabilityTable2.setValueAt(maintainer, 0, 0);
             dav.AvailabilityTable2.setValueAt(AvailabilityTable1.getValueAt(row, 1), 0, 1);
-        }   
+        }
+
+        try {
+            List<WeekAvail> availability2 = availability.getAvailability(week);
+
+            for (WeekAvail elem : availability2) {
+                if (elem.getNameM().equals(maintainer)) {
+                    elem.getMap().forEach((t, u) -> {
+                        if (t == (col - 1)) {
+                            int column = 2;
+                            for (int i : u) {
+                                if (column==6 || column==7){
+                                    dav.AvailabilityTable2.setValueAt("Lunch", 0, column);
+                                }
+                                else {
+                                    dav.AvailabilityTable2.setValueAt(i, 0, column); 
+                                }
+                                column++;
+                                    
+                            }
+                        }
+                    });
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MaintainerAvailability.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_AvailabilityTable1MouseClicked
 
     /**
