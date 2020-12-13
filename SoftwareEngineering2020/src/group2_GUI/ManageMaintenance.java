@@ -411,6 +411,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
     private void getListOfMaintainer(int id_button) { //da fare controllo su stesso nome perchè ha più di 1 competenza 
         MaintainerAvailability ma = MaintainerAvailability.getInstance(); //chiamata al singleton
         cleanTable(ma.AvailabilityTable1);
+        int week = Integer.parseInt(WeekText.getText());
         
         List<String> id_activity = new ArrayList();
         int row = 0;
@@ -454,11 +455,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 }
             }
         }
-        PercentMaintainer(row);
+        PercentMaintainer(row, week);
     }
     
-    public void PercentMaintainer(int row) {
-        int week = Integer.parseInt(WeekText.getText());
+    public void PercentMaintainer(int row, int week) {
+        
         ServiceAvailability availability = new ServiceAvailability();
         MaintainerAvailability ma = MaintainerAvailability.getInstance();
         

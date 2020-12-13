@@ -232,7 +232,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(33, 33, 33)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(ForwardEwoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ForwardEwoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(BackButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -265,6 +265,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
     private void ForwardEwoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardEwoButtonActionPerformed
         MaintainerAvailability ma = MaintainerAvailability.getInstance();
         ManageMaintenance mm = ManageMaintenance.getInstance();
+        int week = Integer.parseInt(WeekText4.getText());
         ma.setVisible(true);
 
         ma.WeekText3.setText(WeekText4.getText());
@@ -312,7 +313,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
             }
             row++;
         }
-        mm.PercentMaintainer(row);
+        mm.PercentMaintainer(row, week);
     }//GEN-LAST:event_ForwardEwoButtonActionPerformed
 
     private void SelectButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectButton1ActionPerformed
