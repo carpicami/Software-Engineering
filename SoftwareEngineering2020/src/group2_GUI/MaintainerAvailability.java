@@ -5,8 +5,7 @@
  */
 package group2_GUI;
 
-import availability.ServiceAvailability;
-import availability.WeekAvail;
+import group2_maintainer_availability.*;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
