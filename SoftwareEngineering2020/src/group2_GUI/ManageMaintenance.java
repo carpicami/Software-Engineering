@@ -474,7 +474,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                     }
                 }
             } catch (Exception ex) {
-                Logger.getLogger(mainProva.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
         }
     }
