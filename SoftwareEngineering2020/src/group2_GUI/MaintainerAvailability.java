@@ -200,7 +200,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
             for (WeekAvail elem : availability2) {
                 if (elem.getNameM().equals(maintainer)) {
                     elem.getMap().forEach((t, u) -> {
-                        if (t == (col - 1)) {
+                        if (t == (col - 2)) {
                             int column = 2;
                             for (int i : u) {
                                 if (column==6 || column==7){

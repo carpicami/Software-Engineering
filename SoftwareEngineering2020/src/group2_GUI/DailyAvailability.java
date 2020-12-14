@@ -14,20 +14,20 @@ import javax.swing.JOptionPane;
 public class DailyAvailability extends javax.swing.JFrame {
 
     private static DailyAvailability instance = null;
-    
+
     public DailyAvailability() {
         initComponents();
     }
-    
+
     public static DailyAvailability getInstance() {
         // Crea l'oggetto solo se NON esiste:
-        if(instance == null){
+        if (instance == null) {
             instance = new DailyAvailability();
-            
+
         }
-        return instance;    
+        return instance;
     }
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -202,7 +202,7 @@ public class DailyAvailability extends javax.swing.JFrame {
         MaintainerAvailability.getInstance().setVisible(false);
         MaintenanceActivityVerification.getInstance().setVisible(false);
         ManageEwoActivity.getInstance().setVisible(false);
-        //eventualmente cancellare l'attività dalla tabella, oppure aggiungere un campo per segnalare che è stata assegnata 
+//eventualmente cancellare l'attività dalla tabella, oppure aggiungere un campo per segnalare che è stata assegnata 
     }//GEN-LAST:event_SelectButtonActionPerformed
 
     /**
