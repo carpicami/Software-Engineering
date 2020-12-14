@@ -34,4 +34,10 @@ public class PlannedActivity extends Activity implements Comparable<PlannedActiv
         return this.getID().compareTo(t.getID());
     }
 
+    @Override
+    public String toString() {
+        return "PlannedActivity{" + "extraActivity=" + extraActivity + '}'+super.toString();
+    }
+    
+
 }

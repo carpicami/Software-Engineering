@@ -6,7 +6,6 @@
 package group2_JDBC;
 
 import java.sql.*;
-import java.util.*;
 import java.util.logging.*;
 
 /**

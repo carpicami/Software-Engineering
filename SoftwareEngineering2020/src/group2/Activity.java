@@ -108,4 +108,9 @@ public class Activity {
         this.estimatedTime = estimatedTime;
     }
 
+    @Override
+    public String toString() {
+        return "Activity{" + "tipology=" + tipology + ", ID=" + ID + ", site=" + site + ", area=" + area + ", description=" + description + ", skills=" + skills + ", interruptbility=" + interruptbility + ", estimatedTime=" + estimatedTime + ", week=" + week + '}';
+    }
+    
 }

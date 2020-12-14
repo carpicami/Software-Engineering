@@ -27,10 +27,16 @@ public class ServiceAvailability {
     public List<WeekAvail> getAvailability(Integer settimana) throws SQLException, Exception {
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        pstm = connection.prepareStatement("select DISP.orario_inizio,DISP.orario_fine, DISP.giorno, MAN.nome "
-                + "from disponibilita_p DISP, planned PL, mantainer MAN "
-                + "where MAN.id_mantainer=DISP.id_mantainer and DISP.id_attivita_p=PL.id_attivita_p and PL.settimana=?");
+        String query = "select MAN.nome, DISP.orario_inizio, DISP.orario_fine" +
+                        " from mantainer MAN, disponibilita_un DISP, unplanned UN" +
+                        " where MAN.id_mantainer=DISP.id_mantainer and DISP.id_attivita_un=UN.id_attivita_un and UN.settimana=?" +
+                        " union all" +
+                        " select MAN.nome, DISPP.orario_inizio, DISPP.orario_fine" +
+                        " from mantainer MAN, disponibilita_p DISPP,planned PL" +
+                        " where MAN.id_mantainer=DISPP.id_mantainer and DISPP.id_attivita_p=PL.id_attivita_p and PL.settimana=?";
+        pstm = connection.prepareStatement(query);
         pstm.setInt(1, settimana);
+        pstm.setInt(2, settimana);
         rs = pstm.executeQuery();
         List<String> names = new ArrayList<>();
         List<WeekAvail> allAvail = new ArrayList<>();
