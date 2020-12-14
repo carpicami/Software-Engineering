@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2_maintainer_availability;
 
 import group2_JDBC.ConnectionPostgreSQLSingleton;
@@ -15,6 +10,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Pierluigi Giangiacomi + Rodolfo Bernardis
+ * 
+ */
 public class ServiceAvailability {
 
     private Connection connection;
@@ -24,9 +24,10 @@ public class ServiceAvailability {
         connection = conn.getConnection();
     }
 
-    public List<WeekAvail> getAvailability(Integer settimana) throws SQLException, Exception {
+    public List<WeekAvail> getAvailability(Integer settimana) throws SQLException, Exception { //Pierluigi Giangiacomi
         PreparedStatement pstm = null;
         ResultSet rs = null;
+        //Rodolfo Bernardis - Query
         String query = "select MAN.nome, DISP.orario_inizio, DISP.orario_fine, DISP.giorno" +
                         " from mantainer MAN, disponibilita_un DISP, unplanned UN" +
                         " where MAN.id_mantainer=DISP.id_mantainer and DISP.id_attivita_un=UN.id_attivita_un and UN.settimana=?" +
@@ -77,7 +78,7 @@ public class ServiceAvailability {
         return allAvail;
     }
     
-    public List<PercentAvail> getAvailabilityPercent(int settimana) throws Exception{
+    public List<PercentAvail> getAvailabilityPercent(int settimana) throws Exception{ //Rodolfo Bernardis
         List<PercentAvail> percentList = new ArrayList<>();
         List<WeekAvail> availabilityMin = getAvailability(settimana);
         availabilityMin.forEach((element) -> {
@@ -98,7 +99,7 @@ public class ServiceAvailability {
         return percentList;
     }
 
-    private int getIndex(int orario) throws Exception {
+    private int getIndex(int orario) throws Exception {//Rodolfo Bernardis
         int index = orario - 8;
         if ((index >= 0) && (index <= 8)) {
             return index;
@@ -106,7 +107,7 @@ public class ServiceAvailability {
         throw new Exception("L'orario di inizio attività non è incluso nel range");
     }
 
-    private int getTimeBeetween(Time time1, Time time2) {
+    private int getTimeBeetween(Time time1, Time time2) { //Pierluigi Giangiacomi
         String time11 = time1.toString();
         String time22 = time2.toString();
         String[] split1 = time11.split(":");
@@ -117,7 +118,7 @@ public class ServiceAvailability {
         return differenzaMinuti;
     }
 
-    private List<WeekAvail> getOtherMaintainerAvailability(List<String> busyMaintainer) throws SQLException {
+    private List<WeekAvail> getOtherMaintainerAvailability(List<String> busyMaintainer) throws SQLException { //Pierluigi Giangiacomi
         PreparedStatement pstm = null;
         ResultSet rs = null;
         pstm = connection.prepareStatement("select distinct nome from mantainer");

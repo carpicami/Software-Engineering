@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2_JDBC;
 
 import java.sql.*;
@@ -10,7 +5,7 @@ import java.util.logging.*;
 
 /**
  *
- * @author carpi
+ * @author Pierluigi Giangiacomi + Camilla Carpinelli
  */
 public class ConnectionPostgreSQLSingleton {
 
@@ -21,7 +16,7 @@ public class ConnectionPostgreSQLSingleton {
     private final String pwd = "admin";
     private Connection connection;
 
-    private ConnectionPostgreSQLSingleton() {
+    private ConnectionPostgreSQLSingleton() { //IMPLEMENTAZIONE PATTERN SINGLETON - Camilla Carpinelli
         try {
             connection = DriverManager.getConnection(url, user, pwd);
             Class.forName("org.postgresql.Driver");

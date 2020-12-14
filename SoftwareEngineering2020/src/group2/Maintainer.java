@@ -1,20 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2;
 
 import java.util.*;
 
 /**
  *
- * @author carpi
+ * @author Marianna Farina + Pierluigi Giangiacomi (implementazione Comparable per Test)
  */
 public class Maintainer extends User implements Comparable<Maintainer>{ //CLASSE MANTAINER CHE ESTENDE USER 
     private String name;
     private List<Competencies> list = new ArrayList();
-    //private Map<String, Integer> availability = new HashMap<>();
     
     public Maintainer(String username, String password, String ruolo, String name) {
         super(username, password, ruolo);
@@ -26,7 +20,7 @@ public class Maintainer extends User implements Comparable<Maintainer>{ //CLASSE
     }
     
     @Override
-    public String getRuolo() { //ipotetico metodo di Login
+    public String getRuolo() { //ipotetico metodo di Login - Non eseguito (non era nelle prime 2 sprint)
         return "Maintainer";
     }
 

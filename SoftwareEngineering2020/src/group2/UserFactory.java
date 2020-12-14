@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2;
 
 /**
  *
- * @author carpi
+ * @author Marianna Farina
  */
 public class UserFactory { //IMPLEMENTAZIONE DEL FACTORY METHOD PER CREARE GLI UTENTI
     
@@ -25,7 +20,7 @@ public class UserFactory { //IMPLEMENTAZIONE DEL FACTORY METHOD PER CREARE GLI U
     }
     
     /*
-    Nel main questo pattern funziona così:
+    Per istanziare un nuovo Utente:
     UserFactory = new UserFactory()
     User u = new getUserRuolo("Planner", "abcd", "1234")
     */

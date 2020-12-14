@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2_GUI;
 
 import group2_maintainer_availability.*;
@@ -14,11 +9,11 @@ import static java.util.regex.Pattern.matches;
 
 /**
  *
- * @author maria
+ * @author Marianna Farina + Camilla Carpinelli
  */
 public class ManageMaintenance extends javax.swing.JFrame {
-    
-    private List<String> activity_description = new ArrayList();
+
+    private List<String> activity_description;
     private List<Competencies> skills_needed = new ArrayList();
     private List<String> skills_for_activity = new ArrayList();
     private List<Maintainer> maintainer_pl = new ArrayList();
@@ -27,14 +22,14 @@ public class ManageMaintenance extends javax.swing.JFrame {
     private List<UnplannedActivity> unplanned_a = new ArrayList();
     private List<UnplannedActivity> ewo_a = new ArrayList();
     private int id_button = 0;
-    
+
     private static ManageMaintenance instance = null;
 
-    /*inizio implementazione SINGLETON PATTERN*/
+    /*inizio implementazione SINGLETON PATTERN - Camilla Carpinelli*/
     private ManageMaintenance() {
         initComponents();
     }
-    
+
     public static ManageMaintenance getInstance() {
         // Crea l'oggetto solo se NON esiste:
         if (instance == null) {
@@ -261,12 +256,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         String week = WeekText.getText();
-        cleanTable(ActivityTable); //svuoto la tabella dagli elementi di cui era piena prima, è utile se ho una lista di attività superiore ad un'altra in settimane diverse
-        //esempio: settimana 3 ha 4 attività, settimana 2 ne ha 3. Se selezionassi prima settimana 3 di settimana 2, se non pulissi la tabella rimarrebbe l'ultimo elemento
-        //ovviamente appartenente alla settimana precedente.
+        cleanTable(ActivityTable);
+        activity_description = new ArrayList();
         EwoButton.setEnabled(true);
-        
-        if (!matches("-?\\d+(\\.\\d+)?", week)) {
+
+        if (!matches("-?\\d+(\\.\\d+)?", week)) { //- Pierluigi Giangiacomi
             JOptionPane p = new JOptionPane();
             JOptionPane.showMessageDialog(p, "ERRORE, hai inserito una stringa, non un numero", "ERROR!", JOptionPane.ERROR_MESSAGE);
             WeekText.setText("");
@@ -280,7 +274,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
             }
             planned_a = popolaActivity(w, "planned");
             unplanned_a = popolaActivity(w, "unplanned");
-            
+
+            //- Marianna Farina
             for (PlannedActivity pa : planned_a) {
                 ActivityTable.setValueAt(pa.getID(), row, 0);
                 ActivityTable.setValueAt(pa.getArea(), row, 1);
@@ -288,7 +283,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
                 ActivityTable.setValueAt("Non Assigned", row, 4);
                 activity_description.add("PLANNED: " + pa.getDescription());
-                
+
                 skills_needed = popolaSkills(pa.getID(), "planned");
                 skills_for_activity.add(row, getSkillsActivity(skills_needed));
                 row++;
@@ -298,9 +293,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(up.getArea(), row, 1);
                 ActivityTable.setValueAt(up.getTipology(), row, 2);
                 ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
-                ActivityTable.setValueAt("Non Assigned", row, 4);                
+                ActivityTable.setValueAt("Non Assigned", row, 4);
                 activity_description.add("UNPLANNED: " + up.getDescription());
-                
+
                 skills_needed = popolaSkills(up.getID(), "unplanned");
                 skills_for_activity.add(row, getSkillsActivity(skills_needed));
                 row++;
@@ -328,8 +323,8 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }//GEN-LAST:event_Select4ButtonActionPerformed
 
     private void EwoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EwoButtonActionPerformed
-        String week = WeekText.getText();
-        
+        String week = WeekText.getText(); //-Camilla Carpinelli
+
         if (!matches("-?\\d+(\\.\\d+)?", week)) {
             JOptionPane p = new JOptionPane();
             JOptionPane.showMessageDialog(p, "ERRORE, hai inserito una stringa, non un numero", "ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -342,7 +337,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 WeekText.setText("");
             }
-            
+
             ewo_a = popolaActivity(Integer.parseInt(WeekText.getText()), "ewo");
             if (ewo_a.isEmpty()) {
                 JOptionPane p = new JOptionPane();
@@ -361,35 +356,38 @@ public class ManageMaintenance extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_EwoButtonActionPerformed
-    
-    public void cleanTable(JTable table) {
+
+    //svuoto la tabella dagli elementi di cui era piena prima, è utile se ho una lista di attività superiore ad un'altra in settimane diverse
+    //esempio: settimana 3 ha 4 attività, settimana 2 ne ha 3. Se selezionassi prima settimana 3 di settimana 2, se non pulissi la tabella rimarrebbe l'ultimo elemento
+    //ovviamente appartenente alla settimana precedente.
+    public void cleanTable(JTable table) {//- Camilla Carpinelli
         int rows = table.getRowCount();
         int columns = table.getColumnCount();
-        
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 table.setValueAt(null, i, j);
             }
         }
     }
-    
-    private String getSkillsActivity(List<Competencies> s) {
+
+    private String getSkillsActivity(List<Competencies> s) {//- Camilla Carpinelli
         String a = "";
         for (Competencies c : s) {
             a += c.toString() + "\n";
         }
         return a;
     }
-    
-    private void selectEvent(int id_button) {
+
+    private void selectEvent(int id_button) {//- Camilla Carpinelli
         if (ActivityTable.getValueAt(id_button - 1, 0) != null) {
             EwoButton.setEnabled(false);
             String col = " ";
             String control = (String) ActivityTable.getValueAt(id_button - 1, 0);
-            
+
             MaintenanceActivityVerification mav = MaintenanceActivityVerification.getInstance(); //chiama singleton
             mav.setVisible(true);
-            
+
             mav.WeekText2.setText(WeekText.getText());
             mav.WeekText2.setEditable(false);
             for (int i = 0; i < 3; i++) {
@@ -407,24 +405,24 @@ public class ManageMaintenance extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(p, "Errore! Non stai selezionando alcuna attività.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    private void getListOfMaintainer(int id_button) { //da fare controllo su stesso nome perchè ha più di 1 competenza 
+
+    private void getListOfMaintainer(int id_button) { 
         MaintainerAvailability ma = MaintainerAvailability.getInstance(); //chiamata al singleton
         cleanTable(ma.AvailabilityTable1);
         int week = Integer.parseInt(WeekText.getText());
-        
+
         List<String> id_activity = new ArrayList();
         int row = 0;
-        
+
         String id = (String) ActivityTable.getValueAt(id_button - 1, 0);
-        
-        for (PlannedActivity pa : planned_a) {
+
+        for (PlannedActivity pa : planned_a) {//- Camilla Carpinelli
             if (pa.getID().equals(id)) {
                 maintainer_pl = popolaMaintainer(pa.getID(), "planned");
                 for (Maintainer m : maintainer_pl) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
                     ma.AvailabilityTable1.setValueAt(1 + "/" + popolaSkills(pa.getID(), "planned").size(), row, 1);
-                    for (int k = row - 1; k >= 0; k--) {
+                    for (int k = row - 1; k >= 0; k--) { //- Marianna Farina
                         if (m.getName().equalsIgnoreCase(maintainer_pl.get(k).getName())) {
                             String skill = (String) ma.AvailabilityTable1.getValueAt(row, 1);
                             ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + popolaSkills(pa.getID(), "planned").size(), k, 1);
@@ -437,14 +435,14 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 }
             }
         }
-        
-        for (UnplannedActivity up : unplanned_a) {
+
+        for (UnplannedActivity up : unplanned_a) {//- Camilla Carpinelli
             if (up.getID().equals(id)) {
                 maintainer_up = popolaMaintainer(up.getID(), "unplanned");
                 for (Maintainer m : maintainer_up) {
                     ma.AvailabilityTable1.setValueAt(m.getName(), row, 0);
                     ma.AvailabilityTable1.setValueAt(1 + "/" + popolaSkills(up.getID(), "unplanned").size(), row, 1);
-                    for (int k = row - 1; k >= 0; k--) {
+                    for (int k = row - 1; k >= 0; k--) { //- Marianna Farina
                         if (m.getName().equalsIgnoreCase(maintainer_up.get(k).getName())) {
                             String skill = (String) ma.AvailabilityTable1.getValueAt(row, 1);
                             ma.AvailabilityTable1.setValueAt((Character.getNumericValue(skill.charAt(0)) + 1) + "/" + popolaSkills(up.getID(), "unplanned").size(), k, 1);
@@ -457,12 +455,12 @@ public class ManageMaintenance extends javax.swing.JFrame {
         }
         PercentMaintainer(row, week);
     }
-    
-    public void PercentMaintainer(int row, int week) {
-        
+
+    public void PercentMaintainer(int row, int week) {//- Marianna Farina
+
         ServiceAvailability availability = new ServiceAvailability();
         MaintainerAvailability ma = MaintainerAvailability.getInstance();
-        
+
         for (int i = 0; i < row; i++) {
             String m = (String) ma.AvailabilityTable1.getValueAt(i, 0);
             try {

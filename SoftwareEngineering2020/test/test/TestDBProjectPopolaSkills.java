@@ -1,4 +1,3 @@
-
 package test;
 
 import group2.Competencies;
@@ -12,32 +11,33 @@ import org.junit.Test;
 
 /**
  *
- * @author GiangiacomPi
+ * @author Pierluigi Giangiacomi
  */
 public class TestDBProjectPopolaSkills {
+
     private Competencies c0;
     private Competencies c1;
     private Competencies c2;
-    
+
     private Competencies c3;
     private Competencies c4;
     private Competencies c5;
     private Competencies c6;
     private Competencies c7;
-    
-    @Before 
-    public void setUp(){
-         c0 = new Competencies("Pulizia annuale dell\"impianto di riscaldamento", "0005");
-         c2 = new Competencies("Capacità di manutenere i tubi della caldaia", "0006");
-         c1 = new Competencies("Gestione scarichi dell\"impianto di riscaldamento", "0099");
-         
-         c3 = new Competencies("Sostituzione componenti del nastro trasportatore", "0027");
-         c4 = new Competencies("Riparazione vulcanizzate della macchina", "0054");
-         c5 = new Competencies("Rivestimenti antiusura", "0069");
-         c6 = new Competencies("Isperzione visiva dei rulli nel tratto di ritorno", "0469");
-         c7 = new Competencies("Isperzione visiva delle guide antisura", "0969");
+
+    @Before
+    public void setUp() {
+        c0 = new Competencies("Pulizia annuale dell\"impianto di riscaldamento", "0005");
+        c2 = new Competencies("Capacità di manutenere i tubi della caldaia", "0006");
+        c1 = new Competencies("Gestione scarichi dell\"impianto di riscaldamento", "0099");
+
+        c3 = new Competencies("Sostituzione componenti del nastro trasportatore", "0027");
+        c4 = new Competencies("Riparazione vulcanizzate della macchina", "0054");
+        c5 = new Competencies("Rivestimenti antiusura", "0069");
+        c6 = new Competencies("Isperzione visiva dei rulli nel tratto di ritorno", "0469");
+        c7 = new Competencies("Isperzione visiva delle guide antisura", "0969");
     }
-    
+
     @Test
     public void skills1() {
         String id = "0018";
@@ -48,9 +48,9 @@ public class TestDBProjectPopolaSkills {
         Collections.sort(expected);
         List<Competencies> list = DBProject.popolaSkills(id, "planned");
         Collections.sort(list);
-        Assert.assertArrayEquals("UNEXPECTED LIST FOR ID "+id+"\n",expected.toArray(), list.toArray());
+        Assert.assertArrayEquals("UNEXPECTED LIST FOR ID " + id + "\n", expected.toArray(), list.toArray());
     }
-    
+
     @Test
     public void skills2() {
         String id = "0016";
@@ -63,13 +63,13 @@ public class TestDBProjectPopolaSkills {
         Collections.sort(expected);
         List<Competencies> list = DBProject.popolaSkills(id, "unplanned");
         Collections.sort(list);
-        Assert.assertArrayEquals("UNEXPECTED LIST FOR ID "+id+"\n",expected.toArray(), list.toArray());
+        Assert.assertArrayEquals("UNEXPECTED LIST FOR ID " + id + "\n", expected.toArray(), list.toArray());
     }
-    
+
     @Test
     public void skills3() {
         String id = "0015";
         List<Competencies> list = DBProject.popolaSkills(id, "unplanned");
-        Assert.assertTrue("UNEXPECTED LIST FOR ID "+id+"\n",list.isEmpty());
+        Assert.assertTrue("UNEXPECTED LIST FOR ID " + id + "\n", list.isEmpty());
     }
 }

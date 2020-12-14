@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2;
 
 /**
  *
- * @author carpi
+ * @author Marianna Farina
  */
 public class Planner extends User { //CLASSE PLANNER CHE ESTENDE LA CLASSER USER DEL PATTERN FACTORY METHOD
     

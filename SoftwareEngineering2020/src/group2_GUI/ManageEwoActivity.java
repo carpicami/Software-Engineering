@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2_GUI;
 
 import group2_maintainer_availability.*;
@@ -16,12 +11,11 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author carpi
+ * @author Camilla Carpinelli + Marianna Farina
  */
 public class ManageEwoActivity extends javax.swing.JFrame {
 
-    //private static List<Competencies> l = new ArrayList(); CHIEDERE A RODOLFO QUERY SULLE DESCRIZIONI
-    private static ManageEwoActivity instance = null;
+    private static ManageEwoActivity instance = null; //Implementazione SINGLETON PATTERN - Camilla Carpinelli//
 
     private ManageEwoActivity() {
         initComponents();
@@ -263,6 +257,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ForwardEwoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardEwoButtonActionPerformed
+        //- Camilla Carpinelli
         MaintainerAvailability ma = MaintainerAvailability.getInstance();
         ManageMaintenance mm = ManageMaintenance.getInstance();
         int week = Integer.parseInt(WeekText4.getText());
@@ -289,7 +284,8 @@ public class ManageEwoActivity extends javax.swing.JFrame {
         int row = 0;
 
         mm.cleanTable(ma.AvailabilityTable1);
-
+        
+        //- Marianna Farina
         int countSkills = skills.length;
 
         if (maintainers.size() == 0) {
@@ -325,7 +321,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
         ManageEwoActivity.getInstance().setVisible(false);
     }//GEN-LAST:event_BackButton1ActionPerformed
 
-    private String allSkills() {
+    private String allSkills() { //- Camilla Carpinelli
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
 
@@ -354,7 +350,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
         return s;
     }
 
-    private List<String> getMaintainers(String[] s) { //NON FUNZIONA BENE, DA RIVEDERE
+    private List<String> getMaintainers(String[] s) { //- Marianna Farina
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
 
@@ -362,7 +358,6 @@ public class ManageEwoActivity extends javax.swing.JFrame {
 
         String a = "";
         for (String e : s) {
-            // if (!e.equalsIgnoreCase("-")) {
             try {
                 PreparedStatement pstm = connection.prepareStatement("SELECT MAN.nome \n"
                         + "from mantainer MAN, requisito REQ, competenza COMP\n"
@@ -379,8 +374,6 @@ public class ManageEwoActivity extends javax.swing.JFrame {
             } catch (java.sql.SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-
-            // }
         }
         return maintainers;
     }

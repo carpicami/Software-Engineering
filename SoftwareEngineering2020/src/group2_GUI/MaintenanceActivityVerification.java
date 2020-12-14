@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2_GUI;
 
 import java.awt.Desktop;
@@ -11,11 +6,11 @@ import javax.swing.*;
 
 /**
  *
- * @author maria
+ * @author Marianna Farina + Camilla Carpinelli
  */
 public class MaintenanceActivityVerification extends javax.swing.JFrame {
 
-    private static MaintenanceActivityVerification instance = null; /*inizio implementazione SINGLETON PATTERN*/
+    private static MaintenanceActivityVerification instance = null; /*inizio implementazione SINGLETON PATTERN - Camilla Carpinelli*/
  
     // Costruttore 
     private MaintenanceActivityVerification() {
@@ -231,11 +226,11 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SMPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMPButtonActionPerformed
-        String[] s = ActivityText1.getText().split("-");
+        String[] s = ActivityText1.getText().split("-"); //- Camilla Carpinelli
         attachSMP(s[1]);
     }//GEN-LAST:event_SMPButtonActionPerformed
 
-    private void attachSMP(String fileName){
+    private void attachSMP(String fileName){ //- Camilla Carpinelli
         String directory = "C://Users/carpi/Documents/NetBeansProjects/Software-Engineering/SoftwareEngineering2020/src/group2_GUI/SMP/" + fileName + ".pdf";
         File file = new File(directory);
 
@@ -247,7 +242,7 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         }
     }
     private void ForwardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardButtonActionPerformed
-        MaintainerAvailability mavail = MaintainerAvailability.getInstance();
+        MaintainerAvailability mavail = MaintainerAvailability.getInstance(); //- Marianna Farina
         mavail.setVisible(true);
         mavail.WeekText3.setText(WeekText2.getText());
         mavail.WeekText3.setEditable(false);

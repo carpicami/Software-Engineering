@@ -1,25 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2_GUI;
 
 import group2_maintainer_availability.*;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author maria
+ * @author Marianna Farina + Camilla Carpinelli
  */
 public class MaintainerAvailability extends javax.swing.JFrame {
 
     private static MaintainerAvailability instance = null;
 
-    /*inizio implementazione SINGLETON PATTERN*/
+    /*inizio implementazione SINGLETON PATTERN - Camilla Carpinelli*/
     public MaintainerAvailability() {
         initComponents();
     }

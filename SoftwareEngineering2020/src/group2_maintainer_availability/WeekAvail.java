@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2_maintainer_availability;
 
 import java.util.HashMap;
@@ -10,10 +5,10 @@ import java.util.Map;
 
 /**
  *
- * @author GiangiacomPi Classe contenente le disponibilità giornaliere dei
- * maintainer
+ * @author Pierluigi Giangiacomi 
+ * 
  */
-public class WeekAvail {
+public class WeekAvail { //Classe contenente le disponibilità giornaliere dei maintainer
 
     private String nameM;
     private Map<Integer, Integer[]> map = new HashMap<>();

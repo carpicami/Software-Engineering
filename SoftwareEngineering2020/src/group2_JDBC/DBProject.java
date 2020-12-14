@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package group2_JDBC;
 
 import group2.*;
@@ -11,11 +6,11 @@ import java.util.*;
 
 /**
  *
- * @author carpi
+ * @author Camilla Carpinelli + Rodolfo Bernardis
  */
 public class DBProject {
 
-    public static List<Maintainer> popolaMaintainer(String id, String type) {
+    public static List<Maintainer> popolaMaintainer(String id, String type) { //Camilla Carpinelli
 
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
@@ -25,7 +20,7 @@ public class DBProject {
         List<Maintainer> l = new ArrayList();
 
         try {
-            if (type.equalsIgnoreCase("planned")) {
+            if (type.equalsIgnoreCase("planned")) { //Rodolfo Bernardis - Query
                 pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
                         + "from planned PL, attitudine_p ATTP, competenza COMP, requisito REQ, mantainer MAN\n"
                         + "where PL.id_attivita_p=? and PL.id_attivita_p=ATTP.id_attivita_p\n"
@@ -34,7 +29,7 @@ public class DBProject {
                 pstm.setString(1, id);
                 rs = pstm.executeQuery();
 
-            } else if (type.equalsIgnoreCase("unplanned")) {
+            } else if (type.equalsIgnoreCase("unplanned")) { //Rodolfo Bernardis - Query
                 pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
                         + "from unplanned UN, attitudine_un ATTUN, competenza COMP, requisito REQ, mantainer MAN\n"
                         + "where UN.id_attivita_un=? and UN.id_attivita_un=ATTUN.id_attivita_un\n"
@@ -59,7 +54,7 @@ public class DBProject {
         return l;
     }
 
-    public static List<Competencies> popolaSkills(String id, String type) {
+    public static List<Competencies> popolaSkills(String id, String type) { //Camilla Carpinelli
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
         ResultSet rs = null;
@@ -68,13 +63,13 @@ public class DBProject {
         List<Competencies> cl = new ArrayList();
 
         try {
-            if (type.equalsIgnoreCase("planned")) {
+            if (type.equalsIgnoreCase("planned")) { //Rodolfo Bernardis - Query
                 pstm = connection.prepareStatement("select * from competenza COMP, attitudine_p ATT, planned PL "
                         + "where PL.id_attivita_p=? and PL.id_attivita_p=ATT.id_Attivita_p and ATT.id_competenza=COMP.id_competenza");
 
                 pstm.setString(1, id);
                 rs = pstm.executeQuery();
-            } else if (type.equalsIgnoreCase("unplanned")) {
+            } else if (type.equalsIgnoreCase("unplanned")) { //Rodolfo Bernardis - Query
                 pstm = connection.prepareStatement("select * from competenza COMP, attitudine_un ATT, unplanned UN "
                         + "where UN.id_attivita_un=? and UN.id_attivita_un=ATT.id_attivita_un and ATT.id_competenza=COMP.id_competenza");
 
@@ -94,7 +89,7 @@ public class DBProject {
         return cl;
     }
 
-    public static List popolaActivity(int w, String type) {
+    public static List popolaActivity(int w, String type) { //Camilla Carpinelli
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
         List<PlannedActivity> lp = new ArrayList();
