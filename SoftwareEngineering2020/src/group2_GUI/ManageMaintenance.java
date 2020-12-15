@@ -14,8 +14,8 @@ import static java.util.regex.Pattern.matches;
 public class ManageMaintenance extends javax.swing.JFrame {
 
     private List<String> activity_description;
-    private List<Competencies> skills_needed = new ArrayList();
-    private List<String> skills_for_activity = new ArrayList();
+    private List<Competencies> skills_needed;
+    private List<String> skills_for_activity;
     private List<Maintainer> maintainer_pl = new ArrayList();
     private List<Maintainer> maintainer_up = new ArrayList();
     private List<PlannedActivity> planned_a = new ArrayList();
@@ -25,7 +25,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private static ManageMaintenance instance = null;
 
-    /*inizio implementazione SINGLETON PATTERN - Camilla Carpinelli*/
+    /*inizio implementazione SINGLETON PATTERN @autor - Camilla Carpinelli*/
     private ManageMaintenance() {
         initComponents();
     }
@@ -253,11 +253,14 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
     private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
         String week = WeekText.getText();
-        cleanTable(ActivityTable);
         activity_description = new ArrayList();
+        skills_needed = new ArrayList();
+        skills_for_activity = new ArrayList();
+        cleanTable(ActivityTable);
         EwoButton.setEnabled(true);
 
-        if (!matches("-?\\d+(\\.\\d+)?", week)) { //- Pierluigi Giangiacomi
+        /*viene effettuato il controllo sulla settimana inserita, deve essere un intero compreso tra 0 e 52*/
+        if (!matches("-?\\d+(\\.\\d+)?", week)) { //@autor - Pierluigi Giangiacomi
             JOptionPane p = new JOptionPane();
             JOptionPane.showMessageDialog(p, "ERRORE, hai inserito una stringa, non un numero", "ERROR!", JOptionPane.ERROR_MESSAGE);
             WeekText.setText("");
@@ -269,10 +272,13 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 WeekText.setText("");
             }
+
+            /*viene chiamata la funzione popolaActivity in cui vengono effettuate le query che andranno a popolare le liste*/
             planned_a = popolaActivity(w, "planned");
             unplanned_a = popolaActivity(w, "unplanned");
 
-            //- Marianna Farina
+            //@autor - Marianna Farina
+            /*popoliamo la tabella ActivityTable*/
             for (PlannedActivity pa : planned_a) {
                 ActivityTable.setValueAt(pa.getID(), row, 0);
                 ActivityTable.setValueAt(pa.getArea(), row, 1);
@@ -320,8 +326,9 @@ public class ManageMaintenance extends javax.swing.JFrame {
     }//GEN-LAST:event_Select4ButtonActionPerformed
 
     private void EwoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EwoButtonActionPerformed
-        String week = WeekText.getText(); //-Camilla Carpinelli
+        String week = WeekText.getText(); //@autor - Camilla Carpinelli
 
+        /*viene effettuato il controllo sulla settimana inserita per generare l'attività di emergenza corrispondente*/
         if (!matches("-?\\d+(\\.\\d+)?", week)) {
             JOptionPane p = new JOptionPane();
             JOptionPane.showMessageDialog(p, "ERRORE, hai inserito una stringa, non un numero", "ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -334,8 +341,11 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(p, "ERRORE, non hai inserito il numero di settimana correttamente. Inserisci un numero tra 0 e 52", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 WeekText.setText("");
             }
-
+            
+            /*viene chiamata la funzione popolaActivity che andrà, con una query al DB, a riempire i parametri della lista*/
             ewo_a = popolaActivity(Integer.parseInt(WeekText.getText()), "ewo");
+            
+            /*popoliamo la GUI inerente alla EWO*/
             if (ewo_a.isEmpty()) {
                 JOptionPane p = new JOptionPane();
                 JOptionPane.showMessageDialog(p, "ATTENZIONE: non sono presenti attività EWO per la settimana inserita!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
@@ -345,7 +355,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 mea.WeekText4.setText(WeekText.getText());
                 mea.WeekText4.setEditable(false);
 
-                //esempio semplificativo, solo una ewo a settimana
                 String ewo = ewo_a.get(0).getID() + "-" + ewo_a.get(0).getArea() + "-" + ewo_a.get(0).getTipology() + "-" + ewo_a.get(0).getEstimatedTime();
                 mea.ActivityText3.setText(ewo);
                 mea.ActivityText3.setEditable(false);
