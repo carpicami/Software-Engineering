@@ -111,17 +111,17 @@ public class ManageMaintenance extends javax.swing.JFrame {
 
         ActivityTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "AREA", "TYPE", "ESTIMATED TIME", "STATUS"
+                "ID", "AREA", "TYPE", "ESTIMATED TIME"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -284,7 +284,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(pa.getArea(), row, 1);
                 ActivityTable.setValueAt(pa.getTipology(), row, 2);
                 ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
-                ActivityTable.setValueAt("Not Assigned", row, 4);
                 activity_description.add("PLANNED: " + pa.getDescription());
 
                 skills_needed = popolaSkills(pa.getID(), "planned");
@@ -296,7 +295,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(up.getArea(), row, 1);
                 ActivityTable.setValueAt(up.getTipology(), row, 2);
                 ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
-                ActivityTable.setValueAt("Not Assigned", row, 4);
                 activity_description.add("UNPLANNED: " + up.getDescription());
 
                 skills_needed = popolaSkills(up.getID(), "unplanned");
@@ -373,18 +371,6 @@ public class ManageMaintenance extends javax.swing.JFrame {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 table.setValueAt(null, i, j);
-            }
-        }
-    }
-
-    public void assignActivity(String id) {
-        int row = ActivityTable.getRowCount();
-        int column = 4;
-
-        for (int i = 0; i < row; i++) {
-            String activity = (String) ActivityTable.getValueAt(i, 0);
-            if (activity.equalsIgnoreCase(id)) {
-                ActivityTable.setValueAt("Assigned", i, column);
             }
         }
     }
