@@ -11,7 +11,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Pierluigi Giangiacomi
+ * @author Rodolfo Bernardis
  */
 public class TestDBProjectPopolaActivity {
 

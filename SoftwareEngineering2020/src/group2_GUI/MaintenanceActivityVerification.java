@@ -10,22 +10,23 @@ import javax.swing.*;
  */
 public class MaintenanceActivityVerification extends javax.swing.JFrame {
 
-    private static MaintenanceActivityVerification instance = null; /*inizio implementazione SINGLETON PATTERN - Camilla Carpinelli*/
- 
+    private static MaintenanceActivityVerification instance = null;
+
+    /*inizio implementazione SINGLETON PATTERN @author - Camilla Carpinelli*/
     // Costruttore 
     private MaintenanceActivityVerification() {
         initComponents();
     }
- 
+
     public static MaintenanceActivityVerification getInstance() {
         // Crea l'oggetto solo se NON esiste:
         if (instance == null) {
             instance = new MaintenanceActivityVerification();
         }
         return instance;
-    } /*fine implementazione SINGLETON PATTERN*/
-    
-  
+    }
+
+    /*fine implementazione SINGLETON PATTERN*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -205,12 +206,12 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SMPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SMPButtonActionPerformed
-        String[] s = ActivityText1.getText().split("-"); //- Camilla Carpinelli
+        String[] s = ActivityText1.getText().split("-"); //@author - Camilla Carpinelli
         attachSMP(s[1]);
     }//GEN-LAST:event_SMPButtonActionPerformed
 
-    private void attachSMP(String fileName){ //- Camilla Carpinelli
-        String directory = "C://Users/carpi/Documents/NetBeansProjects/Software-Engineering/SoftwareEngineering2020/src/group2_GUI/SMP/" + fileName + ".pdf";
+    private void attachSMP(String fileName) { //@author - Camilla Carpinelli
+        String directory = "C://Users/carpi/Documents/NetBeansProjects/Software-Engineering/SoftwareEngineering2020/src/group2_GUI/SMP/" + fileName + ".pdf"; //directory da cambiare
         File file = new File(directory);
 
         try {
@@ -221,16 +222,16 @@ public class MaintenanceActivityVerification extends javax.swing.JFrame {
         }
     }
     private void ForwardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardButtonActionPerformed
-        MaintainerAvailability mavail = MaintainerAvailability.getInstance(); //- Marianna Farina
+        MaintainerAvailability mavail = MaintainerAvailability.getInstance(); //@author - Marianna Farina
         mavail.setVisible(true);
         mavail.WeekText3.setText(WeekText2.getText());
         mavail.WeekText3.setEditable(false);
         mavail.ActivityText2.setText(ActivityText1.getText());
         mavail.ActivityText2.setEditable(false);
         mavail.SkillsText2.setText(SkillsText1.getText());
-        mavail.SkillsText2.setEditable(false);       
+        mavail.SkillsText2.setEditable(false);
     }//GEN-LAST:event_ForwardButtonActionPerformed
-    
+
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         MaintenanceActivityVerification.getInstance().setVisible(false);
     }//GEN-LAST:event_BackButtonActionPerformed

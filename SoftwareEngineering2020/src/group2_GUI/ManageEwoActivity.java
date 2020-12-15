@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class ManageEwoActivity extends javax.swing.JFrame {
 
-    private static ManageEwoActivity instance = null; //Implementazione SINGLETON PATTERN - Camilla Carpinelli//
+    private static ManageEwoActivity instance = null; //Implementazione SINGLETON PATTERN @author - Camilla Carpinelli//
 
     private ManageEwoActivity() {
         initComponents();
@@ -257,9 +257,10 @@ public class ManageEwoActivity extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ForwardEwoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForwardEwoButtonActionPerformed
-        //- Camilla Carpinelli
+        //@author - Camilla Carpinelli
         MaintainerAvailability ma = MaintainerAvailability.getInstance();
         ManageMaintenance mm = ManageMaintenance.getInstance();
+
         int week = Integer.parseInt(WeekText4.getText());
         ma.setVisible(true);
 
@@ -284,8 +285,9 @@ public class ManageEwoActivity extends javax.swing.JFrame {
         int row = 0;
 
         mm.cleanTable(ma.AvailabilityTable1);
-        
-        //- Marianna Farina
+
+        //@author - Marianna Farina
+        /*inserimento dei Manutentori all'interno della tabella delle disponibilità*/
         int countSkills = skills.length;
 
         if (maintainers.size() == 0) {
@@ -321,36 +323,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
         ManageEwoActivity.getInstance().setVisible(false);
     }//GEN-LAST:event_BackButton1ActionPerformed
 
-    private String allSkills() { //- Camilla Carpinelli
-        ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
-        Connection connection = conn.getConnection();
-
-        List<Competencies> cl = new ArrayList();
-        String s = "";
-
-        try {
-            PreparedStatement pstm = connection.prepareStatement("select * from competenza");
-            ResultSet rs = pstm.executeQuery();
-
-            while (rs.next()) {
-                String competencies = rs.getString("descrizione");
-                String id_competencies = rs.getString("Id_competenza");
-
-                Competencies c = new Competencies(competencies, id_competencies);
-                cl.add(c);
-            }
-
-        } catch (java.sql.SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        for (Competencies c : cl) {
-            s += "-" + c.getDescrizione() + "\n";
-        }
-        return s;
-    }
-
-    private List<String> getMaintainers(String[] s) { //- Marianna Farina
+    private List<String> getMaintainers(String[] s) { //@author - Marianna Farina
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
 
@@ -358,7 +331,7 @@ public class ManageEwoActivity extends javax.swing.JFrame {
 
         String a = "";
         for (String e : s) {
-            try {
+            try { //@author Query - Rodolfo Bernardis
                 PreparedStatement pstm = connection.prepareStatement("SELECT MAN.nome \n"
                         + "from mantainer MAN, requisito REQ, competenza COMP\n"
                         + "where COMP.descrizione=? \n"

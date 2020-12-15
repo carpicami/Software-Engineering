@@ -13,7 +13,7 @@ import java.util.List;
 /**
  *
  * @author Pierluigi Giangiacomi + Rodolfo Bernardis
- * 
+ *
  */
 public class ServiceAvailability {
 
@@ -24,17 +24,17 @@ public class ServiceAvailability {
         connection = conn.getConnection();
     }
 
-    public List<WeekAvail> getAvailability(Integer settimana) throws SQLException, Exception { //Pierluigi Giangiacomi
+    public List<WeekAvail> getAvailability(Integer settimana) throws SQLException, Exception { //@author - Pierluigi Giangiacomi
         PreparedStatement pstm = null;
         ResultSet rs = null;
         //Rodolfo Bernardis - Query
-        String query = "select MAN.nome, DISP.orario_inizio, DISP.orario_fine, DISP.giorno" +
-                        " from mantainer MAN, disponibilita_un DISP, unplanned UN" +
-                        " where MAN.id_mantainer=DISP.id_mantainer and DISP.id_attivita_un=UN.id_attivita_un and UN.settimana=?" +
-                        " union all" +
-                        " select MAN.nome, DISPP.orario_inizio, DISPP.orario_fine, DISPP.giorno" +
-                        " from mantainer MAN, disponibilita_p DISPP,planned PL" +
-                        " where MAN.id_mantainer=DISPP.id_mantainer and DISPP.id_attivita_p=PL.id_attivita_p and PL.settimana=?";
+        String query = "select MAN.nome, DISP.orario_inizio, DISP.orario_fine, DISP.giorno"
+                + " from mantainer MAN, disponibilita_un DISP, unplanned UN"
+                + " where MAN.id_mantainer=DISP.id_mantainer and DISP.id_attivita_un=UN.id_attivita_un and UN.settimana=?"
+                + " union all"
+                + " select MAN.nome, DISPP.orario_inizio, DISPP.orario_fine, DISPP.giorno"
+                + " from mantainer MAN, disponibilita_p DISPP,planned PL"
+                + " where MAN.id_mantainer=DISPP.id_mantainer and DISPP.id_attivita_p=PL.id_attivita_p and PL.settimana=?";
         pstm = connection.prepareStatement(query);
         pstm.setInt(1, settimana);
         pstm.setInt(2, settimana);
@@ -77,29 +77,29 @@ public class ServiceAvailability {
         allAvail.addAll(getOtherMaintainerAvailability(names));
         return allAvail;
     }
-    
-    public List<PercentAvail> getAvailabilityPercent(int settimana) throws Exception{ //Rodolfo Bernardis
+
+    public List<PercentAvail> getAvailabilityPercent(int settimana) throws Exception { //@author - Rodolfo Bernardis
         List<PercentAvail> percentList = new ArrayList<>();
         List<WeekAvail> availabilityMin = getAvailability(settimana);
         availabilityMin.forEach((element) -> {
             PercentAvail pa = new PercentAvail();
             pa.setNameM(element.getNameM());
             element.getMap().forEach((k, v) -> {
-                int somma=0;
+                int somma = 0;
                 for (Integer v1 : v) {
                     somma += v1;
                 }
-                float i = (60*v.length);
-                float res=(somma/i);
+                float i = (60 * v.length);
+                float res = (somma / i);
                 float res2 = res * 100;
-                pa.getPercent()[k]=(int)res2;
-                });
-                percentList.add(pa);
+                pa.getPercent()[k] = (int) res2;
+            });
+            percentList.add(pa);
         });
         return percentList;
     }
 
-    private int getIndex(int orario) throws Exception {//Rodolfo Bernardis
+    private int getIndex(int orario) throws Exception {//@author - Rodolfo Bernardis
         int index = orario - 8;
         if ((index >= 0) && (index <= 8)) {
             return index;
@@ -107,7 +107,7 @@ public class ServiceAvailability {
         throw new Exception("L'orario di inizio attività non è incluso nel range");
     }
 
-    private int getTimeBeetween(Time time1, Time time2) { //Pierluigi Giangiacomi
+    private int getTimeBeetween(Time time1, Time time2) { //@author - Pierluigi Giangiacomi
         String time11 = time1.toString();
         String time22 = time2.toString();
         String[] split1 = time11.split(":");
@@ -118,7 +118,7 @@ public class ServiceAvailability {
         return differenzaMinuti;
     }
 
-    private List<WeekAvail> getOtherMaintainerAvailability(List<String> busyMaintainer) throws SQLException { //Pierluigi Giangiacomi
+    private List<WeekAvail> getOtherMaintainerAvailability(List<String> busyMaintainer) throws SQLException { //@author - Pierluigi Giangiacomi
         PreparedStatement pstm = null;
         ResultSet rs = null;
         pstm = connection.prepareStatement("select distinct nome from mantainer");

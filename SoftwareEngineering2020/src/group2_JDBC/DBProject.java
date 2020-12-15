@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class DBProject {
 
-    public static List<Maintainer> popolaMaintainer(String id, String type) { //Camilla Carpinelli
+    public static List<Maintainer> popolaMaintainer(String id, String type) { //@author - Rodolfo Bernardis
 
         ConnectionPostgreSQLSingleton conn = ConnectionPostgreSQLSingleton.getInstance(); //chiamata al singleton
         Connection connection = conn.getConnection();
@@ -20,7 +20,7 @@ public class DBProject {
         List<Maintainer> l = new ArrayList();
 
         try {
-            if (type.equalsIgnoreCase("planned")) { //Rodolfo Bernardis - Query
+            if (type.equalsIgnoreCase("planned")) {
                 pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
                         + "from planned PL, attitudine_p ATTP, competenza COMP, requisito REQ, mantainer MAN\n"
                         + "where PL.id_attivita_p=? and PL.id_attivita_p=ATTP.id_attivita_p\n"
@@ -29,7 +29,7 @@ public class DBProject {
                 pstm.setString(1, id);
                 rs = pstm.executeQuery();
 
-            } else if (type.equalsIgnoreCase("unplanned")) { //Rodolfo Bernardis - Query
+            } else if (type.equalsIgnoreCase("unplanned")) {
                 pstm = connection.prepareStatement("select MAN.nome, MAN.username_mantainer, MAN.password_mantainer\n"
                         + "from unplanned UN, attitudine_un ATTUN, competenza COMP, requisito REQ, mantainer MAN\n"
                         + "where UN.id_attivita_un=? and UN.id_attivita_un=ATTUN.id_attivita_un\n"
@@ -43,8 +43,6 @@ public class DBProject {
                 String username = rs.getString("username_mantainer");
                 String password = rs.getString("password_mantainer");
                 String name = rs.getString("nome");
-
-                //manca la lista di availability
                 Maintainer m = new Maintainer(username, password, "Maintainer", name);
                 l.add(m);
             }

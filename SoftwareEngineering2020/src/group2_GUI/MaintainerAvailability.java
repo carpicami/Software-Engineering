@@ -13,7 +13,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
 
     private static MaintainerAvailability instance = null;
 
-    /*inizio implementazione SINGLETON PATTERN - Camilla Carpinelli*/
+    /*inizio implementazione SINGLETON PATTERN @author - Camilla Carpinelli*/
     public MaintainerAvailability() {
         initComponents();
     }
@@ -165,7 +165,9 @@ public class MaintainerAvailability extends javax.swing.JFrame {
     }//GEN-LAST:event_WeekText3ActionPerformed
 
     private void AvailabilityTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvailabilityTable1MouseClicked
-        DailyAvailability dav = DailyAvailability.getInstance(); //- Marianna Farina
+        DailyAvailability dav = DailyAvailability.getInstance(); //@author - Marianna Farina
+        /*successivamente al click del mouse sull'interfaccia con i manutentori, viene aperta una seconda interfaccia contenente le percentuali del manutentore
+        su cui si è effettuato il click, nel giorno scelto, e per tutte le ore lavorative giornaliere*/
         ServiceAvailability availability = new ServiceAvailability();
         int week = Integer.parseInt(WeekText3.getText());
         int row = AvailabilityTable1.rowAtPoint(evt.getPoint());
@@ -198,7 +200,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
                             int column = 2;
                             for (int i : u) {
                                 if (column==6 || column==7){
-                                    dav.AvailabilityTable2.setValueAt("Lunch", 0, column);
+                                    dav.AvailabilityTable2.setValueAt("Lunch", 0, column); //dalle 12 alle 14 c'è pausa pranzo
                                 }
                                 else {
                                     dav.AvailabilityTable2.setValueAt(i, 0, column); 
