@@ -20,7 +20,7 @@ public class TestDBProjectPopolaActivity {
     }
 
     @Test
-    public void testActivity() {
+    public void testGetActivityShouldReturnExpectedArray() {
         int settimana = 2;
         List<PlannedActivity> lp = DBProject.popolaActivity(settimana, "planned");
         List<String> expected = new ArrayList<>();
@@ -36,7 +36,7 @@ public class TestDBProjectPopolaActivity {
     }
 
     @Test
-    public void testActivity2() {
+    public void testGetActivityShouldReturnEmptyArray() {
         int settimana = 5;
         List<PlannedActivity> lp = DBProject.popolaActivity(settimana, "planned");
         Assert.assertTrue(lp.isEmpty());

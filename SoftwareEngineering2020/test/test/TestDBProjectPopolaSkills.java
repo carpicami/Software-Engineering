@@ -39,7 +39,7 @@ public class TestDBProjectPopolaSkills {
     }
 
     @Test
-    public void skills1() {
+    public void testGetSkillsForPlannedActivityShouldReturnExpectedList() {
         String id = "0018";
         List<Competencies> expected = new ArrayList<>();
         expected.add(c0);
@@ -52,7 +52,7 @@ public class TestDBProjectPopolaSkills {
     }
 
     @Test
-    public void skills2() {
+    public void testGetSkillsForUnplannedActivityShouldReturnExpectedList() {
         String id = "0016";
         List<Competencies> expected = new ArrayList<>();
         expected.add(c3);
@@ -67,7 +67,7 @@ public class TestDBProjectPopolaSkills {
     }
 
     @Test
-    public void skills3() {
+    public void testGetSkillsForUnplannedActivityShouldReturnEmptyList() {
         String id = "0015";
         List<Competencies> list = DBProject.popolaSkills(id, "unplanned");
         Assert.assertTrue("UNEXPECTED LIST FOR ID " + id + "\n", list.isEmpty());

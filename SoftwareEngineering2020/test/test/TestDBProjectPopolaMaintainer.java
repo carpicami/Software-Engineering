@@ -25,7 +25,7 @@ public class TestDBProjectPopolaMaintainer {
     }
 
     @Test
-    public void testMaintainer1() {
+    public void testGetMaintainerPlannedActivityShouldReturnArrayExpected() {
         String id = "0018";
         List<Maintainer> expected = new ArrayList<>();
         expected.add(m0);
@@ -38,14 +38,14 @@ public class TestDBProjectPopolaMaintainer {
     }
 
     @Test
-    public void testMaintainer2() {
+    public void testGetMaintainerPlannedActivityShouldReturnEmptyList() {
         String id = "0018";
         List<Maintainer> list = DBProject.popolaMaintainer(id, "unplanned");
         Assert.assertTrue("LIST MUST BE EMPTY FOR ID " + id + "\n", list.isEmpty());
     }
 
     @Test
-    public void testMaintainer3() {
+    public void testGetMaintainerUnplannedActivityShouldReturnArrayExpected() {
         String id = "0016";
         List<Maintainer> expected = new ArrayList<>();
         expected.add(m0);
