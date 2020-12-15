@@ -165,7 +165,7 @@ public class MaintainerAvailability extends javax.swing.JFrame {
     }//GEN-LAST:event_WeekText3ActionPerformed
 
     private void AvailabilityTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvailabilityTable1MouseClicked
-        DailyAvailability dav = DailyAvailability.getInstance();
+        DailyAvailability dav = DailyAvailability.getInstance(); //- Marianna Farina
         ServiceAvailability availability = new ServiceAvailability();
         int week = Integer.parseInt(WeekText3.getText());
         int row = AvailabilityTable1.rowAtPoint(evt.getPoint());

@@ -186,14 +186,14 @@ public class ManageMaintenance extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(WeekText, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
-                        .addComponent(ShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ShowButton))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(EwoButton)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Select1Button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +217,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(Select1Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Select2Button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Select3Button)
@@ -231,10 +231,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +278,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(pa.getArea(), row, 1);
                 ActivityTable.setValueAt(pa.getTipology(), row, 2);
                 ActivityTable.setValueAt(pa.getEstimatedTime(), row, 3);
-                ActivityTable.setValueAt("Non Assigned", row, 4);
+                ActivityTable.setValueAt("Not Assigned", row, 4);
                 activity_description.add("PLANNED: " + pa.getDescription());
 
                 skills_needed = popolaSkills(pa.getID(), "planned");
@@ -293,7 +290,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
                 ActivityTable.setValueAt(up.getArea(), row, 1);
                 ActivityTable.setValueAt(up.getTipology(), row, 2);
                 ActivityTable.setValueAt(up.getEstimatedTime(), row, 3);
-                ActivityTable.setValueAt("Non Assigned", row, 4);
+                ActivityTable.setValueAt("Not Assigned", row, 4);
                 activity_description.add("UNPLANNED: " + up.getDescription());
 
                 skills_needed = popolaSkills(up.getID(), "unplanned");
@@ -371,6 +368,18 @@ public class ManageMaintenance extends javax.swing.JFrame {
         }
     }
 
+    public void assignActivity(String id) {
+        int row = ActivityTable.getRowCount();
+        int column = 4;
+
+        for (int i = 0; i < row; i++) {
+            String activity = (String) ActivityTable.getValueAt(i, 0);
+            if (activity.equalsIgnoreCase(id)) {
+                ActivityTable.setValueAt("Assigned", i, column);
+            }
+        }
+    }
+
     private String getSkillsActivity(List<Competencies> s) {//- Camilla Carpinelli
         String a = "";
         for (Competencies c : s) {
@@ -406,7 +415,7 @@ public class ManageMaintenance extends javax.swing.JFrame {
         }
     }
 
-    private void getListOfMaintainer(int id_button) { 
+    private void getListOfMaintainer(int id_button) {
         MaintainerAvailability ma = MaintainerAvailability.getInstance(); //chiamata al singleton
         cleanTable(ma.AvailabilityTable1);
         int week = Integer.parseInt(WeekText.getText());

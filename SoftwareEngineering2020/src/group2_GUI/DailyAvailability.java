@@ -193,11 +193,15 @@ public class DailyAvailability extends javax.swing.JFrame {
     private void SelectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectButtonActionPerformed
         JOptionPane p = new JOptionPane();
         JOptionPane.showMessageDialog(p, "OK! Il sistema provvederà ad avvisare il Maintainer per l'attività assegnatagli.", "Activity Received", JOptionPane.INFORMATION_MESSAGE);
+        
+        ManageMaintenance mm = ManageMaintenance.getInstance();
+        String[] id = ActivityText3.getText().split("-");
+        mm.assignActivity(id[1]);
+       
         DailyAvailability.getInstance().setVisible(false);
         MaintainerAvailability.getInstance().setVisible(false);
         MaintenanceActivityVerification.getInstance().setVisible(false);
         ManageEwoActivity.getInstance().setVisible(false);
-//eventualmente cancellare l'attività dalla tabella, oppure aggiungere un campo per segnalare che è stata assegnata 
     }//GEN-LAST:event_SelectButtonActionPerformed
 
     /**
