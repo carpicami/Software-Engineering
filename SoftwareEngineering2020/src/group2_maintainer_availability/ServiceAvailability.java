@@ -99,7 +99,7 @@ public class ServiceAvailability {
         return percentList;
     }
 
-    private int getIndex(int orario) throws Exception {//@author - Rodolfo Bernardis
+    public int getIndex(int orario) throws Exception {//@author - Rodolfo Bernardis
         int index = orario - 8;
         if ((index >= 0) && (index <= 8)) {
             return index;
@@ -107,7 +107,7 @@ public class ServiceAvailability {
         throw new Exception("L'orario di inizio attività non è incluso nel range");
     }
 
-    private int getTimeBeetween(Time time1, Time time2) { //@author - Pierluigi Giangiacomi
+    public int getTimeBeetween(Time time1, Time time2) { //@author - Pierluigi Giangiacomi
         String time11 = time1.toString();
         String time22 = time2.toString();
         String[] split1 = time11.split(":");
@@ -118,7 +118,7 @@ public class ServiceAvailability {
         return differenzaMinuti;
     }
 
-    private List<WeekAvail> getOtherMaintainerAvailability(List<String> busyMaintainer) throws SQLException { //@author - Pierluigi Giangiacomi
+    public List<WeekAvail> getOtherMaintainerAvailability(List<String> busyMaintainer) throws SQLException { //@author - Pierluigi Giangiacomi
         PreparedStatement pstm = null;
         ResultSet rs = null;
         pstm = connection.prepareStatement("select distinct nome from mantainer");
@@ -132,4 +132,5 @@ public class ServiceAvailability {
         }
         return avails;
     }
+
 }

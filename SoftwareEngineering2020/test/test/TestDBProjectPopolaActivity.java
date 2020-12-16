@@ -13,6 +13,7 @@ import org.junit.Test;
  *
  * @author Rodolfo Bernardis
  */
+
 public class TestDBProjectPopolaActivity {
 
     @Before
