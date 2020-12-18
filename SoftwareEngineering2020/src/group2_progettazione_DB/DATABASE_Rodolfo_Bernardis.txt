@@ -171,7 +171,7 @@ INSERT INTO planner (id_planner,nome,cognome,username_planner,password_planner) 
 
 
 INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0005','Pulizia annuale dell"impianto di riscaldamento ','Pulizia caldaia');
-INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0006','CapacitÃ  di manutenere i tubi della caldaia','Manutenzione tubi');
+INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0006','Capacità di manutenere i tubi della caldaia','Manutenzione tubi');
 INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0099','Gestione scarichi dell"impianto di riscaldamento','Controllo fumi');
 INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0027','Sostituzione componenti del nastro trasportatore','Sostituzione pezzi');
 INSERT INTO competenza (id_competenza,descrizione,nome) VALUES ('0054','Riparazione vulcanizzate della macchina','Riparazione nastro');
@@ -198,7 +198,7 @@ INSERT INTO unplanned (id_attivita_un,tipologia,interrompibile,descrizione,area,
 INSERT INTO unplanned (id_attivita_un,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,ewo) VALUES ('0055','Mechanical','false','Riparazione macchina industriale','Serino','via dei finiti','300','3','false');
 
 
-INSERT INTO planned (id_attivita_p,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0018','Hydraulic','true','Revisione caldaia','BogotÃ ','via delle donne','120','2','true');
+INSERT INTO planned (id_attivita_p,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0018','Hydraulic','true','Revisione caldaia','Bogotà','via delle donne','120','2','true');
 INSERT INTO planned (id_attivita_p,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0019','Mechanical','false','Controllo motori macchine industriali','Nola','via Roma','360','3','false');
 INSERT INTO planned (id_attivita_p,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0020','Electrical','true','Manutenzione cancello automatico','Napoli','via bernardis 23','60','2','false');
 INSERT INTO planned (id_attivita_p,tipologia,interrompibile,descrizione,area,sito_fabbrica,tempo_stimato,settimana,extra) VALUES ('0089','Mechanical','false','Revisione macchine industriali','Avellino','via Rossi','90','3','false');
@@ -249,12 +249,15 @@ INSERT INTO disponibilita_un(id_mantainer,id_attivita_un,giorno,orario_inizio,or
 INSERT INTO disponibilita_un(id_mantainer,id_attivita_un,giorno,orario_inizio,orario_fine) VALUES ('0008','0015','6','08:40:00','09:50:00');
 INSERT INTO disponibilita_un(id_mantainer,id_attivita_un,giorno,orario_inizio,orario_fine) VALUES ('0010','0055','1','15:00:00','17:00:00');
 
+
 INSERT INTO procedura(id_procedura,id_attivita_un,descrizione) VALUES ('1999','0015','Trovare guasto, rimuovere dispositivo, sostuiture dispositivo con uno nuovo, verificare il funzionamento');
 INSERT INTO procedura(id_procedura,id_attivita_un,descrizione) VALUES ('2999','0016','Trovare guasto, rimuovere componente, sostuire componente, verificare il funzionamento');
 INSERT INTO procedura(id_procedura,id_attivita_un,descrizione) VALUES ('1979','0017','Rimuovere cinghia di distribuzione, sostituirla con una nuova, verificare il funzionamento');
 INSERT INTO procedura(id_procedura,id_attivita_un,descrizione) VALUES ('5999','0055','Trovare guasto, eliminare guasto, verificare il funzionamento');
 
+
 INSERT INTO procedura(id_procedura,id_attivita_p,descrizione) VALUES ('5000','0018','Controllare tubi, in caso di malfunzionamento cambiare componenti, verificare il funzionamento');
 INSERT INTO procedura(id_procedura,id_attivita_p,descrizione) VALUES ('9000','0019','Verificare il funzionamento, in caso di malfunzionamento cambiare componenti');
 INSERT INTO procedura(id_procedura,id_attivita_p,descrizione) VALUES ('9999','0020','Verificare il funzionamento, in caso di malfunzionamento cambiare componenti');
 INSERT INTO procedura(id_procedura,id_attivita_p,descrizione) VALUES ('1000','0089','Verificare il funzionamento, in caso di malfunzionamento cambiare componenti');
+
